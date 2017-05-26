@@ -1,4 +1,6 @@
-import grid.CellType;
+package junglesweeper;
+
+import junglesweeper.grid.CellType;
 
 /**
  * Created by fabio on 26/05/2017.

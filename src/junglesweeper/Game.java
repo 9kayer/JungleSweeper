@@ -1,4 +1,6 @@
-import grid.Grid;
+package junglesweeper;
+
+import junglesweeper.grid.Grid;
 
 import java.util.Collection;
 
@@ -10,5 +12,18 @@ public class Game {
     private CollisionDetector collisionDetector;
     private Collection gameObjectList;
     private Grid grid;
+    private int delay;
+
+    public void init(){
+
+    }
+
+    public void start(){
+
+    }
+
+    public void movePlayer(){
+
+    }
 
 }
