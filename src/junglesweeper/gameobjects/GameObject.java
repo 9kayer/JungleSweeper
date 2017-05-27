@@ -26,8 +26,7 @@ public abstract class GameObject {
 
         currentDirection = null;
     }
-
-    @Override
+    
     public GridPosition getGridPosition() {
         return gridPosition;
     }
