@@ -14,7 +14,6 @@ import junglesweeper.simplegfx.controls.MoveKeyMap;
 public class SimpleGfxPlayer extends Player {
 
     private SimpleGfxGridPosition pos;
-    private Direction direction;
 
     public SimpleGfxPlayer(Grid grid, GridPosition pos, int lives, CollisionDetector collisionDetector) {
         super(grid, pos, lives, collisionDetector);
