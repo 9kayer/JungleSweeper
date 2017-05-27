@@ -3,6 +3,9 @@ package junglesweeper;
 import junglesweeper.grid.Grid;
 import junglesweeper.grid.GridFactory;
 import junglesweeper.grid.GridType;
+import junglesweeper.player.ControlType;
+import junglesweeper.player.Player;
+import junglesweeper.simplegfx.SimpleGfxPlayer;
 import junglesweeper.simplegfx.SimpleGfxGrid;
 import junglesweeper.simplegfx.SimpleGfxGridPosition;
 
@@ -30,7 +33,6 @@ public class Game {
     public void init(){
         grid.init();
 
-        System.out.println("AQUI");
         System.out.println(grid.getCols());
         for (int i = 0; i < grid.getCols(); i++){
             System.out.println("i: " + Integer.toString(i));
@@ -39,6 +41,8 @@ public class Game {
                 gameObjectList.get(i).add(new SimpleGfxGridPosition(i,j,GridColor.values()[(int)(Math.random() * GridColor.values().length)],(SimpleGfxGrid) grid));
             }
         }
+
+        Player p1 = new SimpleGfxPlayer(grid.makeGridPosition(1,1), ControlType.MODE_1,3, collisionDetector);
 
 
     }

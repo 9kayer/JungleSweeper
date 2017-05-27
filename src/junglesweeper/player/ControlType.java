@@ -1,4 +1,4 @@
-package org.academiadecodigo.bootcamp.controls;
+package junglesweeper.player;
 
 /**
  * <Academia de Código_>

@@ -1,7 +1,6 @@
 package junglesweeper.gameobjects;
 
 import junglesweeper.CollisionDetector;
-import junglesweeper.gameobjects.collidable.Collidable;
 import junglesweeper.grid.Grid;
 import junglesweeper.gridposition.Direction;
 import junglesweeper.gridposition.GridPosition;
@@ -41,11 +40,11 @@ public abstract class GameObject implements Collidable {
         this.currentDirection = currentDirection;
     }
 
-    public void move(){
+    public void move() {
 
     }
 
-    public boolean isHittingWall(){
+    public boolean isHittingWall() {
         throw new UnsupportedOperationException();
     }
 

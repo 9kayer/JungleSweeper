@@ -18,4 +18,6 @@ public interface GridPosition {
     void movingDirection(Direction direction);
 
     boolean equals(GridPosition gridPosition);
+
+
 }

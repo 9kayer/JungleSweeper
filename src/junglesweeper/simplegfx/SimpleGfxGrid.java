@@ -1,5 +1,6 @@
 package junglesweeper.simplegfx;
 
+import junglesweeper.GridColor;
 import junglesweeper.grid.Grid;
 import junglesweeper.gridposition.GridPosition;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
@@ -25,11 +26,12 @@ public class SimpleGfxGrid implements Grid {
         cellSize = 35;
         this.cols = cols;
         this.rows = rows;
-        screen = new Rectangle(XPADDING,YPADDING, cols * cellSize ,rows * cellSize);
+        screen = new Rectangle(XPADDING, YPADDING, cols * cellSize, rows * cellSize);
     }
+
     @Override
-    public void init(){
-        screen = new Rectangle(XPADDING,YPADDING, cols * cellSize ,rows * cellSize);
+    public void init() {
+        screen = new Rectangle(XPADDING, YPADDING, cols * cellSize, rows * cellSize);
         screen.draw();
     }
 
@@ -45,6 +47,14 @@ public class SimpleGfxGrid implements Grid {
 
     @Override
     public GridPosition makeGridPosition(int col, int row) {
-        return null;
+        return new SimpleGfxGridPosition(col,row, GridColor.RED,this);
+    }
+
+    public int rowToY(int row) {
+        return YPADDING + cellSize * row;
+    }
+
+    public int columnToX(int column) {
+        return XPADDING + cellSize * column ;
     }
 }
