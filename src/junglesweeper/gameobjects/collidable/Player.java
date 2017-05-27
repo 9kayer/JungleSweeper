@@ -1,6 +1,5 @@
 package junglesweeper.gameobjects.collidable;
 
-
 import junglesweeper.grid.position.GridPosition;
 
 /**
