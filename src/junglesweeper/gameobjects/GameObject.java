@@ -17,6 +17,16 @@ public abstract class GameObject implements Collidable {
     private Direction currentDirection;
 
 
+    public GameObject(GridPosition pos, GameObjectsType gameObjectsType) {
+        this.pos = pos;
+        this.type = gameObjectsType;
+
+        pos.setColor(gameObjectsType.getColor());
+        pos.setText(gameObjectsType.getText());
+
+        currentDirection = null;
+    }
+
     @Override
     public GridPosition getPos() {
         return null;
@@ -29,6 +39,10 @@ public abstract class GameObject implements Collidable {
     public Direction getCurrentDirection() {
 
         return currentDirection;
+    }
+
+    public void setCollisionDetector(CollisionDetector collisionDetector) {
+        this.collisionDetector = collisionDetector;
     }
 
     public void setPos(GridPosition pos) {

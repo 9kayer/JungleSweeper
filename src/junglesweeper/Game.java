@@ -1,12 +1,11 @@
 package junglesweeper;
 
+import junglesweeper.gameobjects.GameObject;
+import junglesweeper.gameobjects.GameObjectFactory;
+import junglesweeper.gameobjects.GameObjectsType;
 import junglesweeper.grid.Grid;
 import junglesweeper.grid.GridFactory;
 import junglesweeper.grid.GridType;
-import junglesweeper.player.ControlType;
-import junglesweeper.player.Player;
-import junglesweeper.simplegfx.SimpleGfxPlayer;
-import junglesweeper.simplegfx.SimpleGfxGrid;
 import junglesweeper.simplegfx.SimpleGfxGridPosition;
 
 import java.util.ArrayList;
@@ -21,37 +20,51 @@ public class Game {
     private Grid grid;
     private int delay;
 
-    public Game (GridType gridType, int cols, int rows, int delay){
+    public Game(GridType gridType, int cols, int rows, int delay) {
         grid = GridFactory.makeGrid(gridType, cols, rows);
+
         gameObjectList = new ArrayList<ArrayList>();
-        for(int i = 0; i < cols; i++){
-            gameObjectList.add(new ArrayList< SimpleGfxGridPosition>());
-        }
+
         this.delay = delay;
     }
 
-    public void init(){
+    public void init() {
         grid.init();
 
+        initGameObjectList();
+        System.out.println("AQUI");
         System.out.println(grid.getCols());
-        for (int i = 0; i < grid.getCols(); i++){
+        createGameObjects();
+    }
+
+    public void start() {
+
+    }
+
+    public void initGameObjectList() {
+        for (int i = 0; i < grid.getCols(); i++) {
+            gameObjectList.add(new ArrayList<GameObject>());
+        }
+    }
+
+    public void createGameObjects() {
+
+        GameObject object;
+
+        for (int i = 0; i < grid.getCols(); i++) {
             System.out.println("i: " + Integer.toString(i));
-            for (int j = 0; j < grid.getRows(); j++){
+
+            for (int j = 0; j < grid.getRows(); j++) {
+
                 System.out.println("j: " + Integer.toString(j));
-                gameObjectList.get(i).add(new SimpleGfxGridPosition(i,j,GridColor.values()[(int)(Math.random() * GridColor.values().length)],(SimpleGfxGrid) grid));
+                object = GameObjectFactory.createNewGameObjects(i, j, grid, GameObjectsType.values()[(int) (Math.random() * GameObjectsType.values().length)]);
+                object.setCollisionDetector(collisionDetector); // not necessary for rocks
+                gameObjectList.get(i).add(object);
             }
         }
-
-        Player p1 = new SimpleGfxPlayer(grid.makeGridPosition(1,1), ControlType.MODE_1,3, collisionDetector);
-
-
     }
 
-    public void start(){
-
-    }
-
-    public void movePlayer(){
+    public void movePlayer() {
 
     }
 
