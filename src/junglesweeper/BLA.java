@@ -8,8 +8,8 @@ import junglesweeper.grid.CellType;
 public class BLA {
 
 
-    private CellType[][] matrix = new CellType[][]{{CellType.ROCK,CellType.ROCK,CellType.CLEAR,CellType.CLEAR},
-                                                    {CellType.ROCK,CellType.ROCK,CellType.CLEAR,CellType.KEY},
-                                                    {CellType.CLEAR,CellType.CLEAR,CellType.CLEAR,CellType.TIGER},
-                                                    {CellType.ROCK,CellType.CLEAR,CellType.ROCK,CellType.ROCK}};
+    private CellType[][] matrix = new CellType[][]{{CellType.ROCK,CellType.ROCK,CellType.EMPTY,CellType.EMPTY},
+                                                    {CellType.ROCK,CellType.ROCK,CellType.EMPTY,CellType.KEY},
+                                                    {CellType.EMPTY,CellType.EMPTY,CellType.EMPTY,CellType.TIGER},
+                                                    {CellType.ROCK,CellType.EMPTY,CellType.ROCK,CellType.ROCK}};
 }

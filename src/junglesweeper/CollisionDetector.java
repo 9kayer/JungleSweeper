@@ -1,6 +1,6 @@
 package junglesweeper;
 
-import junglesweeper.gameObjects.collidable.Collidable;
+import junglesweeper.gameobjects.collidable.Collidable;
 
 import java.util.Collection;
 

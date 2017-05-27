@@ -1,6 +1,6 @@
 package junglesweeper.grid;
 
-import junglesweeper.gridPosition.GridPosition;
+import junglesweeper.gridposition.GridPosition;
 
 /**
  * Created by fabio on 26/05/2017.

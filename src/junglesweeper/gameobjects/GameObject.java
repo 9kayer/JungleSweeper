@@ -1,16 +1,15 @@
-package junglesweeper.gameObjects;
+package junglesweeper.gameobjects;
 
 import junglesweeper.CollisionDetector;
-import junglesweeper.gameObjects.collidable.Collidable;
-import junglesweeper.grid.CellType;
+import junglesweeper.gameobjects.collidable.Collidable;
 import junglesweeper.grid.Grid;
-import junglesweeper.gridPosition.Direction;
-import junglesweeper.gridPosition.GridPosition;
+import junglesweeper.gridposition.Direction;
+import junglesweeper.gridposition.GridPosition;
 
 /**
  * Created by fabio on 26/05/2017.
  */
-public abstract class GameObject implements Collidable{
+public abstract class GameObject implements Collidable {
 
     private GridPosition pos;
     private Grid grid;
