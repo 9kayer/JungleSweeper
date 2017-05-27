@@ -1,17 +1,16 @@
 package junglesweeper.player;
 
-import junglesweeper.CollisionDetector;
+import junglesweeper.collisiondetector.Collidable;
+import junglesweeper.collisiondetector.CollisionDetector;
 import junglesweeper.grid.Grid;
 import junglesweeper.grid.position.GridPosition;
 import junglesweeper.grid.position.Direction;
-import junglesweeper.simplegfx.controls.ControlType;
-import junglesweeper.simplegfx.controls.MoveKeyMap;
 
 
 /**
  * Created by fabio on 26/05/2017.
  */
-public abstract class Player {
+public abstract class Player implements Collidable {
 
     private Grid grid;
     private GridPosition pos;
@@ -41,4 +40,9 @@ public abstract class Player {
     }
 
     public abstract void move(Direction direction);
+
+    public void collide() {
+        throw new UnsupportedOperationException();
+    }
+
 }

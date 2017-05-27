@@ -1,5 +1,6 @@
 package junglesweeper;
 
+import junglesweeper.collisiondetector.CollisionDetector;
 import junglesweeper.gameobjects.GameObject;
 import junglesweeper.gameobjects.GameObjectFactory;
 import junglesweeper.grid.Grid;
