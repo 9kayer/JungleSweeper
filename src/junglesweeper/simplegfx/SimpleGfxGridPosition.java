@@ -13,20 +13,20 @@ import org.academiadecodigo.simplegraphics.graphics.Text;
  */
 public class SimpleGfxGridPosition extends AbstractGridPosition {
 
+    private SimpleGfxGrid simpleGfxGrid;
     private Rectangle rectangle;
     private Text text;
-    private SimpleGfxGrid simpleGfxGrid;
 
     public SimpleGfxGridPosition(int col, int row, SimpleGfxGrid simpleGfxGrid) {
 
         super(col, row, simpleGfxGrid);
 
-        int x = SimpleGfxGrid.X_PADDING + col * simpleGfxGrid.getCellSize();
-        int y = SimpleGfxGrid.Y_PADDING + row * simpleGfxGrid.getCellSize();
+        this.simpleGfxGrid = simpleGfxGrid;
+
+        int x = simpleGfxGrid.getX() + col * simpleGfxGrid.getCellSize();
+        int y = simpleGfxGrid.getY() + row * simpleGfxGrid.getCellSize();
 
         this.rectangle = new Rectangle(x, y, simpleGfxGrid.getCellSize(), simpleGfxGrid.getCellSize());
-
-        this.simpleGfxGrid = simpleGfxGrid;
 
         text = new Text(x, y, "\n   a");
         text.setColor(SimpleGfxColorMapper.getColor(GridColor.BLACK));
@@ -63,7 +63,19 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
     @Override
     public void movingDirection(Direction direction) {
-        throw new UnsupportedOperationException();
+
+        System.out.println(direction);
+
+        int lastMoveCol = getCol();
+        int lastMoveRow = getRow();
+
+        super.movingDirection(direction);
+
+        int dX = simpleGfxGrid.columnToX(getCol()) - simpleGfxGrid.columnToX(lastMoveCol);
+        int dY = simpleGfxGrid.rowToY(getRow()) - simpleGfxGrid.rowToY(lastMoveRow);
+        System.out.println(dX + " "  + dY);
+        rectangle.translate(dX, dY);
+
     }
 
     @Override

@@ -9,28 +9,27 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
  */
 public class SimpleGfxGrid implements Grid {
 
-    public static final int X_PADDING = 100;
-    public static final int Y_PADDING = 10;
+    private static final int CELL_SIZE = 35;
+    private static final int X_PADDING = 100;
+    private static final int Y_PADDING = 10;
 
     private int cols;
     private int rows;
-    private int cellSize;
     private Rectangle screen;
 
     public int getCellSize() {
-        return cellSize;
+        return CELL_SIZE;
     }
 
     public SimpleGfxGrid(int cols, int rows) {
-        cellSize = 35;
         this.cols = cols;
         this.rows = rows;
-        screen = new Rectangle(X_PADDING, Y_PADDING, cols * cellSize, rows * cellSize);
+        screen = new Rectangle(X_PADDING, Y_PADDING, cols * getCellSize(), rows * getCellSize());
     }
 
     @Override
     public void init() {
-        screen = new Rectangle(X_PADDING, Y_PADDING, cols * cellSize, rows * cellSize);
+        screen = new Rectangle(X_PADDING, Y_PADDING, cols * getCellSize(), rows * getCellSize());
         screen.draw();
     }
 
@@ -52,9 +51,17 @@ public class SimpleGfxGrid implements Grid {
         return screen.getHeight();
     }
 
+    public int getX() {
+        return X_PADDING;
+    }
+
+    public int getY() {
+        return Y_PADDING;
+    }
+
     @Override
     public GridPosition makeGridPosition(int col, int row) {
-        SimpleGfxGridPosition cell = new SimpleGfxGridPosition(col, row, this);
+        SimpleGfxGridPosition cell = new SimpleGfxGridPosition(col,row,this);
 
         cell.show();
 
