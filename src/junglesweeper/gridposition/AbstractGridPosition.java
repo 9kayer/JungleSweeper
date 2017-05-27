@@ -12,10 +12,10 @@ public abstract class AbstractGridPosition implements GridPosition {
     private GridColor color;
     private Grid grid;
 
-    public AbstractGridPosition(int col, int row, GridColor color, Grid grid) {
+    public AbstractGridPosition(int col, int row, Grid grid) {
         this.col = col;
         this.row = row;
-        this.color = color;
+        this.color = null;
         this.grid = grid;
     }
 
@@ -29,17 +29,21 @@ public abstract class AbstractGridPosition implements GridPosition {
         return row;
     }
 
+    public Grid getGrid() {
+        return grid;
+    }
+
     @Override
     public void setPos(int col, int row) {
         this.col = col;
         this.row = row;
     }
 
-    public abstract void show();
-
-    public Grid getGrid() {
-        return grid;
+    public void setColor(GridColor color) {
+        this.color = color;
     }
+
+    public abstract void show();
 
     public GridColor getColor() {
         return color;

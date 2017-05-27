@@ -1,6 +1,6 @@
 package junglesweeper;
 
-import junglesweeper.gameobjects.collidable.Collidable;
+import junglesweeper.gameobjects.Collidable;
 
 import java.util.Collection;
 
@@ -10,6 +10,5 @@ import java.util.Collection;
 public class CollisionDetector {
 
     private Collection<Collidable> objectsList;
-
 
 }

@@ -13,7 +13,10 @@ public class SimpleGfxColorMapper {
             Color.GREEN,
             Color.BLUE,
             Color.MAGENTA,
-            Color.WHITE
+            Color.WHITE,
+            Color.BLACK,
+            Color.YELLOW,
+            Color.GRAY
     };
 
     public static Color getColor(GridColor color){
@@ -33,8 +36,17 @@ public class SimpleGfxColorMapper {
             case MAGENTA:
                 sGfxColor = colors[3];
                 break;
-            case NOCOLOR:
+            case WHITE:
                 sGfxColor = colors[4];
+                break;
+            case BLACK:
+                sGfxColor = colors[5];
+                break;
+            case YELLOW:
+                sGfxColor = colors[6];
+                break;
+            case GRAY:
+                sGfxColor = colors[7];
                 break;
             default:
                 System.out.println("something went terribly wrong...");

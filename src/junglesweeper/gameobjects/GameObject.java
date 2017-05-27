@@ -1,7 +1,6 @@
 package junglesweeper.gameobjects;
 
 import junglesweeper.CollisionDetector;
-import junglesweeper.gameobjects.collidable.Collidable;
 import junglesweeper.grid.Grid;
 import junglesweeper.gridposition.Direction;
 import junglesweeper.gridposition.GridPosition;
@@ -18,6 +17,16 @@ public abstract class GameObject implements Collidable {
     private Direction currentDirection;
 
 
+    public GameObject(GridPosition pos, GameObjectsType gameObjectsType) {
+        this.pos = pos;
+        this.type = gameObjectsType;
+
+        pos.setColor(gameObjectsType.getColor());
+        pos.setText(gameObjectsType.getText());
+
+        currentDirection = null;
+    }
+
     @Override
     public GridPosition getPos() {
         return null;
@@ -32,6 +41,10 @@ public abstract class GameObject implements Collidable {
         return currentDirection;
     }
 
+    public void setCollisionDetector(CollisionDetector collisionDetector) {
+        this.collisionDetector = collisionDetector;
+    }
+
     public void setPos(GridPosition pos) {
 
         this.pos = pos;
@@ -41,11 +54,11 @@ public abstract class GameObject implements Collidable {
         this.currentDirection = currentDirection;
     }
 
-    public void move(){
+    public void move() {
 
     }
 
-    public boolean isHittingWall(){
+    public boolean isHittingWall() {
         throw new UnsupportedOperationException();
     }
 

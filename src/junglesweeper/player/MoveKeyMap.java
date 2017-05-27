@@ -1,10 +1,10 @@
-package org.academiadecodigo.bootcamp.controls;
+package junglesweeper.player;
 
-import org.academiadecodigo.bootcamp.grid.GridDirection;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
+import junglesweeper.gridposition.Direction;
 
 /**
  * <Academia de Código_>
@@ -31,7 +31,7 @@ public class MoveKeyMap implements KeyboardHandler {
 
     private int[] keys;
     private Keyboard keyboard;
-    private GridDirection direction;
+    private Direction direction;
     private boolean moving;
     private boolean specialMove;
 
@@ -50,7 +50,7 @@ public class MoveKeyMap implements KeyboardHandler {
         }
 
         keyboard = new Keyboard(this);
-        direction = GridDirection.UP;
+        direction = Direction.UP;
         moving = false;
         specialMove = false;
 
@@ -78,22 +78,22 @@ public class MoveKeyMap implements KeyboardHandler {
 
         // Up or W
         if (e.getKey() == keys[0]) {
-            direction = GridDirection.UP;
+            direction = Direction.UP;
         }
 
         // Right or D
         if (e.getKey() == keys[1]) {
-            direction = GridDirection.RIGHT;
+            direction = Direction.RIGHT;
         }
 
         // Down or S
         if (e.getKey() == keys[2]) {
-            direction = GridDirection.DOWN;
+            direction = Direction.DOWN;
         }
 
         // Left or A
         if (e.getKey() == keys[3]) {
-            direction = GridDirection.LEFT;
+            direction = Direction.LEFT;
         }
 
         // Space or Q
@@ -116,7 +116,7 @@ public class MoveKeyMap implements KeyboardHandler {
      *
      * @return direction
      */
-    public GridDirection getDirection() {
+    public Direction getDirection() {
         return direction;
     }
 

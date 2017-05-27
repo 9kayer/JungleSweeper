@@ -1,13 +1,36 @@
 package junglesweeper.gameobjects;
 
+import junglesweeper.GridColor;
+
 /**
  * Created by codecadet on 26/05/17.
  */
 public enum GameObjectsType {
 
-    ROCK,
-    KEY,
-    BUSH,
-    TIGER,
-    PATH
+    ROCK(GridColor.GRAY, "\n   R"),
+    KEY(GridColor.YELLOW, "\n   K"),
+    BUSH(GridColor.GREEN, "\n   B"),
+    TIGER(GridColor.RED, "\n   T")
+    //PATH(GridColor.WHITE, "")
+    ;
+
+    private GridColor color;
+    private String text;
+
+    GameObjectsType(GridColor color, String text) {
+        this.color = color;
+        this.text = text;
+    }
+
+    public GridColor getColor() {
+        return color;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setColor(GridColor color) {
+        this.color = color;
+    }
 }
