@@ -3,8 +3,8 @@ package junglesweeper.gameobjects;
 import junglesweeper.CollisionDetector;
 import junglesweeper.gameobjects.collidable.Collidable;
 import junglesweeper.grid.Grid;
-import junglesweeper.gridposition.Direction;
-import junglesweeper.gridposition.GridPosition;
+import junglesweeper.grid.position.Direction;
+import junglesweeper.grid.position.GridPosition;
 
 /**
  * Created by fabio on 26/05/2017.

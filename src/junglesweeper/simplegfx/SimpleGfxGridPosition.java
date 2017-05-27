@@ -2,10 +2,9 @@ package junglesweeper.simplegfx;
 
 
 import junglesweeper.GridColor;
-import junglesweeper.gameobjects.GameObjectsType;
-import junglesweeper.gridposition.AbstractGridPosition;
-import junglesweeper.gridposition.Direction;
-import junglesweeper.gridposition.GridPosition;
+import junglesweeper.grid.position.AbstractGridPosition;
+import junglesweeper.grid.position.Direction;
+import junglesweeper.grid.position.GridPosition;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 

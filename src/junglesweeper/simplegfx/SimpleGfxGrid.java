@@ -1,7 +1,7 @@
 package junglesweeper.simplegfx;
 
 import junglesweeper.grid.Grid;
-import junglesweeper.gridposition.GridPosition;
+import junglesweeper.grid.position.GridPosition;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 /**

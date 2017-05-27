@@ -1,6 +1,6 @@
 package junglesweeper.gameobjects.collidable;
 
-import junglesweeper.gridposition.GridPosition;
+import junglesweeper.grid.position.GridPosition;
 
 /**
  * Created by fabio on 26/05/2017.
