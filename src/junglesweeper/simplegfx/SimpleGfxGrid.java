@@ -43,6 +43,14 @@ public class SimpleGfxGrid implements Grid {
         return rows;
     }
 
+    public int getWidth() {
+        return screen.getWidth();
+    }
+
+    public int getHeight() {
+        return screen.getHeight();
+    }
+
     @Override
     public GridPosition makeGridPosition(int col, int row) {
         SimpleGfxGridPosition cell = new SimpleGfxGridPosition(col,row,this);

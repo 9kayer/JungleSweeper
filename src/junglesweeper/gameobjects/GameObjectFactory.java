@@ -5,7 +5,7 @@ import junglesweeper.grid.Grid;
 /**
  * Created by fabio on 26/05/2017.
  */
-public class Factory {
+public class GameObjectFactory {
 
     public static GameObject createNewGameObjects(int col, int row, Grid grid , GameObjectsType gameObjectsType){
 
