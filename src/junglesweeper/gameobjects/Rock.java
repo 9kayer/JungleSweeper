@@ -10,4 +10,12 @@ public class Rock extends GameObject {
     public Rock(GridPosition pos) {
         super(pos, GameObjectsType.ROCK);
     }
+
+    public void collide() {
+        getGridPosition().hide();
+    }
+
+    public GridPosition getPos() {
+        return getGridPosition();
+    }
 }

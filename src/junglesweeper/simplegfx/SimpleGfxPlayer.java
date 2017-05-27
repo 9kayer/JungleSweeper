@@ -19,7 +19,33 @@ public class SimpleGfxPlayer extends Player {
     }
 
     public void move(Direction direction) {
-        pos.movingDirection(direction);
+
+        int col = pos.getCol();
+        int row = pos.getRow();
+
+        switch (direction) {
+            case UP:
+                row--;
+                break;
+            case RIGHT:
+                col++;
+                break;
+            case DOWN:
+                row++;
+                break;
+            case LEFT:
+                col--;
+                break;
+        }
+
+        System.out.println(col);
+        System.out.println(row);
+
+        //System.out.println(getCollisionDetector().isPossible(pos));
+
+        //if (getCollisionDetector().isPossible(new SimpleGfxGridPosition(col, row, pos.getSimpleGfxGrid()))) {
+            this.pos.movingDirection(direction);
+        //}
     }
 
     public GridPosition getPos() {

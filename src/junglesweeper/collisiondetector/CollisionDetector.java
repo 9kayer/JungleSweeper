@@ -1,9 +1,12 @@
 package junglesweeper.collisiondetector;
 
+import junglesweeper.gameobjects.Key;
 import junglesweeper.gameobjects.Rock;
+import junglesweeper.gameobjects.Tiger;
 import junglesweeper.grid.position.GridPosition;
 import junglesweeper.player.Player;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,22 +14,29 @@ import java.util.List;
  */
 public class CollisionDetector {
 
-    private List<Collidable> objectsList;
+    private ArrayList<ArrayList> objectsList;
     private Player player;
 
-    public CollisionDetector(List<Collidable> objectsList, Player player) {
+    public CollisionDetector(ArrayList<ArrayList> objectsList) {
 
         this.objectsList = objectsList;
-        this.player = player;
 
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     public boolean isPossible(GridPosition pos) {
 
-        for (Collidable c : objectsList) {
+        for (ArrayList<Collidable> c : objectsList) {
 
-            if (c.getPos().equals(pos) && c instanceof Rock) {
-                return false;
+            for (Collidable e : c) {
+
+                if (e instanceof Rock && e.getPos().equals(pos)) {
+                    return false;
+                }
+
             }
 
         }
@@ -37,15 +47,24 @@ public class CollisionDetector {
 
     public boolean check() {
 
-        for (Collidable c : objectsList) {
+        /*for (Collidable c : objectsList) {
 
             if (player.equals(c)) {
 
+                if (c instanceof Key) {
+                    player.collectKey();
+                    c.collide();
+                }
 
+                if (c instanceof Tiger) {
+                    // TODO implement action for colliding with tiger
+                }
+
+                return true;
 
             }
 
-        }
+        }*/
 
         return false;
 

@@ -79,7 +79,17 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     }
 
     @Override
-    public boolean equals(GridPosition gridPosition) {
-        throw new UnsupportedOperationException();
+    public boolean equals(GridPosition g) {
+
+        if (getCol() == g.getCol() && getRow() == g.getRow()) {
+            return true;
+        }
+
+        return false;
+
+    }
+
+    public SimpleGfxGrid getSimpleGfxGrid() {
+        return simpleGfxGrid;
     }
 }

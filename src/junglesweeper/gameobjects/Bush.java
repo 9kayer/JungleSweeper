@@ -10,4 +10,12 @@ public class Bush extends GameObject{
     public Bush(GridPosition pos) {
         super(pos, GameObjectsType.BUSH);
     }
+
+    public void collide() {
+        getGridPosition().hide();
+    }
+
+    public GridPosition getPos() {
+        return getGridPosition();
+    }
 }

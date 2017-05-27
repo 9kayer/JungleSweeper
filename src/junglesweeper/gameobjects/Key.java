@@ -10,4 +10,12 @@ public class Key extends GameObject {
     public Key(GridPosition pos) {
         super(pos, GameObjectsType.KEY);
     }
+
+    public void collide() {
+        getGridPosition().hide();
+    }
+
+    public GridPosition getPos() {
+        return getGridPosition();
+    }
 }

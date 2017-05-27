@@ -32,6 +32,8 @@ public class Game {
 
         gameObjectList = new ArrayList<ArrayList>();
 
+        collisionDetector = new CollisionDetector(gameObjectList);
+
         keyMap = new MoveKeyMap(ControlType.MODE_1);
         level = new Level();
     }
