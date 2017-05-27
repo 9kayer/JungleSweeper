@@ -6,7 +6,10 @@ import junglesweeper.gameobjects.GameObjectsType;
 import junglesweeper.grid.Grid;
 import junglesweeper.grid.GridFactory;
 import junglesweeper.grid.GridType;
-import junglesweeper.simplegfx.SimpleGfxGridPosition;
+import junglesweeper.simplegfx.controls.ControlType;
+import junglesweeper.player.Player;
+import junglesweeper.simplegfx.SimpleGfxPlayer;
+import junglesweeper.simplegfx.controls.MoveKeyMap;
 
 import java.util.ArrayList;
 
@@ -15,17 +18,22 @@ import java.util.ArrayList;
  */
 public class Game {
 
+    private static final int DELAY = 1;
+
     private CollisionDetector collisionDetector;
     private ArrayList<ArrayList> gameObjectList;
     private Grid grid;
     private int delay;
+    private Player player;
+    private MoveKeyMap keyMap;
 
-    public Game(GridType gridType, int cols, int rows, int delay) {
+    public Game(GridType gridType, int cols, int rows) {
         grid = GridFactory.makeGrid(gridType, cols, rows);
 
         gameObjectList = new ArrayList<ArrayList>();
 
-        this.delay = delay;
+        keyMap = new MoveKeyMap(ControlType.MODE_1);
+        keyMap.init();
     }
 
     public void init() {
@@ -37,7 +45,18 @@ public class Game {
         createGameObjects();
     }
 
-    public void start() {
+    public void start() throws InterruptedException {
+
+        while (true) {
+
+            if (keyMap.isMoving()) {
+                player.move(keyMap.getDirection());
+                keyMap.stopMoving();
+            }
+
+            Thread.sleep(DELAY);
+
+        }
 
     }
 
@@ -62,6 +81,9 @@ public class Game {
                 gameObjectList.get(i).add(object);
             }
         }
+
+        player = new SimpleGfxPlayer(grid, grid.makeGridPosition(0, 0), 3, collisionDetector);
+
     }
 
     public void movePlayer() {

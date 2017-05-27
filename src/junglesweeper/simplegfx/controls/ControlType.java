@@ -1,4 +1,4 @@
-package junglesweeper.player;
+package junglesweeper.simplegfx.controls;
 
 /**
  * <Academia de Código_>

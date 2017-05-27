@@ -2,13 +2,13 @@ package junglesweeper.gameobjects;
 
 import junglesweeper.CollisionDetector;
 import junglesweeper.grid.Grid;
-import junglesweeper.gridposition.Direction;
-import junglesweeper.gridposition.GridPosition;
+import junglesweeper.grid.position.Direction;
+import junglesweeper.grid.position.GridPosition;
 
 /**
  * Created by fabio on 26/05/2017.
  */
-public abstract class GameObject implements Collidable {
+public abstract class GameObject /*implements Collidable*/ {
 
     private GridPosition pos;
     private Grid grid;
@@ -27,7 +27,6 @@ public abstract class GameObject implements Collidable {
         currentDirection = null;
     }
 
-    @Override
     public GridPosition getPos() {
         return null;
     }

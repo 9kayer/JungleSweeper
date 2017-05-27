@@ -1,7 +1,7 @@
 package junglesweeper.simplegfx;
 
 import junglesweeper.grid.Grid;
-import junglesweeper.gridposition.GridPosition;
+import junglesweeper.grid.position.GridPosition;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 /**
@@ -9,8 +9,9 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
  */
 public class SimpleGfxGrid implements Grid {
 
-    public static final int XPADDING = 100;
-    public static final int YPADDING = 10;
+    private static final int CELLSIZE = 35;
+    private static final int XPADDING = 100;
+    private static final int YPADDING = 10;
 
     private int cols;
     private int rows;
@@ -22,11 +23,12 @@ public class SimpleGfxGrid implements Grid {
     }
 
     public SimpleGfxGrid(int cols, int rows) {
-        cellSize = 35;
+        cellSize = CELLSIZE;
         this.cols = cols;
         this.rows = rows;
         screen = new Rectangle(XPADDING,YPADDING, cols * cellSize ,rows * cellSize);
     }
+
     @Override
     public void init(){
         screen = new Rectangle(XPADDING,YPADDING, cols * cellSize ,rows * cellSize);
@@ -51,6 +53,14 @@ public class SimpleGfxGrid implements Grid {
         return screen.getHeight();
     }
 
+    public int getX() {
+        return XPADDING;
+    }
+
+    public int getY() {
+        return YPADDING;
+    }
+
     @Override
     public GridPosition makeGridPosition(int col, int row) {
         SimpleGfxGridPosition cell = new SimpleGfxGridPosition(col,row,this);
@@ -59,11 +69,11 @@ public class SimpleGfxGrid implements Grid {
     }
 
     public int rowToY(int row) {
-        return YPADDING + row * getCellSize();
+        return getY() + row * getCellSize();
     }
 
     public int columnToX(int column) {
-        return XPADDING + column * getCellSize();
+        return getX() + column * getCellSize();
     }
 
 }

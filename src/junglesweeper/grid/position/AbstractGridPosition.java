@@ -1,4 +1,4 @@
-package junglesweeper.gridposition;
+package junglesweeper.grid.position;
 
 import junglesweeper.GridColor;
 import junglesweeper.grid.Grid;
@@ -54,7 +54,7 @@ public abstract class AbstractGridPosition implements GridPosition {
     @Override
     public void movingDirection(Direction direction) {
 
-        switch (direction){
+        switch (direction) {
             case UP:
                 moveUp();
                 break;
@@ -70,24 +70,36 @@ public abstract class AbstractGridPosition implements GridPosition {
         }
     }
 
-    public void moveUp(){
-        int maxRowsUp = 1 < getRow() ? 1 : getRow();
-        setPos(getCol(), getRow() - maxRowsUp);
+    public void moveUp() {
+
+        if (getRow() - 1 >= 0) {
+            setPos(getCol(), getRow() - 1);
+        }
+
     }
 
     public void moveDown() {
-        int maxRowsDown = 1 > getGrid().getRows() - (getRow() + 1) ? getGrid().getRows() - (getRow() + 1) : 1;
-        setPos(getCol(), getRow() + maxRowsDown);
+
+        if (getRow() + 1 < grid.getRows()) {
+            setPos(getCol(), getRow() + 1);
+        }
+
     }
 
     public void moveLeft() {
-        int maxRowsLeft = 1 < getCol() ? 1 : getCol();
-        setPos(getCol() - maxRowsLeft, getRow());
+
+        if (getCol() - 1 >= 0) {
+            setPos(getCol() - 1, getRow());
+        }
+
     }
 
 
     public void moveRight() {
-        int maxRowsRight = 1 > getGrid().getCols() - (getCol() + 1) ? getGrid().getCols() - (getCol() + 1) : 1;
-        setPos(getCol() + maxRowsRight, getRow());
+
+        if (getCol() + 1 < grid.getCols()) {
+            setPos(getCol() + 1, getRow());
+        }
+
     }
 }
