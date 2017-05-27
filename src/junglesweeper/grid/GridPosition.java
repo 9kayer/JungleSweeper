@@ -1,6 +1,4 @@
-package junglesweeper.gridposition;
-
-import junglesweeper.GridColor;
+package junglesweeper.grid;
 
 /**
  * Created by fabio on 26/05/2017.
@@ -13,17 +11,8 @@ public interface GridPosition {
 
     void setPos(int col, int row);
 
-    void setColor(GridColor color);
-
-    void setText(String text);
-
-    void show();
-
-    void hide();
-
     void movingDirection(Direction direction);
 
     boolean equals(GridPosition gridPosition);
-
 
 }
