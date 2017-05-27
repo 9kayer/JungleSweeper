@@ -1,4 +1,4 @@
-package junglesweeper.gameObjects;
+package junglesweeper.gameobjects;
 
 /**
  * Created by codecadet on 26/05/17.
