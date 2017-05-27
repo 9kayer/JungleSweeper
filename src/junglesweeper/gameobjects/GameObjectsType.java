@@ -10,6 +10,7 @@ public enum GameObjectsType {
     ROCK(GridColor.GRAY, "\n   R"),
     KEY(GridColor.YELLOW, "\n   K"),
     BUSH(GridColor.GREEN, "\n   B"),
+    DOOR(GridColor.BLACK, "\n   D"),
     TIGER(GridColor.RED, "\n   T")
     //PATH(GridColor.WHITE, "")
     ;
