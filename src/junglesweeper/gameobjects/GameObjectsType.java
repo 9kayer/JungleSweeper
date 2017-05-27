@@ -11,9 +11,7 @@ public enum GameObjectsType {
     KEY(GridColor.YELLOW, "\n   K"),
     BUSH(GridColor.GREEN, "\n   B"),
     DOOR(GridColor.BLACK, "\n   D"),
-    TIGER(GridColor.RED, "\n   T")
-    //PATH(GridColor.WHITE, "")
-    ;
+    TIGER(GridColor.RED, "\n   T");
 
     private GridColor color;
     private String text;

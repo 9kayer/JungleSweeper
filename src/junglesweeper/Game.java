@@ -19,29 +19,31 @@ public class Game {
     private ArrayList<ArrayList> gameObjectList;
     private Grid grid;
     private int delay;
+    private Level level;
 
     public Game(GridType gridType, int cols, int rows, int delay) {
+
         grid = GridFactory.makeGrid(gridType, cols, rows);
-
         gameObjectList = new ArrayList<ArrayList>();
-
+        level = new Level();
         this.delay = delay;
     }
 
     public void init() {
+
         grid.init();
 
         initGameObjectList();
-        System.out.println("AQUI");
-        System.out.println(grid.getCols());
+
         createGameObjects();
     }
 
     public void start() {
-
+        throw new UnsupportedOperationException();
     }
 
     public void initGameObjectList() {
+
         for (int i = 0; i < grid.getCols(); i++) {
             gameObjectList.add(new ArrayList<GameObject>());
         }
@@ -51,21 +53,23 @@ public class Game {
 
         GameObject object;
 
-        for (int i = 0; i < grid.getCols(); i++) {
-            System.out.println("i: " + Integer.toString(i));
+        for (int col = 0; col < grid.getCols(); col++) {
+            for (int row = 0; row < grid.getRows(); row++) {
 
-            for (int j = 0; j < grid.getRows(); j++) {
+                if (col == 0 && row == 0) {
+                    continue;
+                }
 
-                System.out.println("j: " + Integer.toString(j));
-                object = GameObjectFactory.createNewGameObjects(i, j, grid, GameObjectsType.values()[(int) (Math.random() * GameObjectsType.values().length)]);
+                object = GameObjectFactory.createNewGameObjects(row, col, grid, (level.getLevelMatrix()[col][row]));
                 object.setCollisionDetector(collisionDetector); // not necessary for rocks
-                gameObjectList.get(i).add(object);
+                gameObjectList.get(row).add(object);
+
             }
         }
     }
 
     public void movePlayer() {
-
+        throw new UnsupportedOperationException();
     }
 
 }

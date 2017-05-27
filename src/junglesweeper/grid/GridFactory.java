@@ -7,7 +7,6 @@ import junglesweeper.simplegfx.SimpleGfxGrid;
  */
 public class GridFactory {
 
-
     public static Grid makeGrid(GridType gridType, int cols, int rows) {
 
         switch(gridType){

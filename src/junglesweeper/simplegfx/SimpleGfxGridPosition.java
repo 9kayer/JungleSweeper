@@ -2,10 +2,9 @@ package junglesweeper.simplegfx;
 
 
 import junglesweeper.GridColor;
-import junglesweeper.gameobjects.GameObjectsType;
-import junglesweeper.gridposition.AbstractGridPosition;
-import junglesweeper.gridposition.Direction;
-import junglesweeper.gridposition.GridPosition;
+import junglesweeper.grid.position.AbstractGridPosition;
+import junglesweeper.grid.position.Direction;
+import junglesweeper.grid.position.GridPosition;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 
@@ -22,8 +21,8 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
         super(col, row, simpleGfxGrid);
 
-        int x = SimpleGfxGrid.XPADDING + col * simpleGfxGrid.getCellSize();
-        int y = SimpleGfxGrid.YPADDING + row * simpleGfxGrid.getCellSize();
+        int x = SimpleGfxGrid.X_PADDING + col * simpleGfxGrid.getCellSize();
+        int y = SimpleGfxGrid.Y_PADDING + row * simpleGfxGrid.getCellSize();
 
         this.rectangle = new Rectangle(x, y, simpleGfxGrid.getCellSize(), simpleGfxGrid.getCellSize());
 
@@ -46,7 +45,8 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
         super.setPos(col, row);
     }
 
-    public void setText(String text){
+    @Override
+    public void setText(String text) {
         this.text.setText(text);
     }
 
@@ -63,11 +63,11 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
     @Override
     public void movingDirection(Direction direction) {
-
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean equals(GridPosition gridPosition) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 }

@@ -19,7 +19,7 @@ public class SimpleGfxColorMapper {
             Color.GRAY
     };
 
-    public static Color getColor(GridColor color){
+    public static Color getColor(GridColor color) {
 
         Color sGfxColor = null;
 

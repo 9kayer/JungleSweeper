@@ -3,34 +3,34 @@ package junglesweeper.gameobjects;
 import junglesweeper.CollisionDetector;
 import junglesweeper.gameobjects.collidable.Collidable;
 import junglesweeper.grid.Grid;
-import junglesweeper.gridposition.Direction;
-import junglesweeper.gridposition.GridPosition;
+import junglesweeper.grid.position.Direction;
+import junglesweeper.grid.position.GridPosition;
 
 /**
  * Created by fabio on 26/05/2017.
  */
 public abstract class GameObject implements Collidable {
 
-    private GridPosition pos;
+    private GridPosition gridPosition;
     private Grid grid;
     private GameObjectsType type;
     private CollisionDetector collisionDetector;
     private Direction currentDirection;
 
 
-    public GameObject(GridPosition pos, GameObjectsType gameObjectsType) {
-        this.pos = pos;
+    public GameObject(GridPosition gridPosition, GameObjectsType gameObjectsType) {
+        this.gridPosition = gridPosition;
         this.type = gameObjectsType;
 
-        pos.setColor(gameObjectsType.getColor());
-        pos.setText(gameObjectsType.getText());
+        this.gridPosition.setColor(gameObjectsType.getColor());
+        this.gridPosition.setText(gameObjectsType.getText());
 
         currentDirection = null;
     }
 
     @Override
-    public GridPosition getPos() {
-        return null;
+    public GridPosition getGridPosition() {
+        return gridPosition;
     }
 
     public GameObjectsType getType() {
@@ -38,7 +38,6 @@ public abstract class GameObject implements Collidable {
     }
 
     public Direction getCurrentDirection() {
-
         return currentDirection;
     }
 
@@ -46,9 +45,8 @@ public abstract class GameObject implements Collidable {
         this.collisionDetector = collisionDetector;
     }
 
-    public void setPos(GridPosition pos) {
-
-        this.pos = pos;
+    public void setGridPosition(GridPosition gridPosition) {
+        this.gridPosition = gridPosition;
     }
 
     public void setCurrentDirection(Direction currentDirection) {
@@ -56,7 +54,7 @@ public abstract class GameObject implements Collidable {
     }
 
     public void move() {
-
+        throw new UnsupportedOperationException();
     }
 
     public boolean isHittingWall() {

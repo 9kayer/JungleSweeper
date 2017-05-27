@@ -18,6 +18,8 @@ public class GameObjectFactory {
                 return new Rock(grid.makeGridPosition(col, row));
             case TIGER:
                 return new Tiger(grid.makeGridPosition(col, row));
+            case DOOR:
+                return new Door(grid.makeGridPosition(col, row));
             default:
                 return new Bush(grid.makeGridPosition(col,row));
         }

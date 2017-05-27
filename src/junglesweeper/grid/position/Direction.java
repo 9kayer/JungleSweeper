@@ -1,4 +1,4 @@
-package junglesweeper.gridposition;
+package junglesweeper.grid.position;
 
 /**
  * Created by codecadet on 26/05/17.
