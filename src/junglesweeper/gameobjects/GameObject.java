@@ -17,6 +17,15 @@ public abstract class GameObject implements Collidable {
     private CollisionDetector collisionDetector;
     private Direction currentDirection;
 
+    public GameObject(GridPosition pos, GameObjectsType gameObjectsType){
+        this.pos = pos;
+        this.type = gameObjectsType;
+
+        pos.setColor(gameObjectsType.getColor());
+        pos.setText(gameObjectsType.getText());
+
+        currentDirection = null;
+    }
 
     @Override
     public GridPosition getPos() {

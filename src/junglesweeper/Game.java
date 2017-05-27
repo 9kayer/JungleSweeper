@@ -1,5 +1,8 @@
 package junglesweeper;
 
+import junglesweeper.gameobjects.Factory;
+import junglesweeper.gameobjects.GameObject;
+import junglesweeper.gameobjects.GameObjectsType;
 import junglesweeper.grid.Grid;
 import junglesweeper.grid.GridFactory;
 import junglesweeper.grid.GridType;
@@ -20,6 +23,7 @@ public class Game {
 
     public Game (GridType gridType, int cols, int rows, int delay){
         grid = GridFactory.makeGrid(gridType, cols, rows);
+
         gameObjectList = new ArrayList<ArrayList>();
         for(int i = 0; i < cols; i++){
             gameObjectList.add(new ArrayList< SimpleGfxGridPosition>());
@@ -36,7 +40,7 @@ public class Game {
             System.out.println("i: " + Integer.toString(i));
             for (int j = 0; j < grid.getRows(); j++){
                 System.out.println("j: " + Integer.toString(j));
-                gameObjectList.get(i).add(new SimpleGfxGridPosition(i,j,GridColor.values()[(int)(Math.random() * GridColor.values().length)],(SimpleGfxGrid) grid));
+                gameObjectList.get(i).add(Factory.createNewGameObjects( i, j, grid, GameObjectsType.values()[(int)( Math.random() * GameObjectsType.values().length)]));
             }
         }
 

@@ -8,7 +8,10 @@ public enum GridColor {
     RED,
     GREEN,
     BLUE,
+    YELLOW,
+    GRAY,
     MAGENTA,
-    NOCOLOR
+    BLACK,
+    WHITE
 
 }
