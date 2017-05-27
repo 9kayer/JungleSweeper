@@ -3,12 +3,10 @@ package junglesweeper;
 import junglesweeper.grid.Grid;
 import junglesweeper.grid.GridFactory;
 import junglesweeper.grid.GridType;
-import junglesweeper.gridposition.GridPosition;
 import junglesweeper.simplegfx.SimpleGfxGrid;
 import junglesweeper.simplegfx.SimpleGfxGridPosition;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * Created by fabio on 26/05/2017.
