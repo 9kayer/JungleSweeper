@@ -1,10 +1,10 @@
-package junglesweeper.player;
+package junglesweeper.simplegfx.controls;
 
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
-import junglesweeper.gridposition.Direction;
+import junglesweeper.grid.position.Direction;
 
 /**
  * <Academia de Código_>
@@ -33,7 +33,7 @@ public class MoveKeyMap implements KeyboardHandler {
     private Keyboard keyboard;
     private Direction direction;
     private boolean moving;
-    private boolean specialMove;
+    //private boolean specialMove;
 
     /**
      * Constructor
@@ -52,7 +52,7 @@ public class MoveKeyMap implements KeyboardHandler {
         keyboard = new Keyboard(this);
         direction = Direction.UP;
         moving = false;
-        specialMove = false;
+        //specialMove = false;
 
     }
 
@@ -67,39 +67,42 @@ public class MoveKeyMap implements KeyboardHandler {
         }
 
         // Special key
-        addKeyboardEvent(keys[keys.length - 1], KeyboardEventType.KEY_PRESSED);
+        //addKeyboardEvent(keys[keys.length - 1], KeyboardEventType.KEY_PRESSED);
 
     }
 
     @Override
     public void keyPressed(KeyboardEvent e) {
-
         moving = true;
 
         // Up or W
         if (e.getKey() == keys[0]) {
             direction = Direction.UP;
+            //System.out.println(direction);
         }
 
         // Right or D
         if (e.getKey() == keys[1]) {
             direction = Direction.RIGHT;
+            //System.out.println(direction);
         }
 
         // Down or S
         if (e.getKey() == keys[2]) {
             direction = Direction.DOWN;
+            //System.out.println(direction);
         }
 
         // Left or A
         if (e.getKey() == keys[3]) {
             direction = Direction.LEFT;
+            //System.out.println(direction);
         }
 
         // Space or Q
-        if (e.getKey() == keys[4]) {
+        /*if (e.getKey() == keys[4]) {
             specialMove = true;
-        }
+        }*/
 
     }
 
@@ -107,7 +110,7 @@ public class MoveKeyMap implements KeyboardHandler {
     public void keyReleased(KeyboardEvent e) {
 
         moving = false;
-        specialMove = false;
+        //specialMove = false;
 
     }
 
@@ -129,14 +132,18 @@ public class MoveKeyMap implements KeyboardHandler {
         return moving;
     }
 
+    public void stopMoving() {
+        moving = false;
+    }
+
     /**
      * Flag for turbo
      *
      * @return boolean
      */
-    public boolean isSpecialMove() {
+    /*public boolean isSpecialMove() {
         return specialMove;
-    }
+    }*/
 
     /**
      * Add a keyboard event
@@ -153,5 +160,4 @@ public class MoveKeyMap implements KeyboardHandler {
         keyboard.addEventListener(temp);
 
     }
-
 }

@@ -1,51 +1,33 @@
 package junglesweeper.player;
 
 import junglesweeper.CollisionDetector;
-import junglesweeper.gameobjects.Collidable;
 import junglesweeper.grid.Grid;
-import junglesweeper.gridposition.GridPosition;
-import junglesweeper.gridposition.Direction;
+import junglesweeper.grid.position.GridPosition;
+import junglesweeper.grid.position.Direction;
+import junglesweeper.simplegfx.controls.ControlType;
+import junglesweeper.simplegfx.controls.MoveKeyMap;
 
 
 /**
  * Created by fabio on 26/05/2017.
  */
-public abstract class Player implements Collidable {
+public abstract class Player {
 
+    private Grid grid;
     private GridPosition pos;
-    private MoveKeyMap keyboard;
     private boolean hasKey;
     private int lives;
-    private Direction direction;
     private CollisionDetector collisionDetector;
 
 
-    // Inicializate our Player
-    public Player(GridPosition pos, ControlType type, int lives , CollisionDetector collisionDetector) {
+    // Initialize our Player
+    public Player(Grid grid, GridPosition pos, int lives, CollisionDetector collisionDetector) {
+        this.grid = grid;
         this.pos = pos;
-        keyboard = new MoveKeyMap(type);
         this.lives = lives;
-        this.direction = Direction.DOWN;
         this.collisionDetector = collisionDetector;
     }
 
-    //Getter's ----
-
-    public void accelerate() {
-
-        Direction newDirection = direction;
-
-        // Accelerate in the choosen direction
-
-            getPos().movingDirection(newDirection);
-
-            /*if (collisionDetector.isUnSafe(getPos())) {
-                break;
-            }*/
-
-    }
-
-    @Override
     public GridPosition getPos() {
         return pos;
     }
@@ -57,4 +39,6 @@ public abstract class Player implements Collidable {
     public int getLives() {
         return lives;
     }
+
+    public abstract void move(Direction direction);
 }
