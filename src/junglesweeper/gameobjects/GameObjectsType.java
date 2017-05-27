@@ -8,5 +8,6 @@ public enum GameObjectsType {
     ROCK,
     KEY,
     BUSH,
-    TIGER
+    TIGER,
+    PATH
 }
