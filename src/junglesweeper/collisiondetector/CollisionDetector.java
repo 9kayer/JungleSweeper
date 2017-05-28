@@ -1,5 +1,6 @@
 package junglesweeper.collisiondetector;
 
+import junglesweeper.gameobjects.Door;
 import junglesweeper.gameobjects.Key;
 import junglesweeper.gameobjects.Rock;
 import junglesweeper.gameobjects.Tiger;
@@ -15,16 +16,9 @@ import java.util.List;
 public class CollisionDetector {
 
     private ArrayList<ArrayList> objectsList;
-    private Player player;
 
     public CollisionDetector(ArrayList<ArrayList> objectsList) {
-
         this.objectsList = objectsList;
-
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
     }
 
     public boolean isPossible(GridPosition pos) {
@@ -45,26 +39,35 @@ public class CollisionDetector {
 
     }
 
-    public boolean check() {
+    public boolean collision(Player player) {
 
-        /*for (Collidable c : objectsList) {
+        for (ArrayList<Collidable> c : objectsList) {
 
-            if (player.equals(c)) {
+            for (Collidable e : c) {
 
-                if (c instanceof Key) {
-                    player.collectKey();
-                    c.collide();
+                if (player.getPos().equals(e.getPos())) {
+
+                    if (e instanceof Key) {
+                        System.out.println("Key");
+                        e.collide();
+                        player.collectKey();
+                    }
+
+                    if (e instanceof Tiger) {
+                        System.out.println("Tiger");
+                    }
+
+                    if (e instanceof Door) {
+                        System.out.println("Door");
+                    }
+
+
+                    return true;
                 }
-
-                if (c instanceof Tiger) {
-                    // TODO implement action for colliding with tiger
-                }
-
-                return true;
 
             }
 
-        }*/
+        }
 
         return false;
 

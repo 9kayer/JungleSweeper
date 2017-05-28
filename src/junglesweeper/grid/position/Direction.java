@@ -8,6 +8,22 @@ public enum Direction {
     UP,
     DOWN,
     LEFT,
-    RIGHT
+    RIGHT;
+
+    public Direction getReverse(Direction direction) {
+
+        switch (direction) {
+            case UP:
+                return DOWN;
+            case RIGHT:
+                return LEFT;
+            case DOWN:
+                return UP;
+            case LEFT:
+                return RIGHT;
+        }
+
+        return null;
+    }
 
 }

@@ -29,11 +29,7 @@ public class Game {
 
     public Game(GridType gridType, int cols, int rows) {
         grid = GridFactory.makeGrid(gridType, cols, rows);
-
         gameObjectList = new ArrayList<ArrayList>();
-
-        collisionDetector = new CollisionDetector(gameObjectList);
-
         keyMap = new MoveKeyMap(ControlType.MODE_1);
         level = new Level();
     }
@@ -57,6 +53,8 @@ public class Game {
                 keyMap.stopMoving();
             }
 
+            collisionDetector.collision(player);
+
             Thread.sleep(DELAY);
 
         }
@@ -68,6 +66,8 @@ public class Game {
         for (int i = 0; i < grid.getCols(); i++) {
             gameObjectList.add(new ArrayList<GameObject>());
         }
+
+        collisionDetector = new CollisionDetector(gameObjectList);
     }
 
     public void createGameObjects() {

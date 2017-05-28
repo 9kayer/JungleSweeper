@@ -54,4 +54,8 @@ public abstract class Player implements Collidable {
         return collisionDetector;
     }
 
+    public void setCollisionDetector(CollisionDetector collisionDetector) {
+        this.collisionDetector = collisionDetector;
+    }
+
 }
