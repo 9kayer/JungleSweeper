@@ -15,7 +15,6 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
     private SimpleGfxGrid simpleGfxGrid;
     private Rectangle rectangle;
-    private Text text;
 
     public SimpleGfxGridPosition(int col, int row, SimpleGfxGrid simpleGfxGrid) {
 
@@ -27,9 +26,6 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
         int y = simpleGfxGrid.getY() + row * simpleGfxGrid.getCellSize();
 
         this.rectangle = new Rectangle(x, y, simpleGfxGrid.getCellSize(), simpleGfxGrid.getCellSize());
-
-        text = new Text(x, y, "\n   a");
-        text.setColor(SimpleGfxColorMapper.getColor(GridColor.BLACK));
 
         show();
     }
@@ -54,15 +50,10 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
         rectangle.translate(dX, dY);
     }
 
-    @Override
-    public void setText(String text) {
-        this.text.setText(text);
-    }
 
     @Override
     public void show() {
         rectangle.fill();
-        text.draw();
     }
 
     @Override

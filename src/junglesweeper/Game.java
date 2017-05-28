@@ -39,22 +39,25 @@ public class Game {
         level = new Level();
 
         stackArrayList = new ArrayList<>();
-        for(int i = 0; i < GameObjectsType.values().length; i++){
+        for (int i = 0; i < GameObjectsType.values().length; i++) {
             stackArrayList.add(new Stack<>());
         }
-        //gameObjectFactory = new GameObjectFactory();
     }
 
-    public void init() {
+    public void init() throws InterruptedException {
 
         grid.init();
         keyMap.init();
 
         initGameObjectList();
-        createGameObjects();
+        createGameObjects(0);
 
-        
+        Thread.sleep(2000);
 
+        retrieveGameObjects();
+
+        Thread.sleep(2000);
+        createGameObjects(1);
 
 
     }
@@ -85,20 +88,19 @@ public class Game {
         collisionDetector = new CollisionDetector(gameObjectList);
     }
 
-    public void createGameObjects() {
+    public void createGameObjects(int i) {
 
         GameObject object;
-
         for (int col = 0; col < grid.getCols(); col++) {
             for (int row = 0; row < grid.getRows(); row++) {
 
                 if (col == 0 && row == 0) {
                     continue;
                 }
-                if (level.getLevelMatrix()[col][row] == 0){
+                if (level.getLevelMatrix(i)[col][row] == 0) {
                     continue;
                 }
-                object = GameObjectFactory.createNewGameObjects(row, col, grid, GameObjectsType.translateMapReference(level.getLevelMatrix()[col][row]),stackArrayList);
+                object = GameObjectFactory.createNewGameObjects(row, col, grid, GameObjectsType.translateMapReference(level.getLevelMatrix(i)[col][row]), stackArrayList);
                 object.setCollisionDetector(collisionDetector); // not necessary for rocks
                 gameObjectList.get(row).add(object);
 
@@ -106,11 +108,49 @@ public class Game {
         }
 
         player = new SimpleGfxPlayer(grid, grid.makeGridPosition(0, 0), 3, collisionDetector);
-
     }
 
-    public void retrieveGameObjects(){
+    public void retrieveGameObjects() {
 
+        ArrayList<GameObject> arrayList;
+        GameObject object;
+
+        for (int i = 0; i < gameObjectList.size(); i++) {
+            arrayList = gameObjectList.get(i);
+            for (int j = 0; j < arrayList.size(); j++) {
+                object = arrayList.get(j);
+                switch (arrayList.get(j).getType()) {
+                    case KEY:
+                        stackArrayList.get(0).push(object);
+                        object.getGridPosition().hide();
+
+                        break;
+                    case PATH:
+                        stackArrayList.get(1).push(object);
+                        object.getGridPosition().hide();
+
+                        break;
+                    case ROCK:
+                        stackArrayList.get(2).push(object);
+                        object.getGridPosition().hide();
+
+                        break;
+                    case TIGER:
+                        stackArrayList.get(3).push(object);
+                        object.getGridPosition().hide();
+
+                        break;
+                    case DOOR:
+                        stackArrayList.get(4).push(object);
+                        object.getGridPosition().hide();
+                        break;
+                    default:
+                        System.out.println("Something went terribly wrong!");
+                }
+            }
+
+            arrayList.clear();
+        }
     }
 
 }
