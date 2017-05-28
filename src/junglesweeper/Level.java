@@ -1,15 +1,14 @@
 package junglesweeper;
 
-import junglesweeper.gameobjects.GameObject;
 import junglesweeper.gameobjects.GameObjectsType;
+
+import java.util.Arrays;
 
 /**
  * Created by codecadet on 27/05/17.
  */
 public class Level {
-
     private GameObjectsType[][] levelMatrix;
-
     public Level (){
 
         levelMatrix = new GameObjectsType[][] {{GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.TIGER,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH},
@@ -36,5 +35,12 @@ public class Level {
 
     public GameObjectsType[][] getLevelMatrix() {
         return levelMatrix;
+    }
+
+    @Override
+    public String toString() {
+        return "Level{" +
+                "levelMatrix=" + Arrays.toString(levelMatrix) +
+                '}';
     }
 }

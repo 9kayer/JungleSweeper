@@ -41,4 +41,8 @@ public abstract class Player {
     }
 
     public abstract void move(Direction direction);
+
+    public int getPosition(){
+        return pos.getCol();
+    }
 }

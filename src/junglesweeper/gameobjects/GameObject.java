@@ -55,4 +55,14 @@ public abstract class GameObject {
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    public String toString() {
+        return "GameObject{" +
+                "gridPosition=" + gridPosition +
+                ", grid=" + grid +
+                ", type=" + type +
+                ", collisionDetector=" + collisionDetector +
+                ", currentDirection=" + currentDirection +
+                '}';
+    }
 }
