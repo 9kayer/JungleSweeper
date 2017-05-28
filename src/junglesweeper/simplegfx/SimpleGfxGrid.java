@@ -1,5 +1,6 @@
 package junglesweeper.simplegfx;
 
+import junglesweeper.GridColor;
 import junglesweeper.grid.Grid;
 import junglesweeper.grid.position.GridPosition;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
@@ -29,8 +30,8 @@ public class SimpleGfxGrid implements Grid {
 
     @Override
     public void init() {
-        screen = new Rectangle(X_PADDING, Y_PADDING, cols * getCellSize(), rows * getCellSize());
-        screen.draw();
+        screen.setColor(SimpleGfxColorMapper.getColor(GridColor.GREEN));
+        screen.fill();
     }
 
     @Override

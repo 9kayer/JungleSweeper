@@ -1,6 +1,5 @@
 package junglesweeper;
 
-import junglesweeper.gameobjects.GameObject;
 import junglesweeper.gameobjects.GameObjectsType;
 
 /**
@@ -8,33 +7,34 @@ import junglesweeper.gameobjects.GameObjectsType;
  */
 public class Level {
 
-    private GameObjectsType[][] levelMatrix;
+    private int[][] levelMatrix;
 
     public Level (){
 
-        levelMatrix = new GameObjectsType[][] {{GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.TIGER,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH},
-                {GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.ROCK,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.TIGER,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH},
-                {GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.TIGER,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.TIGER,GameObjectsType.BUSH,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.BUSH},
-                {GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.BUSH},
-                {GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.BUSH,GameObjectsType.BUSH},
-                {GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.TIGER,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.TIGER,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH},
-                {GameObjectsType.ROCK,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.KEY,GameObjectsType.ROCK,GameObjectsType.TIGER,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH},
-                {GameObjectsType.BUSH,GameObjectsType.TIGER,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.TIGER,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.ROCK,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.TIGER,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.TIGER,GameObjectsType.BUSH,GameObjectsType.BUSH},
-                {GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.ROCK,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH},
-                {GameObjectsType.TIGER,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.BUSH,GameObjectsType.TIGER,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH},
-                {GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.TIGER,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.ROCK,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH},
-                {GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.BUSH},
-                {GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.TIGER, GameObjectsType.ROCK, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.ROCK, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.TIGER, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.BUSH},
-                {GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.TIGER, GameObjectsType.ROCK, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.TIGER, GameObjectsType.BUSH, GameObjectsType.ROCK, GameObjectsType.ROCK, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.TIGER, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.BUSH},
-                {GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.BUSH, GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.TIGER},
-                {GameObjectsType.TIGER,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.TIGER,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.TIGER},
-                {GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.TIGER,GameObjectsType.BUSH,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.ROCK,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH},
-                {GameObjectsType.BUSH,GameObjectsType.TIGER,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.TIGER,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH},
-                {GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.DOOR},
-                {GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.TIGER,GameObjectsType.BUSH,GameObjectsType.ROCK,GameObjectsType.ROCK,GameObjectsType.TIGER,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.ROCK,GameObjectsType.BUSH,GameObjectsType.TIGER,GameObjectsType.BUSH,GameObjectsType.BUSH,GameObjectsType.BUSH}};
+        levelMatrix = new int[][]  {{0,0,1,1,1,1,0,0,2,0,1,1,0,0,0,0,0,1,1,1},
+                                    {0,0,0,1,1,1,0,0,0,1,1,1,0,2,0,0,0,1,1,1},
+                                    {1,0,0,0,1,0,0,2,0,1,1,1,0,0,0,0,2,1,1,1},
+                                    {1,1,0,0,0,2,0,0,0,1,1,0,2,0,0,0,0,0,1,1},
+                                    {1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0},
+                                    {1,1,1,1,0,2,0,0,0,2,0,0,0,0,0,0,0,0,2,0},
+                                    {0,1,1,1,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0},
+                                    {2,0,0,0,0,0,0,1,1,1,2,0,0,0,0,2,0,0,0,0},
+                                    {0,0,0,2,0,0,1,1,1,1,1,0,2,0,0,0,0,0,0,0},
+                                    {2,1,1,0,0,0,1,1,3,1,1,0,0,0,0,0,0,2,0,0},
+                                    {1,1,1,0,0,0,1,2,0,1,1,2,0,0,0,0,0,0,1,1},
+                                    {1,1,1,0,2,0,0,0,0,0,0,0,0,0,2,0,0,1,1,1},
+                                    {1,1,0,0,0,0,0,1,1,1,0,2,0,0,0,0,0,1,1,1},
+                                    {0,2,0,0,0,0,2,1,1,1,0,0,0,0,0,0,2,0,0,1},
+                                    {0,0,0,0,2,0,0,1,1,2,0,0,0,2,0,0,0,0,0,2},
+                                    {0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,1,0},
+                                    {0,2,0,0,0,0,0,0,2,0,2,0,0,0,2,0,1,1,1,1},
+                                    {0,0,0,2,1,1,1,0,0,0,0,0,1,0,0,0,1,1,1,1},
+                                    {0,2,0,0,1,1,1,0,0,0,2,1,1,0,0,0,0,1,0,1},
+                                    {0,0,0,0,1,1,1,2,0,0,1,1,1,0,0,4,0,0,0,2}};
+
     }
 
-    public GameObjectsType[][] getLevelMatrix() {
+    public int[][] getLevelMatrix() {
         return levelMatrix;
     }
 }

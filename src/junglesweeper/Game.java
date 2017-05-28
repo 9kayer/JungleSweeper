@@ -3,6 +3,7 @@ package junglesweeper;
 import junglesweeper.collisiondetector.CollisionDetector;
 import junglesweeper.gameobjects.GameObject;
 import junglesweeper.gameobjects.GameObjectFactory;
+import junglesweeper.gameobjects.GameObjectsType;
 import junglesweeper.grid.Grid;
 import junglesweeper.grid.GridFactory;
 import junglesweeper.grid.GridType;
@@ -80,8 +81,10 @@ public class Game {
                 if (col == 0 && row == 0) {
                     continue;
                 }
-
-                object = GameObjectFactory.createNewGameObjects(row, col, grid, (level.getLevelMatrix()[col][row]));
+                if (level.getLevelMatrix()[col][row] == 0){
+                    continue;
+                }
+                object = GameObjectFactory.createNewGameObjects(row, col, grid, GameObjectsType.translateMapReference(level.getLevelMatrix()[col][row]));
                 object.setCollisionDetector(collisionDetector); // not necessary for rocks
                 gameObjectList.get(row).add(object);
 

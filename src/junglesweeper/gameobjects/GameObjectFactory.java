@@ -12,8 +12,8 @@ public class GameObjectFactory {
         switch (gameObjectsType) {
             case KEY:
                 return new Key(grid.makeGridPosition(col, row));
-            case BUSH:
-                return new Bush(grid.makeGridPosition(col, row));
+            case PATH:
+                return new Path(grid.makeGridPosition(col, row));
             case ROCK:
                 return new Rock(grid.makeGridPosition(col, row));
             case TIGER:
@@ -21,7 +21,7 @@ public class GameObjectFactory {
             case DOOR:
                 return new Door(grid.makeGridPosition(col, row));
             default:
-                return new Bush(grid.makeGridPosition(col,row));
+                return new Path(grid.makeGridPosition(col,row));
         }
     }
 }

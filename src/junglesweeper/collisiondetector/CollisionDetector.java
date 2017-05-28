@@ -1,9 +1,6 @@
 package junglesweeper.collisiondetector;
 
-import junglesweeper.gameobjects.Door;
-import junglesweeper.gameobjects.Key;
-import junglesweeper.gameobjects.Rock;
-import junglesweeper.gameobjects.Tiger;
+import junglesweeper.gameobjects.*;
 import junglesweeper.grid.position.GridPosition;
 import junglesweeper.player.Player;
 
@@ -59,6 +56,9 @@ public class CollisionDetector {
 
                     if (e instanceof Door) {
                         System.out.println("Door");
+                    }
+                    if( e instanceof Path){
+                        e.collide();
                     }
 
 
