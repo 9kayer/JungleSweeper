@@ -13,6 +13,7 @@ import junglesweeper.simplegfx.SimpleGfxPlayer;
 import junglesweeper.simplegfx.controls.MoveKeyMap;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 /**
  * Created by fabio on 26/05/2017.
@@ -27,12 +28,21 @@ public class Game {
     private Player player;
     private MoveKeyMap keyMap;
     private Level level;
+    private static ArrayList<Stack<GameObject>> stackArrayList;
+    //private GameObjectFactory gameObjectFactory;
 
     public Game(GridType gridType, int cols, int rows) {
         grid = GridFactory.makeGrid(gridType, cols, rows);
         gameObjectList = new ArrayList<ArrayList>();
         keyMap = new MoveKeyMap(ControlType.MODE_1);
+
         level = new Level();
+
+        stackArrayList = new ArrayList<>();
+        for(int i = 0; i < GameObjectsType.values().length; i++){
+            stackArrayList.add(new Stack<>());
+        }
+        //gameObjectFactory = new GameObjectFactory();
     }
 
     public void init() {
@@ -41,8 +51,12 @@ public class Game {
         keyMap.init();
 
         initGameObjectList();
-
         createGameObjects();
+
+        
+
+
+
     }
 
     public void start() throws InterruptedException {
@@ -84,7 +98,7 @@ public class Game {
                 if (level.getLevelMatrix()[col][row] == 0){
                     continue;
                 }
-                object = GameObjectFactory.createNewGameObjects(row, col, grid, GameObjectsType.translateMapReference(level.getLevelMatrix()[col][row]));
+                object = GameObjectFactory.createNewGameObjects(row, col, grid, GameObjectsType.translateMapReference(level.getLevelMatrix()[col][row]),stackArrayList);
                 object.setCollisionDetector(collisionDetector); // not necessary for rocks
                 gameObjectList.get(row).add(object);
 
@@ -92,6 +106,10 @@ public class Game {
         }
 
         player = new SimpleGfxPlayer(grid, grid.makeGridPosition(0, 0), 3, collisionDetector);
+
+    }
+
+    public void retrieveGameObjects(){
 
     }
 
