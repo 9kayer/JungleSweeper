@@ -9,6 +9,7 @@ import junglesweeper.simplegfx.controls.ControlType;
 import junglesweeper.player.Player;
 import junglesweeper.simplegfx.SimpleGfxPlayer;
 import junglesweeper.simplegfx.controls.MoveKeyMap;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.util.ArrayList;
 
@@ -43,6 +44,25 @@ public class Game {
         initGameObjectList();
 
         createGameObjects();
+
+        //Picture picture = new Picture(100, 10, "http://static0.bigstockphoto.com/thumbs/3/5/2/small2/25346960.jpg");
+        Picture picture1 = new Picture();
+
+        picture1.load("./assets/bkg700x700.jpeg");
+        picture1.translate(100,10);
+
+
+        Picture picture2 = new Picture();
+        picture2.load("./assets/yellow_35x35.jpeg");
+        picture2.translate(135,10);
+
+
+        picture1.draw();
+        picture2.draw();
+
+
+
+
     }
 
     public void start() throws InterruptedException {
