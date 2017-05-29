@@ -15,6 +15,7 @@ public class CollisionDetector {
 
     private Player player;
     private ArrayList<Collidable> objectsList;
+    private boolean isDoorOpen;
 
     public void init(Player player, ArrayList<GameObject> objectsList) {
         this.player = player;
@@ -24,6 +25,7 @@ public class CollisionDetector {
     public boolean isPossible(GridPosition pos) {
         for (Collidable c : objectsList) {
             if (c instanceof Rock && c.getPos().equals(pos)) {
+                System.out.println("cant move");
                 return false;
             }
         }
@@ -47,8 +49,10 @@ public class CollisionDetector {
                 System.out.println("Tiger");
             }
 
-            if (c instanceof Door) {
+            if (c instanceof Door && player.hasKey()) {
                 System.out.println("Door");
+                c.collide();
+                isDoorOpen = true;
             }
 
             if (c instanceof Path) {
@@ -59,6 +63,10 @@ public class CollisionDetector {
         }
 
         return false;
+    }
+
+    public boolean isDoorOpen(){
+        return isDoorOpen;
     }
 
 }

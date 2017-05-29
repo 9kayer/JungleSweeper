@@ -41,6 +41,7 @@ public class Game {
         level = new Level();
         sensor = new Sensor(cols,rows,level);
         stackArrayList = new ArrayList<>();
+        collisionDetector = new CollisionDetector();
 
     }
 
@@ -54,7 +55,7 @@ public class Game {
         keyMap.init();
         sensor.init();
 
-        collisionDetector = new CollisionDetector();
+        player = new SimpleGfxPlayer(grid, grid.makeGridPosition(0, 0), 3, collisionDetector);
 
         createGameObjects(0);
 
@@ -66,21 +67,24 @@ public class Game {
     }
 
     public void start() throws InterruptedException {
+        for(int i = 0; i < 2; i++ ) {
+            while (!collisionDetector.isDoorOpen()) {
 
-        while (true) {
+                if (keyMap.isMoving()) {
+                    player.move(keyMap.getDirection());
+                    traps.reWrite(sensor.getEnemys(player.getPos().getRow(), player.getPos().getCol()));
+                    keyMap.stopMoving();
+                }
 
-            if (keyMap.isMoving()) {
-                player.move(keyMap.getDirection());
-                traps.reWrite(sensor.getEnemys(player.getPos().getRow() , player.getPos().getCol()));
-                keyMap.stopMoving();
+                collisionDetector.collision();
+
+                Thread.sleep(DELAY);
+
             }
-
-            collisionDetector.collision();
-
-            Thread.sleep(DELAY);
-
+            retrieveGameObjects();
+            createGameObjects(i);
+            player.reset();
         }
-
     }
 
     public void createGameObjects(int i) {
@@ -102,8 +106,6 @@ public class Game {
 
             }
         }
-
-        player = new SimpleGfxPlayer(grid, grid.makeGridPosition(0, 0), 3, collisionDetector);
     }
 
     public void retrieveGameObjects() {
