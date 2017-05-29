@@ -40,6 +40,10 @@ public abstract class Player implements Collidable {
         key = true;
     }
 
+    public void dropKey() {
+        key = false;
+    }
+
     public int getLives() {
         return lives;
     }

@@ -30,6 +30,7 @@ public class SimpleGfxPlayer extends Player {
 
     @Override
     public void reset() {
+        dropKey();
         pos.setPos(0,0);
         pos.hide();
         pos.show();

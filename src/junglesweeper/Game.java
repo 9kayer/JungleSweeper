@@ -83,6 +83,7 @@ public class Game {
             createGameObjects(i);
             player.reset();
             collisionDetector.closeDoor();
+            collisionDetector.init(player, gameObjectList);
         }
     }
 

@@ -11,10 +11,9 @@ import java.util.Stack;
  */
 public class GameObjectFactory {
 
-    public static GameObject createNewGameObjects(int col, int row, Grid grid , GameObjectsType gameObjectsType, ArrayList<Stack<GameObject>> stackArrayList){
+    public static GameObject createNewGameObjects(int col, int row, Grid grid, GameObjectsType gameObjectsType, ArrayList<Stack<GameObject>> stackArrayList) {
         int i = 0;
         GameObject object;
-        //System.out.println(++i);
 
         switch (gameObjectsType) {
             case KEY:
@@ -35,17 +34,18 @@ public class GameObjectFactory {
                 object.getGridPosition().show();
                 return object;
             case ROCK:
-                if(stackArrayList.get(2).empty()){
-                  //  System.out.println("new rock");
+                if (stackArrayList.get(2).empty()) {
+                    //System.out.println("new rock");
+                    System.out.println(col + " | " + row);
                     return new Rock(grid.makeGridPosition(col, row));
                 }
-                //System.out.println("used rock");
+                System.out.println("used rock");
                 object = stackArrayList.get(2).pop();
-                object.getGridPosition().setPos(col,row);
+                object.getGridPosition().setPos(col, row);
                 object.getGridPosition().show();
                 return object;
             case TIGER:
-                if(stackArrayList.get(3).empty()){
+                if (stackArrayList.get(3).empty()) {
                     //System.out.println("new tiger");
                     return new Tiger(grid.makeGridPosition(col, row));
                 }
@@ -55,7 +55,7 @@ public class GameObjectFactory {
                 object.getGridPosition().show();
                 return object;
             case DOOR:
-                if(stackArrayList.get(4).empty()){
+                if (stackArrayList.get(4).empty()) {
                     return new Door(grid.makeGridPosition(col, row));
                 }
                 //System.out.println("used door");
