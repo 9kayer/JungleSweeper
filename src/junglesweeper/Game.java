@@ -30,16 +30,16 @@ public class Game {
     private Grid grid;
     private Player player;
     private MoveKeyMap keyMap;
-    private Level level;
     private SimpleGfxSensor traps;
+    private int level;
 
     public Game(GridType gridType, int cols, int rows) {
 
+        level = 0;
         grid = GridFactory.makeGrid(gridType, cols, rows);
         gameObjectList = new ArrayList<>();
         keyMap = new MoveKeyMap(ControlType.MODE_1);
-        level = new Level();
-        sensor = new Sensor(cols,rows,level);
+        sensor = new Sensor(cols,rows,Level.getLevelMatrix(level));
         stackArrayList = new ArrayList<>();
         collisionDetector = new CollisionDetector();
 
@@ -65,7 +65,7 @@ public class Game {
     }
 
     public void start() throws InterruptedException {
-        for(int i = 1; i <= 2; i++ ) {
+        for(int i = 1; i <= 4; i++ ) {
             while (!collisionDetector.isDoorOpen()) {
 
                 if (keyMap.isMoving()) {
@@ -97,10 +97,10 @@ public class Game {
                 if (col == 0 && row == 0) {
                     continue;
                 }
-                if (level.getLevelMatrix(i)[col][row] == 0) {
+                if (Level.getLevelMatrix(i)[col][row] == 0) {
                     continue;
                 }
-                object = GameObjectFactory.createNewGameObjects(row, col, grid, GameObjectsType.translateMapReference(level.getLevelMatrix(i)[col][row]), stackArrayList);
+                object = GameObjectFactory.createNewGameObjects(row, col, grid, GameObjectsType.translateMapReference(Level.getLevelMatrix(i)[col][row]), stackArrayList);
                 object.setCollisionDetector(collisionDetector); // not necessary for rocks
                 gameObjectList.add(object);
 
