@@ -1,6 +1,7 @@
 package junglesweeper.sensor;
 
 import junglesweeper.Level;
+import junglesweeper.gameobjects.GameObject;
 import junglesweeper.gameobjects.GameObjectsType;
 
 /**
@@ -11,7 +12,7 @@ public class Sensor {
     private Level sensorLevel;
     private int col;
     private int row;
-    private GameObjectsType[][] myArray;
+    private int[][] myArray;
     private int[][] sensorNumbers;
 
     public Sensor(int col, int row, Level level) {
@@ -27,10 +28,8 @@ public class Sensor {
 
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
-                System.out.println("I'm : " + i + " | " + j);
-                System.out.println(getNeibours(i, j));
                 sensorNumbers[i][j] = getNeibours(i, j);
-                //System.out.println(sensorNumbers[i][j]);
+
             }
         }
 
@@ -39,7 +38,6 @@ public class Sensor {
     public int getNeibours(int i, int j) {
         int objectI = i;
         int objectJ = j;
-        GameObjectsType este = myArray[i][j];
         int total = 0;
 
         for (int xoff = -1; xoff <= 1; xoff++) {
@@ -50,14 +48,14 @@ public class Sensor {
                     continue;
                 int number2 = j + yoff;
                 if (number2 < 0 || number2 >= myArray.length) continue;
-                GameObjectsType neighbor = myArray[number][number2];
+
+                GameObjectsType neighbor = GameObjectsType.translateMapReference(sensorLevel.getLevelMatrix()[number][number2]);
+
                 int neighborI = number;
                 int neighborJ = number2;
                 if (objectI == neighborI && objectJ == neighborJ) {
                     continue;
                 }
-                //System.out.println(number + " | " + number2);
-                //System.out.println(neighbor.getColor());
 
                 if (neighbor.equals(GameObjectsType.TIGER)) {
                     total++;
@@ -68,7 +66,6 @@ public class Sensor {
     }
 
     public int getEnemys(int i, int j) {
-        System.out.println(i + " | " + j);
         return sensorNumbers[i][j];
     }
 }
