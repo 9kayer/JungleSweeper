@@ -29,7 +29,6 @@ public class Game {
     private MoveKeyMap keyMap;
     private Level level;
     private static ArrayList<Stack<GameObject>> stackArrayList;
-    //private GameObjectFactory gameObjectFactory;
 
     public Game(GridType gridType, int cols, int rows) {
         grid = GridFactory.makeGrid(gridType, cols, rows);
