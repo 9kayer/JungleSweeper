@@ -31,6 +31,7 @@ public enum GameObjectsType {
         return text;
     }
 
+
     public void setColor(GridColor color) {
         this.color = color;
     }
@@ -47,7 +48,7 @@ public enum GameObjectsType {
             case 4:
                 return DOOR;
             default:
-                System.out.println("sometheing went terribly wrong");
+                System.out.println("Default GameObjectsType");
                 return ROCK;
         }
     }
