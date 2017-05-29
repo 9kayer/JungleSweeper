@@ -30,9 +30,8 @@ public class SimpleGfxPlayer extends Player {
 
     @Override
     public void reset() {
-        //pos.hide();
         pos.setPos(0,0);
-        //pos.show();
+        pos.show();
     }
 
     public GridPosition getPos() {

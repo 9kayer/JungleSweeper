@@ -55,10 +55,8 @@ public class Game {
         keyMap.init();
         sensor.init();
 
-        player = new SimpleGfxPlayer(grid, grid.makeGridPosition(0, 0), 3, collisionDetector);
-
         createGameObjects(0);
-
+        player = new SimpleGfxPlayer(grid, grid.makeGridPosition(0, 0), 3, collisionDetector);
         collisionDetector.init(player, gameObjectList);
 
         /* After Create the game Objects we print the number of traps around them */
@@ -67,7 +65,7 @@ public class Game {
     }
 
     public void start() throws InterruptedException {
-        for(int i = 0; i < 2; i++ ) {
+        for(int i = 1; i <= 2; i++ ) {
             while (!collisionDetector.isDoorOpen()) {
 
                 if (keyMap.isMoving()) {
@@ -84,6 +82,7 @@ public class Game {
             retrieveGameObjects();
             createGameObjects(i);
             player.reset();
+            collisionDetector.closeDoor();
         }
     }
 

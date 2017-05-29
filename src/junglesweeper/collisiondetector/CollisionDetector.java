@@ -25,7 +25,7 @@ public class CollisionDetector {
     public boolean isPossible(GridPosition pos) {
         for (Collidable c : objectsList) {
             if (c instanceof Rock && c.getPos().equals(pos)) {
-                System.out.println("cant move");
+                System.out.println("Rock");
                 return false;
             }
         }
@@ -67,6 +67,10 @@ public class CollisionDetector {
 
     public boolean isDoorOpen(){
         return isDoorOpen;
+    }
+
+    public void closeDoor() {
+        isDoorOpen = false;
     }
 
 }
