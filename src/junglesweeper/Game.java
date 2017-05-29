@@ -41,6 +41,7 @@ public class Game {
         level = new Level();
         sensor = new Sensor(cols,rows,level);
         stackArrayList = new ArrayList<>();
+        collisionDetector = new CollisionDetector();
 
     }
 
@@ -53,8 +54,6 @@ public class Game {
         grid.init();
         keyMap.init();
         sensor.init();
-
-        collisionDetector = new CollisionDetector();
 
         createGameObjects(0);
 

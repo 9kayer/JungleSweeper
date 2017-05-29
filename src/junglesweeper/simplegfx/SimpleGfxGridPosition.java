@@ -75,4 +75,7 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     public SimpleGfxGrid getSimpleGfxGrid() {
         return simpleGfxGrid;
     }
+
+
+
 }
