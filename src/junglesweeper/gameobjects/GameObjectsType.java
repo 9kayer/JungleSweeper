@@ -31,6 +31,7 @@ public enum GameObjectsType {
         return text;
     }
 
+
     public void setColor(GridColor color) {
         this.color = color;
     }

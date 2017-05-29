@@ -64,8 +64,6 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     @Override
     public void movingDirection(Direction direction) {
 
-        System.out.println(direction);
-
         int lastMoveCol = getCol();
         int lastMoveRow = getRow();
 
@@ -73,7 +71,6 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
         int dX = simpleGfxGrid.columnToX(getCol()) - simpleGfxGrid.columnToX(lastMoveCol);
         int dY = simpleGfxGrid.rowToY(getRow()) - simpleGfxGrid.rowToY(lastMoveRow);
-        System.out.println(dX + " "  + dY);
         rectangle.translate(dX, dY);
 
     }

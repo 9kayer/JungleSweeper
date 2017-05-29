@@ -7,10 +7,12 @@ import junglesweeper.gameobjects.GameObjectsType;
 import junglesweeper.grid.Grid;
 import junglesweeper.grid.GridFactory;
 import junglesweeper.grid.GridType;
+import junglesweeper.simplegfx.SimpleGfxSensor;
 import junglesweeper.simplegfx.controls.ControlType;
 import junglesweeper.player.Player;
 import junglesweeper.simplegfx.SimpleGfxPlayer;
 import junglesweeper.simplegfx.controls.MoveKeyMap;
+import junglesweeper.sensor.Sensor;
 
 import java.util.ArrayList;
 
@@ -27,18 +29,26 @@ public class Game {
     private Player player;
     private MoveKeyMap keyMap;
     private Level level;
+    private Sensor sensor;
+    private SimpleGfxSensor traps;
 
     public Game(GridType gridType, int cols, int rows) {
+
         grid = GridFactory.makeGrid(gridType, cols, rows);
         gameObjectList = new ArrayList<ArrayList>();
         keyMap = new MoveKeyMap(ControlType.MODE_1);
         level = new Level();
+        sensor = new Sensor(cols,rows,level);
+
     }
 
     public void init() {
 
         grid.init();
+
         keyMap.init();
+
+        sensor.init();
 
         initGameObjectList();
 
@@ -47,10 +57,12 @@ public class Game {
 
     public void start() throws InterruptedException {
 
+
         while (true) {
 
             if (keyMap.isMoving()) {
                 player.move(keyMap.getDirection());
+                traps.reWrite(sensor.getEnemys(player.getPos().getRow() , player.getPos().getCol()));
                 keyMap.stopMoving();
             }
 
@@ -92,6 +104,9 @@ public class Game {
         }
 
         player = new SimpleGfxPlayer(grid, grid.makeGridPosition(0, 0), 3, collisionDetector);
+
+        /*After Create the game Objects we print the number of traps arround them */
+        traps = new SimpleGfxSensor(sensor.getEnemys(player.getPos().getRow() , player.getPos().getCol()));
 
     }
 
