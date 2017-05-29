@@ -1,21 +1,21 @@
 package junglesweeper.player;
 
-import junglesweeper.CollisionDetector;
+import junglesweeper.collisiondetector.Collidable;
+import junglesweeper.collisiondetector.CollisionDetector;
+import junglesweeper.gameobjects.Key;
 import junglesweeper.grid.Grid;
 import junglesweeper.grid.position.GridPosition;
 import junglesweeper.grid.position.Direction;
-import junglesweeper.simplegfx.controls.ControlType;
-import junglesweeper.simplegfx.controls.MoveKeyMap;
 
 
 /**
  * Created by fabio on 26/05/2017.
  */
-public abstract class Player {
+public abstract class Player implements Collidable {
 
     private Grid grid;
     private GridPosition pos;
-    private boolean hasKey;
+    private boolean key;
     private int lives;
     private CollisionDetector collisionDetector;
 
@@ -32,8 +32,12 @@ public abstract class Player {
         return pos;
     }
 
-    public boolean isHasKey() {
-        return hasKey;
+    public boolean hasKey() {
+        return key;
+    }
+
+    public void collectKey() {
+        key = true;
     }
 
     public int getLives() {
@@ -41,4 +45,17 @@ public abstract class Player {
     }
 
     public abstract void move(Direction direction);
+
+    public void collide() {
+        throw new UnsupportedOperationException();
+    }
+
+    public CollisionDetector getCollisionDetector() {
+        return collisionDetector;
+    }
+
+    public void setCollisionDetector(CollisionDetector collisionDetector) {
+        this.collisionDetector = collisionDetector;
+    }
+
 }

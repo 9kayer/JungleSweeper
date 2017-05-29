@@ -15,7 +15,6 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
     private SimpleGfxGrid simpleGfxGrid;
     private Rectangle rectangle;
-    private Text text;
 
     public SimpleGfxGridPosition(int col, int row, SimpleGfxGrid simpleGfxGrid) {
 
@@ -28,9 +27,6 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
         this.rectangle = new Rectangle(x, y, simpleGfxGrid.getCellSize(), simpleGfxGrid.getCellSize());
 
-        text = new Text(x, y, "\n   a");
-        text.setColor(SimpleGfxColorMapper.getColor(GridColor.BLACK));
-
         show();
     }
 
@@ -42,18 +38,21 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
     @Override
     public void setPos(int col, int row) {
-        super.setPos(col, row);
-    }
 
-    @Override
-    public void setText(String text) {
-        this.text.setText(text);
+        int lastMoveCol = getCol();
+        int lastMoveRow = getRow();
+
+        super.setPos(col, row);
+
+        int dX = simpleGfxGrid.columnToX(getCol()) - simpleGfxGrid.columnToX(lastMoveCol);
+        int dY = simpleGfxGrid.rowToY(getRow()) - simpleGfxGrid.rowToY(lastMoveRow);
+        System.out.println(dX + " "  + dY);
+        rectangle.translate(dX, dY);
     }
 
     @Override
     public void show() {
         rectangle.fill();
-        text.draw();
     }
 
     @Override
@@ -63,23 +62,22 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
     @Override
     public void movingDirection(Direction direction) {
-
-        System.out.println(direction);
-
-        int lastMoveCol = getCol();
-        int lastMoveRow = getRow();
-
         super.movingDirection(direction);
-
-        int dX = simpleGfxGrid.columnToX(getCol()) - simpleGfxGrid.columnToX(lastMoveCol);
-        int dY = simpleGfxGrid.rowToY(getRow()) - simpleGfxGrid.rowToY(lastMoveRow);
-        System.out.println(dX + " "  + dY);
-        rectangle.translate(dX, dY);
 
     }
 
     @Override
-    public boolean equals(GridPosition gridPosition) {
-        throw new UnsupportedOperationException();
+    public boolean equals(GridPosition g) {
+
+        if (getCol() == g.getCol() && getRow() == g.getRow()) {
+            return true;
+        }
+
+        return false;
+
+    }
+
+    public SimpleGfxGrid getSimpleGfxGrid() {
+        return simpleGfxGrid;
     }
 }

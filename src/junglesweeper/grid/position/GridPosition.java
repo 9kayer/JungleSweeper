@@ -15,8 +15,6 @@ public interface GridPosition {
 
     void setColor(GridColor color);
 
-    void setText(String text);
-
     void show();
 
     void hide();

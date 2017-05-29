@@ -10,4 +10,14 @@ public class Tiger extends GameObject {
     public Tiger(GridPosition pos) {
         super(pos, GameObjectsType.TIGER);
     }
+
+    public void collide() {
+        getGridPosition().hide();
+    }
+
+    public GridPosition getPos() {
+        return getGridPosition();
+    }
+
+
 }

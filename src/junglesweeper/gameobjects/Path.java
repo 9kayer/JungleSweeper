@@ -5,10 +5,10 @@ import junglesweeper.grid.position.GridPosition;
 /**
  * Created by fabio on 26/05/2017.
  */
-public class Key extends GameObject {
+public class Path extends GameObject{
 
-    public Key(GridPosition pos) {
-        super(pos, GameObjectsType.KEY);
+    public Path(GridPosition pos) {
+        super(pos, GameObjectsType.PATH);
     }
 
     public void collide() {
