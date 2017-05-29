@@ -19,7 +19,7 @@ public class Sensor {
         this.sensorLevel = level;
         this.col = col;
         this.row = row;
-        this.myArray = sensorLevel.getLevelMatrix(1);
+        this.myArray = sensorLevel.getLevelMatrix(0); //TODO: 0 is the first livel. To be changed
     }
 
     public void init() {
@@ -49,7 +49,7 @@ public class Sensor {
                 int number2 = j + yoff;
                 if (number2 < 0 || number2 >= myArray.length) continue;
 
-                GameObjectsType neighbor = GameObjectsType.translateMapReference(sensorLevel.getLevelMatrix(1)[number][number2]);
+                GameObjectsType neighbor = GameObjectsType.translateMapReference(sensorLevel.getLevelMatrix(0)[number][number2]); //TODO: 0 is the first livel. To be changed
 
                 int neighborI = number;
                 int neighborJ = number2;
