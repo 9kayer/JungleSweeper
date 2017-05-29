@@ -12,7 +12,7 @@ public class Level {
 
     //private ArrayList<ArrayList<ArrayList<Integer>>> stuff;
 
-    private int[][][] stuff;
+    //private int[][][] stuff;
 
     private int[][] levelMatrix1;
     private int[][] levelMatrix2;
