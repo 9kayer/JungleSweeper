@@ -23,14 +23,14 @@ public class Game {
 
     private static final int DELAY = 1;
 
-    private CollisionDetector collisionDetector;
-    private ArrayList<ArrayList> gameObjectList;
+    private ArrayList<GameObject> gameObjectList;
     private ArrayList<Stack<GameObject>> stackArrayList;
+    private CollisionDetector collisionDetector;
+    private Sensor sensor;
     private Grid grid;
     private Player player;
     private MoveKeyMap keyMap;
     private Level level;
-    private Sensor sensor;
     private SimpleGfxSensor traps;
 
     public Game(GridType gridType, int cols, int rows) {
@@ -46,17 +46,22 @@ public class Game {
 
     public void init() {
 
-        grid.init();
-        keyMap.init();
-
         for (int i = 0; i < GameObjectsType.values().length; i++) {
             stackArrayList.add(new Stack<>());
         }
 
+        grid.init();
+        keyMap.init();
         sensor.init();
 
-        initGameObjectList();
+        collisionDetector = new CollisionDetector();
+
         createGameObjects(0);
+
+        collisionDetector.init(player, gameObjectList);
+
+        /* After Create the game Objects we print the number of traps around them */
+        traps = new SimpleGfxSensor(sensor.getEnemys(player.getPos().getRow(), player.getPos().getCol()));
 
     }
 
@@ -70,21 +75,12 @@ public class Game {
                 keyMap.stopMoving();
             }
 
-            collisionDetector.collision(player);
+            collisionDetector.collision();
 
             Thread.sleep(DELAY);
 
         }
 
-    }
-
-    public void initGameObjectList() {
-
-        for (int i = 0; i < grid.getCols(); i++) {
-            gameObjectList.add(new ArrayList<GameObject>());
-        }
-
-        collisionDetector = new CollisionDetector(gameObjectList);
     }
 
     public void createGameObjects(int i) {
@@ -102,7 +98,7 @@ public class Game {
                 }
                 object = GameObjectFactory.createNewGameObjects(row, col, grid, GameObjectsType.translateMapReference(level.getLevelMatrix(i)[col][row]), stackArrayList);
                 object.setCollisionDetector(collisionDetector); // not necessary for rocks
-                gameObjectList.get(row).add(object);
+                gameObjectList.add(object);
 
             }
         }
@@ -112,48 +108,32 @@ public class Game {
 
     public void retrieveGameObjects() {
 
-        ArrayList<GameObject> arrayList;
-        GameObject object;
-
-        for (int i = 0; i < gameObjectList.size(); i++) {
-            arrayList = gameObjectList.get(i);
-            for (int j = 0; j < arrayList.size(); j++) {
-                object = arrayList.get(j);
-                switch (arrayList.get(j).getType()) {
+        for (GameObject object : gameObjectList) {
+                switch (object.getType()) {
                     case KEY:
                         stackArrayList.get(0).push(object);
                         object.getGridPosition().hide();
-
                         break;
                     case PATH:
                         stackArrayList.get(1).push(object);
                         object.getGridPosition().hide();
-
                         break;
                     case ROCK:
                         stackArrayList.get(2).push(object);
                         object.getGridPosition().hide();
-
                         break;
                     case TIGER:
                         stackArrayList.get(3).push(object);
                         object.getGridPosition().hide();
-
                         break;
                     case DOOR:
                         stackArrayList.get(4).push(object);
                         object.getGridPosition().hide();
                         break;
                     default:
-                        System.out.println("Something went terribly wrong!");
+                        System.out.println("Fail on retrieveGameObjects()");
                 }
             }
-
-            arrayList.clear();
         }
-        /*After Create the game Objects we print the number of traps arround them */
-        traps = new SimpleGfxSensor(sensor.getEnemys(player.getPos().getRow() , player.getPos().getCol()));
 
     }
-
-}

@@ -94,7 +94,6 @@ public abstract class AbstractGridPosition implements GridPosition {
 
     }
 
-
     public void moveRight() {
 
         if (getCol() + 1 < grid.getCols()) {

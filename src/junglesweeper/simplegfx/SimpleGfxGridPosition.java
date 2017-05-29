@@ -17,7 +17,6 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     private Rectangle rectangle;
 
     public SimpleGfxGridPosition(int col, int row, SimpleGfxGrid simpleGfxGrid) {
-
         super(col, row, simpleGfxGrid);
 
         this.simpleGfxGrid = simpleGfxGrid;
@@ -38,7 +37,6 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
     @Override
     public void setPos(int col, int row) {
-
         int lastMoveCol = getCol();
         int lastMoveRow = getRow();
 
@@ -46,7 +44,6 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
         int dX = simpleGfxGrid.columnToX(getCol()) - simpleGfxGrid.columnToX(lastMoveCol);
         int dY = simpleGfxGrid.rowToY(getRow()) - simpleGfxGrid.rowToY(lastMoveRow);
-        System.out.println(dX + " "  + dY);
         rectangle.translate(dX, dY);
     }
 
@@ -68,13 +65,11 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
     @Override
     public boolean equals(GridPosition g) {
-
         if (getCol() == g.getCol() && getRow() == g.getRow()) {
             return true;
         }
 
         return false;
-
     }
 
     public SimpleGfxGrid getSimpleGfxGrid() {
