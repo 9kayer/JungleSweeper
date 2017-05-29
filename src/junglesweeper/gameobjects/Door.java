@@ -5,7 +5,7 @@ import junglesweeper.grid.position.GridPosition;
 /**
  * Created by codecadet on 27/05/17.
  */
-public class Door extends GameObject{
+public class Door extends GameObject {
 
     private boolean open;
 
@@ -16,7 +16,6 @@ public class Door extends GameObject{
     public void collide() {
         open = true;
     }
-
 
     public GridPosition getPos() {
         return getGridPosition();

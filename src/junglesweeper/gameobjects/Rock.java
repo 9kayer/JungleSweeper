@@ -12,7 +12,7 @@ public class Rock extends GameObject {
     }
 
     public void collide() {
-        getGridPosition().hide();
+        // No actions on collide
     }
 
     public GridPosition getPos() {
