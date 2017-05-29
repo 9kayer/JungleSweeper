@@ -25,18 +25,18 @@ public class Game {
 
     private CollisionDetector collisionDetector;
     private ArrayList<ArrayList> gameObjectList;
+    private ArrayList<Stack<GameObject>> stackArrayList;
     private Grid grid;
     private Player player;
     private MoveKeyMap keyMap;
     private Level level;
-    private static ArrayList<Stack<GameObject>> stackArrayList;
     private Sensor sensor;
     private SimpleGfxSensor traps;
 
     public Game(GridType gridType, int cols, int rows) {
 
         grid = GridFactory.makeGrid(gridType, cols, rows);
-        gameObjectList = new ArrayList<ArrayList>();
+        gameObjectList = new ArrayList<>();
         keyMap = new MoveKeyMap(ControlType.MODE_1);
         level = new Level();
         sensor = new Sensor(cols,rows,level);
@@ -44,7 +44,7 @@ public class Game {
 
     }
 
-    public void init() throws InterruptedException {
+    public void init() {
 
         grid.init();
         keyMap.init();
@@ -57,14 +57,6 @@ public class Game {
 
         initGameObjectList();
         createGameObjects(0);
-
-        Thread.sleep(2000);
-
-        retrieveGameObjects();
-
-        Thread.sleep(2000);
-        createGameObjects(1);
-
 
     }
 
