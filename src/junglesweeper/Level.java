@@ -2,10 +2,17 @@ package junglesweeper;
 
 import junglesweeper.gameobjects.GameObjectsType;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 /**
  * Created by codecadet on 27/05/17.
  */
 public class Level {
+
+    //private ArrayList<ArrayList<ArrayList<Integer>>> stuff;
+
+    private int[][][] stuff;
 
     private int[][] levelMatrix1;
     private int[][] levelMatrix2;
