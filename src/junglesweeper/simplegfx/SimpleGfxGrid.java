@@ -2,6 +2,7 @@ package junglesweeper.simplegfx;
 
 import junglesweeper.GridColor;
 import junglesweeper.grid.Grid;
+import junglesweeper.grid.SimpleGfxGridType;
 import junglesweeper.grid.position.GridPosition;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
@@ -11,22 +12,25 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
  */
 public class SimpleGfxGrid implements Grid {
 
-    private static final int CELL_SIZE = 40;
-    private static final int X_PADDING = 190;
-    private static final int Y_PADDING = 35;
-
+    private int CELL_SIZE = 40;
+    private int X_PADDING = 190;
+    private int Y_PADDING = 35;
     private int cols;
     private int rows;
+    //private SimpleGfxGridType gridType;
     private Picture pictureScreen;
 
     public int getCellSize() {
         return CELL_SIZE;
     }
 
-    public SimpleGfxGrid(int cols, int rows, String imagePath) {
-        this.cols = cols;
-        this.rows = rows;
-        pictureScreen = new Picture(X_PADDING, Y_PADDING,imagePath);
+    public SimpleGfxGrid(SimpleGfxGridType simpleGfxGridType) {
+        CELL_SIZE = simpleGfxGridType.getCellSize();
+        this.X_PADDING = simpleGfxGridType.getxPadding();
+        this.Y_PADDING = simpleGfxGridType.getyPadding();
+        this.cols = simpleGfxGridType.getCols();
+        this.rows = simpleGfxGridType.getRows();
+        pictureScreen = new Picture(X_PADDING, Y_PADDING,simpleGfxGridType.getImagePath());
     }
 
     @Override

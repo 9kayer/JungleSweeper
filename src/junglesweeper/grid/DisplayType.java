@@ -5,19 +5,6 @@ package junglesweeper.grid;
  */
 public enum DisplayType {
 
-    SIMPLE_GFX("./assets/pictures/grid.png");
+    SIMPLE_GFX;
 
-    private String imagePath;
-
-    DisplayType(String string){
-        imagePath = string;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
 }

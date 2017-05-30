@@ -7,10 +7,11 @@ import java.util.Stack;
  */
 public interface Display {
 
-    Stack< ? extends Grid > getDisplayStack();
+    Grid getGrid(int priority);
 
     void show();
 
     void hide();
 
+    void makeGrids();
 }

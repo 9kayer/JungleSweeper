@@ -1,6 +1,7 @@
 package junglesweeper.grid;
 
-import java.util.Collections;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
+
 import java.util.Stack;
 
 /**
@@ -8,38 +9,59 @@ import java.util.Stack;
  */
 public class SimpleGfxDisplay implements Display {
 
-    private Grid background;
-    private Grid sensorGrid;
+    private Picture background;
+    private Grid infoGrid;
     private Grid mapGride;
+    private DisplayType displayType;
     private int padding;
-    private int numbOfGrids;
 
-    public SimpleGfxDisplay(int padding){
+
+    public SimpleGfxDisplay(DisplayType displayType, int padding){
+        background = new Picture(5,5, "./assets/pictures/back.png");
+        this.displayType = displayType;
         this.padding = padding;
-        numbOfGrids = 3;
+
+    }
+
+    public Picture getBackground() {
+        return background;
+    }
+
+    public Grid getInfoGrid() {
+        return infoGrid;
+    }
+
+    public Grid getMapGride() {
+        return mapGride;
     }
 
     @Override
-    public Stack<Grid> getDisplayStack() {
-        Stack<Grid> aux = new Stack<>();
-        aux.push(background);
-        aux.push(sensorGrid);
-        aux.push(mapGride);
-
-        return aux;
-    }
-
-    public int getNumbOfGrids(){
-        return numbOfGrids;
+    public Grid getGrid(int priority) {
+        if(SimpleGfxGridType.INFO_GRID.getPriority() == priority){
+            return infoGrid;
+        }
+        if(SimpleGfxGridType.MAP_GRID.getPriority() == priority){
+            return mapGride;
+        }
+        return null;
     }
 
     @Override
     public void show() {
-
+        background.draw();
+        infoGrid.init();
+        mapGride.init();
     }
 
     @Override
     public void hide() {
+
+    }
+
+    public void makeGrids(){
+        mapGride = GridFactory.makeGrid(displayType, SimpleGfxGridType.MAP_GRID);
+        infoGrid = GridFactory.makeGrid(displayType, SimpleGfxGridType.INFO_GRID);
+
 
     }
 }

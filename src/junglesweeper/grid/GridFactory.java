@@ -7,23 +7,24 @@ import junglesweeper.simplegfx.SimpleGfxGrid;
  */
 public class GridFactory {
 
-    public static Grid makeGrid(DisplayType displayType, int cols, int rows) {
+    public static Grid makeGrid(DisplayType displayType, SimpleGfxGridType simpleGfxGridType) {
 
         switch(displayType){
             case SIMPLE_GFX:
-                return new SimpleGfxGrid(cols,rows, displayType.getImagePath());
+                switch (simpleGfxGridType){
+                    case MAP_GRID:
+                        return new SimpleGfxGrid(SimpleGfxGridType.MAP_GRID);
+                    case INFO_GRID:
+                        return new SimpleGfxGrid(SimpleGfxGridType.INFO_GRID);
+                }
             default:
-                return new SimpleGfxGrid(cols,rows, displayType.getImagePath());
+                switch (simpleGfxGridType){
+                    case MAP_GRID:
+                        return new SimpleGfxGrid(SimpleGfxGridType.MAP_GRID);
+                    case INFO_GRID:
+                        return new SimpleGfxGrid(SimpleGfxGridType.INFO_GRID);
+                }
         }
-
-    }
-
-    public static Display makeDisplay(DisplayType displayType, int padding){
-        switch(displayType){
-            case SIMPLE_GFX:
-                return new SimpleGfxDisplay(padding);
-            default:
-                return new SimpleGfxDisplay(padding);
-        }
+        return null;
     }
 }
