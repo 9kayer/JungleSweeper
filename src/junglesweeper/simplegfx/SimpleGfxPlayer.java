@@ -13,8 +13,8 @@ public class SimpleGfxPlayer extends Player {
 
     private SimpleGfxGridPosition pos;
 
-    public SimpleGfxPlayer(Grid grid, GridPosition pos, int lives, CollisionDetector collisionDetector) {
-        super(grid, pos, lives, collisionDetector);
+    public SimpleGfxPlayer(GridPosition pos, int lives, CollisionDetector collisionDetector) {
+        super(pos, lives, collisionDetector);
         this.pos = (SimpleGfxGridPosition) pos;
     }
 

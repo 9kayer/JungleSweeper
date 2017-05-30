@@ -13,16 +13,13 @@ import junglesweeper.grid.position.Direction;
  */
 public abstract class Player implements Collidable {
 
-    private Grid grid;
     private GridPosition pos;
     private boolean key;
     private int lives;
     private CollisionDetector collisionDetector;
 
-
     // Initialize our Player
-    public Player(Grid grid, GridPosition pos, int lives, CollisionDetector collisionDetector) {
-        this.grid = grid;
+    public Player(GridPosition pos, int lives, CollisionDetector collisionDetector) {
         this.pos = pos;
         this.lives = lives;
         this.collisionDetector = collisionDetector;
