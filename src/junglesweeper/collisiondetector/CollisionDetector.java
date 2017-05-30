@@ -13,13 +13,13 @@ import java.util.List;
  */
 public class CollisionDetector {
 
-    private Player player;
     private ArrayList<Collidable> objectsList;
+    private Player player;
     private boolean isDoorOpen;
 
-    public void init(Player player, ArrayList<GameObject> objectsList) {
-        this.player = player;
+    public void init(ArrayList<GameObject> objectsList, Player player) {
         this.objectsList = new ArrayList<>(objectsList);
+        this.player = player;
     }
 
     public boolean isPossible(GridPosition pos) {
@@ -47,6 +47,8 @@ public class CollisionDetector {
 
             if (c instanceof Tiger) {
                 player.collide();
+                player.reset();
+                System.out.println(player.getLives());
             }
 
             if (c instanceof Door && player.hasKey()) {

@@ -11,6 +11,4 @@ public interface Collidable {
 
     GridPosition getPos();
 
-    void setCollisionDetector(CollisionDetector collisionDetector);
-
 }

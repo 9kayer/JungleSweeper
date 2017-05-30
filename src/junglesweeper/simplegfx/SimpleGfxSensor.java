@@ -9,7 +9,6 @@ public class SimpleGfxSensor {
 
     private Text traps;
 
-
     public SimpleGfxSensor(int trap){
 
         traps = new Text(10,10, Integer.toString(trap));
@@ -25,8 +24,5 @@ public class SimpleGfxSensor {
     public void show() {
         traps.draw();
     }
-
-
-
 
 }

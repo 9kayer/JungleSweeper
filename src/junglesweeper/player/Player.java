@@ -48,7 +48,7 @@ public abstract class Player implements Collidable {
     public abstract void move(Direction direction);
 
     public void collide() {
-        throw new UnsupportedOperationException();
+        lives--;
     }
 
     public CollisionDetector getCollisionDetector() {
