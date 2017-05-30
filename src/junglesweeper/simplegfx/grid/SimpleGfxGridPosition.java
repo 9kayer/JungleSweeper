@@ -1,8 +1,10 @@
-package junglesweeper.simplegfx;
+package junglesweeper.simplegfx.grid;
+
 
 import junglesweeper.grid.position.AbstractGridPosition;
 import junglesweeper.grid.position.Direction;
 import junglesweeper.grid.position.GridPosition;
+import junglesweeper.simplegfx.grid.SimpleGfxGrid;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 /**
@@ -62,4 +64,13 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
         return false;
     }
+
+    public SimpleGfxGrid getSimpleGfxGrid() {
+        return simpleGfxGrid;
+    }
+
+    public void setPicture(String str) {
+        picture.load(str);
+    }
+
 }

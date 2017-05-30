@@ -1,6 +1,6 @@
 package junglesweeper;
 
-import junglesweeper.grid.GridType;
+import junglesweeper.grid.DisplayType;
 
 /**
  * A/C - bootcamp8

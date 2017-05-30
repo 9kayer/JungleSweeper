@@ -1,6 +1,6 @@
 package junglesweeper.sensor;
 
-import junglesweeper.grid.GridType;
+import junglesweeper.grid.DisplayType;
 
 /**
  * A/C - bootcamp8
@@ -10,8 +10,9 @@ import junglesweeper.grid.GridType;
 
 public class SensorFactory {
 
-    private SensorFactory(GridType gridType) {
-        switch(gridType){
+    private SensorFactory(DisplayType displayType) {
+
+        switch(displayType){
             case SIMPLE_GFX:
                 //return new SimpleGfxSensor();
             default:

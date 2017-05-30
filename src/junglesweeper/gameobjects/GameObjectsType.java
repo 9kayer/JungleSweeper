@@ -8,11 +8,11 @@ package junglesweeper.gameobjects;
 
 public enum GameObjectsType {
 
-    ROCK(1, "./assets/pictures/rock.jpeg"), //TODO: Can we move here the the GridColor(s)?
-    KEY(3, "./assets/pictures/key.jpeg"),
+    ROCK(1, "./assets/pictures/rock.png" ), //TODO: Can we move here the the GridColor(s)?
+    KEY(3, "./assets/pictures/key.png"),
     PATH(5, "./assets/pictures/path.jpeg"),
-    DOOR(4, "./assets/pictures/door.jpeg"),
-    TIGER(2, "./assets/pictures/tiger.jpeg");
+    DOOR(4, "./assets/pictures/door.png"),
+    TIGER(2, "./assets/pictures/tiger.png");
 
     private int referenceInMap; //TODO: Confirm if this property is really needed
     private String imagePath;

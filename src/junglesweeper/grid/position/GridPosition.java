@@ -1,7 +1,5 @@
 package junglesweeper.grid.position;
 
-import junglesweeper.GridColor;
-
 /**
  * A/C - bootcamp8
  * Project: JungleSweeper

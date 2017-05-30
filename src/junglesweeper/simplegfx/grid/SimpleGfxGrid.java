@@ -1,4 +1,4 @@
-package junglesweeper.simplegfx;
+package junglesweeper.simplegfx.grid;
 
 import junglesweeper.grid.Grid;
 import junglesweeper.grid.position.GridPosition;
@@ -12,22 +12,25 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class SimpleGfxGrid implements Grid {
 
-    private static final int CELL_SIZE = 35;
-    private static final int X_PADDING = 100;
-    private static final int Y_PADDING = 10;
-
+    private int CELL_SIZE = 40;
+    private int X_PADDING = 190;
+    private int Y_PADDING = 35;
     private int cols;
     private int rows;
+
     private Picture pictureScreen;
 
     public int getCellSize() {
         return CELL_SIZE;
     }
 
-    public SimpleGfxGrid(int cols, int rows, String imagePath) {
-        this.cols = cols;
-        this.rows = rows;
-        pictureScreen = new Picture(X_PADDING, Y_PADDING,imagePath);
+    public SimpleGfxGrid(SimpleGfxGridType simpleGfxGridType) {
+        CELL_SIZE = simpleGfxGridType.getCellSize();
+        this.X_PADDING = simpleGfxGridType.getxPadding();
+        this.Y_PADDING = simpleGfxGridType.getyPadding();
+        this.cols = simpleGfxGridType.getCols();
+        this.rows = simpleGfxGridType.getRows();
+        pictureScreen = new Picture(X_PADDING, Y_PADDING,simpleGfxGridType.getImagePath());
     }
 
     @Override

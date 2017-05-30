@@ -1,6 +1,5 @@
 package junglesweeper.grid.position;
 
-import junglesweeper.GridColor;
 import junglesweeper.grid.Grid;
 
 /**

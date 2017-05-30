@@ -2,14 +2,13 @@ package junglesweeper;
 import junglesweeper.collisiondetector.Collidable;
 import junglesweeper.collisiondetector.CollisionDetector;
 import junglesweeper.gameobjects.*;
-import junglesweeper.grid.Grid;
-import junglesweeper.grid.GridFactory;
-import junglesweeper.grid.GridType;
+import junglesweeper.grid.*;
 import junglesweeper.simplegfx.SimpleGfxSensor;
 import junglesweeper.player.Player;
 import junglesweeper.simplegfx.SimpleGfxPlayer;
 import junglesweeper.simplegfx.controls.MoveKeyMap;
 import junglesweeper.sensor.Sensor;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.util.ArrayList;
 import java.util.Stack;
@@ -24,20 +23,21 @@ public class Game {
 
     private static final int DELAY = 1;
     private static final int FIRST_LEVEL = 0;
-    private static final String PLAYER_IMAGE_PATH = "./assets/pictures/king.png";
 
     private ArrayList<GameObject> gameObjectList;
     private ArrayList<Stack<GameObject>> stackArrayList;
     private CollisionDetector collisionDetector;
+    private Display display;
     private Sensor sensor;
-    private Grid grid;
     private Player player;
     private MoveKeyMap keyMap;
     private SimpleGfxSensor traps;
 
-    public Game(GridType gridType, int cols, int rows) {
+    public Game(DisplayType displayType, int cols, int rows) {
 
-        grid = GridFactory.makeGrid(gridType, cols, rows);
+        display = DisplayFactory.makeDisplay(displayType,10);
+        display.makeGrids();
+
         gameObjectList = new ArrayList<>();
         keyMap = new MoveKeyMap(MoveKeyMap.ControlType.MODE_1);
         sensor = new Sensor(cols, rows, FIRST_LEVEL);
@@ -47,6 +47,7 @@ public class Game {
     }
 
     public void init() {
+        display.show();
 
         // Init the stacks for game object collection
         for (int i = 0; i < GameObjectsType.values().length; i++) {
@@ -60,7 +61,11 @@ public class Game {
         sensor.init();
 
         // Start the player
-        player = new SimpleGfxPlayer(grid.makeGridPosition(0, 0, PLAYER_IMAGE_PATH), 3, collisionDetector);
+        player = new SimpleGfxPlayer(
+                display.getGrid(1).makeGridPosition(0, 0, SimpleGfxPlayer.DOWN_ICON),
+                3,
+                collisionDetector
+        );
 
         // After Create the game Objects we print the number of traps around them
         traps = new SimpleGfxSensor(sensor.getEnemies(player.getPos().getRow(), player.getPos().getCol()));
@@ -68,9 +73,6 @@ public class Game {
     }
 
     public void start() throws InterruptedException {
-
-        // Draw the grid
-        grid.init();
 
         // Collidable to check
         Collidable object;
@@ -147,8 +149,8 @@ public class Game {
     private void createGameObjects(int i) {
 
         // Run all the grid
-        for (int col = 0; col < grid.getCols(); col++) {
-            for (int row = 0; row < grid.getRows(); row++) {
+        for (int col = 0; col < display.getGrid(1).getCols(); col++) {
+            for (int row = 0; row < display.getGrid(1).getRows(); row++) {
 
                 // Player start position
                 if (col == 0 && row == 0) {
@@ -165,7 +167,7 @@ public class Game {
                         GameObjectFactory.createNewGameObjects(
                                 row,
                                 col,
-                                grid,
+                                display.getGrid(1),
                                 GameObjectsType.translateMapReference(Level.getLevelMatrix(i)[col][row]), stackArrayList
                         )
                 );
