@@ -5,6 +5,7 @@ import junglesweeper.grid.position.GridPosition;
 import junglesweeper.player.Player;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -12,65 +13,74 @@ import java.util.List;
  */
 public class CollisionDetector {
 
-    private ArrayList<ArrayList> objectsList;
+    private ArrayList<Collidable> objectsList;
+    private Player player;
+    private boolean isDoorOpen;
 
-    public CollisionDetector(ArrayList<ArrayList> objectsList) {
-        this.objectsList = objectsList;
+    public void init(ArrayList<? extends Collidable> objectsList, Player player) {
+        this.objectsList = new ArrayList<>(objectsList);
+        this.player = player;
     }
 
     public boolean isPossible(GridPosition pos) {
-
-        for (ArrayList<Collidable> c : objectsList) {
-
-            for (Collidable e : c) {
-
-                if (e instanceof Rock && e.getPos().equals(pos)) {
-                    return false;
-                }
-
+        for (Collidable c : objectsList) {
+            if (c instanceof Rock && c.getPos().equals(pos)) {
+                System.out.println("Rock");
+                return false;
             }
-
         }
 
         return true;
-
     }
 
-    public boolean collision(Player player) {
+    public Collidable collision() {
 
-        for (ArrayList<Collidable> c : objectsList) {
+        for (Collidable c : objectsList) {
 
-            for (Collidable e : c) {
+            if (!player.getPos().equals(c.getPos())) {
+                continue;
+            }
 
-                if (player.getPos().equals(e.getPos())) {
+            if (c instanceof Key && c.isActive()) {
+                System.out.println("Key");
+                c.collide();
+                player.collectKey();
 
-                    if (e instanceof Key) {
-                        System.out.println("Key");
-                        e.collide();
-                        player.collectKey();
-                    }
+                return c;
+            }
 
-                    if (e instanceof Tiger) {
-                        System.out.println("Tiger");
-                    }
+            if (c instanceof Tiger) {
+                System.out.println("Tiger");
+                player.collide();
+                player.reset();
+                player.getPos().show();
 
-                    if (e instanceof Door) {
-                        System.out.println("Door");
-                    }
-                    if( e instanceof Path){
-                        e.collide();
-                    }
+                return c;
+            }
 
+            if (c instanceof Door && player.hasKey()) {
+                System.out.println("Door");
+                c.collide();
 
-                    return true;
-                }
+                return c;
+            }
 
+            if (c instanceof Path) {
+                c.collide();
             }
 
         }
 
-        return false;
+        return null;
 
+    }
+
+    public boolean isDoorOpen(){
+        return isDoorOpen;
+    }
+
+    public void closeDoor() {
+        isDoorOpen = false;
     }
 
 }

@@ -13,5 +13,5 @@ public interface Grid {
 
     void init();
 
-    GridPosition makeGridPosition(int col, int row);
+    GridPosition makeGridPosition(int col, int row, String layout);
 }

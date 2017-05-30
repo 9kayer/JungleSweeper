@@ -13,7 +13,7 @@ public interface GridPosition {
 
     void setPos(int col, int row);
 
-    void setColor(GridColor color);
+    void setLayout(GridColor color);
 
     void show();
 
