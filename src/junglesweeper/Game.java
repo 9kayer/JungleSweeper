@@ -25,7 +25,6 @@ public class Game {
 
     private static final int DELAY = 1;
     private static final int FIRST_LEVEL = 0;
-    private static final String PLAYER_IMAGE_PATH = "./assets/pictures/fff40.png";
     private static final String BACKGROUND_IMAGE_PATH = "./assets/pictures/back.png";
     private static final String SENSOR_IMAGE_PATH = "./assets/pictures/sensor.png";
 
@@ -74,7 +73,7 @@ public class Game {
         sensor.init();
 
         // Start the player
-        player = new SimpleGfxPlayer(grid.makeGridPosition(0, 0, PLAYER_IMAGE_PATH), 3, collisionDetector);
+        player = new SimpleGfxPlayer(grid.makeGridPosition(0, 0, SimpleGfxPlayer.DOWN_ICON), 3, collisionDetector);
 
         // After Create the game Objects we print the number of traps around them
         traps = new SimpleGfxSensor(sensor.getEnemys(player.getPos().getRow(), player.getPos().getCol()));
