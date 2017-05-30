@@ -132,7 +132,12 @@ public class Game {
                 }
 
                 gameObjectList.add(
-                        GameObjectFactory.createNewGameObjects(row, col, grid, GameObjectsType.translateMapReference(Level.getLevelMatrix(i)[col][row]), stackArrayList)
+                        GameObjectFactory.createNewGameObjects(
+                                row,
+                                col,
+                                grid,
+                                GameObjectsType.translateMapReference(Level.getLevelMatrix(i)[col][row]), stackArrayList
+                        )
                 );
 
             }
@@ -179,6 +184,7 @@ public class Game {
             }
 
             player.getPos().show();
+
         }
 
     }
