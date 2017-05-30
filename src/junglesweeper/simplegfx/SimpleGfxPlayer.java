@@ -33,7 +33,7 @@ public class SimpleGfxPlayer extends Player {
         dropKey();
         pos.setPos(0,0);
         pos.hide();
-        pos.show();
+        //pos.show();
     }
 
     public GridPosition getPos() {

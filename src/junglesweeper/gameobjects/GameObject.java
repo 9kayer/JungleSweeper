@@ -21,9 +21,6 @@ public abstract class GameObject implements Collidable {
     public GameObject(GridPosition gridPosition, GameObjectsType gameObjectsType) {
         this.gridPosition = gridPosition;
         this.type = gameObjectsType;
-
-        //this.gridPosition.setLayout(gameObjectsType.getColor());
-
         currentDirection = null;
     }
     

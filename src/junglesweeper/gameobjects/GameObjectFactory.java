@@ -23,7 +23,7 @@ public class GameObjectFactory {
                 //System.out.println("used key");
                 object = stackArrayList.get(0).pop();
                 object.getGridPosition().setPos(col, row);
-                object.getGridPosition().show();
+                //object.getGridPosition().show();
                 return object;
             case PATH:
                 if (stackArrayList.get(1).empty()) {
@@ -31,7 +31,7 @@ public class GameObjectFactory {
                 }
                 object = stackArrayList.get(1).pop();
                 object.getGridPosition().setPos(col, row);
-                object.getGridPosition().show();
+                //object.getGridPosition().show();
                 return object;
             case ROCK:
                 if (stackArrayList.get(2).empty()) {
@@ -42,7 +42,7 @@ public class GameObjectFactory {
                 System.out.println("used rock");
                 object = stackArrayList.get(2).pop();
                 object.getGridPosition().setPos(col, row);
-                object.getGridPosition().show();
+                //object.getGridPosition().show();
                 return object;
             case TIGER:
                 if (stackArrayList.get(3).empty()) {
@@ -52,7 +52,7 @@ public class GameObjectFactory {
                 //System.out.println("used tiger");
                 object = stackArrayList.get(3).pop();
                 object.getGridPosition().setPos(col, row);
-                object.getGridPosition().show();
+                //object.getGridPosition().show();
                 return object;
             case DOOR:
                 if (stackArrayList.get(4).empty()) {
@@ -61,7 +61,7 @@ public class GameObjectFactory {
                 //System.out.println("used door");
                 object = stackArrayList.get(4).pop();
                 object.getGridPosition().setPos(col, row);
-                object.getGridPosition().show();
+                //object.getGridPosition().show();
                 return object;
             default:
                 System.out.println("Something went terribly wrong!");
@@ -70,7 +70,7 @@ public class GameObjectFactory {
                 }
                 object = stackArrayList.get(1).pop();
                 object.getGridPosition().setPos(col, row);
-                object.getGridPosition().show();
+                //object.getGridPosition().show();
                 return object;
         }
     }

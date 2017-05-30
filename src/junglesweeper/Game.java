@@ -37,6 +37,7 @@ public class Game {
 
         level = 0;
         grid = GridFactory.makeGrid(gridType, cols, rows);
+        //grid.init();
         gameObjectList = new ArrayList<>();
         keyMap = new MoveKeyMap(ControlType.MODE_1);
         sensor = new Sensor(cols,rows,Level.getLevelMatrix(level));
@@ -51,13 +52,16 @@ public class Game {
             stackArrayList.add(new Stack<>());
         }
 
-        grid.init();
         keyMap.init();
         sensor.init();
 
         createGameObjects(0);
+
         player = new SimpleGfxPlayer(grid, grid.makeGridPosition(0, 0, "./assets/pictures/king.png"), 3, collisionDetector);
         collisionDetector.init(player, gameObjectList);
+
+        grid.init();
+        drawObjects();
 
         /* After Create the game Objects we print the number of traps around them */
         traps = new SimpleGfxSensor(sensor.getEnemys(player.getPos().getRow(), player.getPos().getCol()));
@@ -82,6 +86,7 @@ public class Game {
             retrieveGameObjects();
             createGameObjects(i);
             player.reset();
+            drawObjects();
             collisionDetector.closeDoor();
             collisionDetector.init(player, gameObjectList);
         }
@@ -136,6 +141,15 @@ public class Game {
                         System.out.println("Fail on retrieveGameObjects()");
                 }
             }
+        }
+
+        public void drawObjects(){
+
+            for (GameObject go : gameObjectList){
+                go.getGridPosition().show();
+            }
+
+            player.getPos().show();
         }
 
     }

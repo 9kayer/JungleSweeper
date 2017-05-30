@@ -14,7 +14,6 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class SimpleGfxGridPosition extends AbstractGridPosition {
 
     private SimpleGfxGrid simpleGfxGrid;
-    //private Rectangle rectangle;
     private Picture picture;
 
     public SimpleGfxGridPosition(int col, int row, SimpleGfxGrid simpleGfxGrid, String imagePath) {
@@ -24,16 +23,13 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
         int x = simpleGfxGrid.getX() + col * simpleGfxGrid.getCellSize();
         int y = simpleGfxGrid.getY() + row * simpleGfxGrid.getCellSize();
-
-        //this.rectangle = new Rectangle(x, y, simpleGfxGrid.getCellSize(), simpleGfxGrid.getCellSize());
         this.picture = new Picture(x, y, imagePath);
-        show();
+        //show();
     }
 
     @Override
     public void setLayout(GridColor color) {
         super.setLayout(color);
-        //rectangle.setColor(SimpleGfxColorMapper.getColor(color));
     }
 
     @Override
@@ -45,19 +41,16 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
         int dX = simpleGfxGrid.columnToX(getCol()) - simpleGfxGrid.columnToX(lastMoveCol);
         int dY = simpleGfxGrid.rowToY(getRow()) - simpleGfxGrid.rowToY(lastMoveRow);
-        //rectangle.translate(dX, dY);
         picture.translate(dX, dY);
     }
 
     @Override
     public void show() {
-        //rectangle.fill();
         picture.draw();
     }
 
     @Override
     public void hide() {
-        //rectangle.delete();
         picture.delete();
     }
 

@@ -18,7 +18,6 @@ public class SimpleGfxGrid implements Grid {
     private int cols;
     private int rows;
     private Picture pictureScreen;
-    private Rectangle screen;
 
     public int getCellSize() {
         return CELL_SIZE;
@@ -28,7 +27,6 @@ public class SimpleGfxGrid implements Grid {
         this.cols = cols;
         this.rows = rows;
         pictureScreen = new Picture(X_PADDING, Y_PADDING,imagePath);
-        screen = new Rectangle(X_PADDING, Y_PADDING, cols * getCellSize(), rows * getCellSize());
     }
 
     @Override
@@ -47,11 +45,11 @@ public class SimpleGfxGrid implements Grid {
     }
 
     public int getWidth() {
-        return screen.getWidth();
+        return pictureScreen.getWidth();
     }
 
     public int getHeight() {
-        return screen.getHeight();
+        return pictureScreen.getHeight();
     }
 
     public int getX() {
@@ -66,7 +64,7 @@ public class SimpleGfxGrid implements Grid {
     public GridPosition makeGridPosition(int col, int row, String imagePath) {
         SimpleGfxGridPosition cell = new SimpleGfxGridPosition(col,row,this, imagePath);
 
-        cell.show();
+        //cell.show();
 
         return cell;
     }
