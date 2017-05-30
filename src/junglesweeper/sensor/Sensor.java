@@ -14,10 +14,10 @@ public class Sensor {
     private int[][] myArray;
     private int[][] sensorNumbers;
 
-    public Sensor(int col, int row, int[][] matrix) {
+    public Sensor(int col, int row, int i) {
         this.col = col;
         this.row = row;
-        this.myArray = matrix;
+        this.myArray = Level.getLevelMatrix(i);
     }
 
     public void init() {
@@ -31,6 +31,10 @@ public class Sensor {
             }
         }
 
+    }
+
+    public void updateLevel(int i) {
+        this.myArray = Level.getLevelMatrix(i);
     }
 
     public int getNeibours(int i, int j) {
