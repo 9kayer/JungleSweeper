@@ -46,7 +46,7 @@ public class CollisionDetector {
             }
 
             if (c instanceof Tiger) {
-                System.out.println("Tiger");
+                player.collide();
             }
 
             if (c instanceof Door && player.hasKey()) {
