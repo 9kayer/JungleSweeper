@@ -1,10 +1,7 @@
-package junglesweeper.simplegfx;
+package junglesweeper.simplegfx.grid;
 
-import junglesweeper.GridColor;
 import junglesweeper.grid.Grid;
-import junglesweeper.grid.SimpleGfxGridType;
 import junglesweeper.grid.position.GridPosition;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 /**
@@ -17,7 +14,7 @@ public class SimpleGfxGrid implements Grid {
     private int Y_PADDING = 35;
     private int cols;
     private int rows;
-    //private SimpleGfxGridType gridType;
+
     private Picture pictureScreen;
 
     public int getCellSize() {
@@ -67,8 +64,6 @@ public class SimpleGfxGrid implements Grid {
     @Override
     public GridPosition makeGridPosition(int col, int row, String imagePath) {
         SimpleGfxGridPosition cell = new SimpleGfxGridPosition(col,row,this, imagePath);
-
-        //cell.show();
 
         return cell;
     }

@@ -60,7 +60,11 @@ public class Game {
         sensor.init();
 
         // Start the player
-        player = new SimpleGfxPlayer(display.getGrid(1).makeGridPosition(0, 0, SimpleGfxPlayer.DOWN_ICON), 3, collisionDetector);
+        player = new SimpleGfxPlayer(
+                display.getGrid(1).makeGridPosition(0, 0, SimpleGfxPlayer.DOWN_ICON),
+                3,
+                collisionDetector
+        );
 
         // After Create the game Objects we print the number of traps around them
         traps = new SimpleGfxSensor(sensor.getEnemys(player.getPos().getRow(), player.getPos().getCol()));

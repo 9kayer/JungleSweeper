@@ -1,10 +1,10 @@
 package junglesweeper.simplegfx;
 
 import junglesweeper.collisiondetector.CollisionDetector;
-import junglesweeper.grid.Grid;
 import junglesweeper.grid.position.Direction;
 import junglesweeper.grid.position.GridPosition;
 import junglesweeper.player.Player;
+import junglesweeper.simplegfx.grid.SimpleGfxGridPosition;
 
 /**
  * Created by codecadet on 27/05/17.

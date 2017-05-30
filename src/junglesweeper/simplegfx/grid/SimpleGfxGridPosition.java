@@ -1,11 +1,10 @@
-package junglesweeper.simplegfx;
+package junglesweeper.simplegfx.grid;
 
 
-import junglesweeper.GridColor;
 import junglesweeper.grid.position.AbstractGridPosition;
 import junglesweeper.grid.position.Direction;
 import junglesweeper.grid.position.GridPosition;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import junglesweeper.simplegfx.grid.SimpleGfxGrid;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 /**
@@ -24,12 +23,6 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
         int x = simpleGfxGrid.getX() + col * simpleGfxGrid.getCellSize();
         int y = simpleGfxGrid.getY() + row * simpleGfxGrid.getCellSize();
         this.picture = new Picture(x, y, imagePath);
-        //show();
-    }
-
-    @Override
-    public void setLayout(GridColor color) {
-        super.setLayout(color);
     }
 
     @Override
@@ -76,6 +69,5 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     public void setPicture(String str) {
         picture.load(str);
     }
-
 
 }

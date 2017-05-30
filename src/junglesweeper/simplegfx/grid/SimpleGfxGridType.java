@@ -1,4 +1,4 @@
-package junglesweeper.grid;
+package junglesweeper.simplegfx.grid;
 
 /**
  * Created by codecadet on 30/05/17.
