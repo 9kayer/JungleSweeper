@@ -110,7 +110,6 @@ public class MoveKeyMap implements KeyboardHandler {
     public void keyReleased(KeyboardEvent e) {
 
         moving = false;
-        //specialMove = false;
 
     }
 

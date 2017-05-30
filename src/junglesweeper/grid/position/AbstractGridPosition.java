@@ -9,13 +9,13 @@ import junglesweeper.grid.Grid;
 public abstract class AbstractGridPosition implements GridPosition {
     private int col;
     private int row;
-    private GridColor color;
+    //private GridColor color;
     private Grid grid;
 
-    public AbstractGridPosition(int col, int row, Grid grid) {
+    public AbstractGridPosition(int col, int row, Grid grid, String imagePath) {
         this.col = col;
         this.row = row;
-        this.color = null;
+        //this.color = null;
         this.grid = grid;
     }
 
@@ -39,15 +39,11 @@ public abstract class AbstractGridPosition implements GridPosition {
         this.row = row;
     }
 
-    public void setColor(GridColor color) {
-        this.color = color;
+    public void setLayout(GridColor color) {
+        //this.color = color;
     }
 
     public abstract void show();
-
-    public GridColor getColor() {
-        return color;
-    }
 
     public abstract void hide();
 

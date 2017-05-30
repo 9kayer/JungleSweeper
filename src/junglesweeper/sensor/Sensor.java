@@ -9,17 +9,15 @@ import junglesweeper.gameobjects.GameObjectsType;
  */
 public class Sensor {
 
-    private Level sensorLevel;
     private int col;
     private int row;
     private int[][] myArray;
     private int[][] sensorNumbers;
 
-    public Sensor(int col, int row, Level level) {
-        this.sensorLevel = level;
+    public Sensor(int col, int row, int i) {
         this.col = col;
         this.row = row;
-        this.myArray = sensorLevel.getLevelMatrix(0); //TODO: 0 is the first livel. To be changed
+        this.myArray = Level.getLevelMatrix(i);
     }
 
     public void init() {
@@ -33,6 +31,10 @@ public class Sensor {
             }
         }
 
+    }
+
+    public void updateLevel(int i) {
+        this.myArray = Level.getLevelMatrix(i);
     }
 
     public int getNeibours(int i, int j) {
@@ -49,7 +51,7 @@ public class Sensor {
                 int number2 = j + yoff;
                 if (number2 < 0 || number2 >= myArray.length) continue;
 
-                GameObjectsType neighbor = GameObjectsType.translateMapReference(sensorLevel.getLevelMatrix(0)[number][number2]); //TODO: 0 is the first livel. To be changed
+                GameObjectsType neighbor = GameObjectsType.translateMapReference(myArray[number][number2]);
 
                 int neighborI = number;
                 int neighborJ = number2;

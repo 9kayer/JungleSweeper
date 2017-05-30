@@ -13,8 +13,8 @@ public class SimpleGfxPlayer extends Player {
 
     private SimpleGfxGridPosition pos;
 
-    public SimpleGfxPlayer(Grid grid, GridPosition pos, int lives, CollisionDetector collisionDetector) {
-        super(grid, pos, lives, collisionDetector);
+    public SimpleGfxPlayer(GridPosition pos, int lives, CollisionDetector collisionDetector) {
+        super(pos, lives, collisionDetector);
         this.pos = (SimpleGfxGridPosition) pos;
     }
 
@@ -26,6 +26,14 @@ public class SimpleGfxPlayer extends Player {
             pos.movingDirection(direction.getReverse(direction));
         }
 
+    }
+
+    @Override
+    public void reset() {
+        dropKey();
+        pos.setPos(0,0);
+        pos.hide();
+        //pos.show();
     }
 
     public GridPosition getPos() {
