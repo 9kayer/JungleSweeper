@@ -11,9 +11,9 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
  */
 public class SimpleGfxGrid implements Grid {
 
-    private static final int CELL_SIZE = 35;
-    private static final int X_PADDING = 100;
-    private static final int Y_PADDING = 10;
+    private static final int CELL_SIZE = 40;
+    private static final int X_PADDING = 190;
+    private static final int Y_PADDING = 35;
 
     private int cols;
     private int rows;
