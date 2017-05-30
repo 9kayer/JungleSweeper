@@ -11,10 +11,22 @@ public class Tiger extends GameObject {
         super(pos, GameObjectsType.TIGER);
     }
 
+    @Override
     public void collide() {
-        getGridPosition().hide();
+        throw new UnsupportedOperationException();
     }
 
+    @Override
+    public boolean isActive() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void reset() {
+        // Nothing to execute
+    }
+
+    @Override
     public GridPosition getPos() {
         return getGridPosition();
     }
