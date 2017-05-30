@@ -1,9 +1,8 @@
 package junglesweeper;
 
+import junglesweeper.collisiondetector.Collidable;
 import junglesweeper.collisiondetector.CollisionDetector;
-import junglesweeper.gameobjects.GameObject;
-import junglesweeper.gameobjects.GameObjectFactory;
-import junglesweeper.gameobjects.GameObjectsType;
+import junglesweeper.gameobjects.*;
 import junglesweeper.grid.Grid;
 import junglesweeper.grid.GridFactory;
 import junglesweeper.grid.GridType;
@@ -13,6 +12,7 @@ import junglesweeper.player.Player;
 import junglesweeper.simplegfx.SimpleGfxPlayer;
 import junglesweeper.simplegfx.controls.MoveKeyMap;
 import junglesweeper.sensor.Sensor;
+
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -47,13 +47,18 @@ public class Game {
 
     public void init() {
 
+        // Init the stacks for game object collection
         for (int i = 0; i < GameObjectsType.values().length; i++) {
             stackArrayList.add(new Stack<>());
         }
 
+        // Load the keyboard handler
         keyMap.init();
+
+        // Load the danger sensor
         sensor.init();
 
+        // Start the player
         player = new SimpleGfxPlayer(grid.makeGridPosition(0, 0, PLAYER_IMAGE_PATH), 3, collisionDetector);
 
         // After Create the game Objects we print the number of traps around them
@@ -63,15 +68,37 @@ public class Game {
 
     public void start() throws InterruptedException {
 
+        // Draw the grid
         grid.init();
+
+        // Collidable to check
+        Collidable object;
+
+        // Level walkthrough
         for (int i = 0; i < Level.NUM_LEVELS; i++) {
 
+            // Create the level
             createLevel(i);
+
+            // Draw all the objects
             drawObjects();
 
-            while (!collisionDetector.isDoorOpen()) {
+            // While the goal is not completed
+            while (player.isAlive()) {
 
-                movePlayer();
+                // Move player and check for collisions
+                if ((object = movePlayer()) != null) {
+
+                    if (object instanceof Tiger) {
+                        i--;
+                        break;
+                    }
+
+                    if (object instanceof Door && object.isActive()) {
+                        break;
+                    }
+
+                }
 
                 Thread.sleep(DELAY);
 
@@ -81,30 +108,33 @@ public class Game {
 
     }
 
-    private void movePlayer() {
+    private Collidable movePlayer() {
 
+        // If a key is being pressed
         if (keyMap.isMoving()) {
+            // Move the player one cell at a time
             player.move(keyMap.getDirection());
-            traps.reWrite(sensor.getEnemys(player.getPos().getRow(), player.getPos().getCol()));
             keyMap.stopMoving();
+
+            // Update the danger sensor output
+            traps.reWrite(sensor.getEnemys(player.getPos().getRow(), player.getPos().getCol()));
+
         }
 
-        collisionDetector.collision();
+        // Check collisions
+        return collisionDetector.collision();
 
     }
 
     private void createLevel(int i) {
-
-        // If create level 1 or above
         // - Collect created objects
         // - Reset the player
         // - Close the door
-        if (i > 0) {
-            retrieveGameObjects();
 
-            player.reset();
-            collisionDetector.closeDoor();
-        }
+        retrieveGameObjects();
+
+        player.reset();
+        collisionDetector.closeDoor();
 
         // Create the game objects
         createGameObjects(i);
@@ -120,17 +150,21 @@ public class Game {
 
     private void createGameObjects(int i) {
 
+        // Run all the grid
         for (int col = 0; col < grid.getCols(); col++) {
             for (int row = 0; row < grid.getRows(); row++) {
 
+                // Player start position
                 if (col == 0 && row == 0) {
                     continue;
                 }
 
+                // Is path
                 if (Level.getLevelMatrix(i)[col][row] == 0) {
                     continue;
                 }
 
+                // Add a game object based on the level matrix
                 gameObjectList.add(
                         GameObjectFactory.createNewGameObjects(
                                 row,
@@ -146,7 +180,11 @@ public class Game {
 
     private void retrieveGameObjects() {
 
+        // Save all the objects in their respective stacks
         for (GameObject object : gameObjectList) {
+
+            object.reset();
+
             switch (object.getType()) {
                 case KEY:
                     stackArrayList.get(0).push(object);
@@ -173,18 +211,21 @@ public class Game {
             }
         }
 
+        // Clear the game object list for next level execution
         gameObjectList.clear();
 
     }
 
-        public void drawObjects(){
+    public void drawObjects() {
 
-            for (GameObject go : gameObjectList){
-                go.getGridPosition().show();
-            }
-
-            player.getPos().show();
-
+        // Draw all the game objects
+        for (GameObject go : gameObjectList) {
+            go.getGridPosition().show();
         }
 
+        // Draw the players
+        player.getPos().show();
+
     }
+
+}

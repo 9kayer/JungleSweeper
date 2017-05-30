@@ -17,7 +17,7 @@ public class CollisionDetector {
     private Player player;
     private boolean isDoorOpen;
 
-    public void init(ArrayList<GameObject> objectsList, Player player) {
+    public void init(ArrayList<? extends Collidable> objectsList, Player player) {
         this.objectsList = new ArrayList<>(objectsList);
         this.player = player;
     }
@@ -33,39 +33,46 @@ public class CollisionDetector {
         return true;
     }
 
-    public boolean collision() {
+    public Collidable collision() {
+
         for (Collidable c : objectsList) {
+
             if (!player.getPos().equals(c.getPos())) {
                 continue;
             }
 
-            if (c instanceof Key) {
+            if (c instanceof Key && c.isActive()) {
                 System.out.println("Key");
                 c.collide();
                 player.collectKey();
+
+                return c;
             }
 
             if (c instanceof Tiger) {
+                System.out.println("Tiger");
                 player.collide();
                 player.reset();
                 player.getPos().show();
-                System.out.println(player.getLives());
+
+                return c;
             }
 
             if (c instanceof Door && player.hasKey()) {
                 System.out.println("Door");
                 c.collide();
-                isDoorOpen = true;
+
+                return c;
             }
 
             if (c instanceof Path) {
                 c.collide();
             }
 
-            return true;
         }
 
-        return false;
+        return null;
+
     }
 
     public boolean isDoorOpen(){

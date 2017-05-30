@@ -7,16 +7,28 @@ import junglesweeper.grid.position.GridPosition;
  */
 public class Door extends GameObject {
 
-    private boolean open;
+    private boolean active;
 
     public Door(GridPosition pos) {
         super(pos, GameObjectsType.DOOR);
     }
 
+    @Override
     public void collide() {
-        open = true;
+        active = true;
     }
 
+    @Override
+    public boolean isActive() {
+        return active;
+    }
+
+    @Override
+    public void reset() {
+        active = false;
+    }
+
+    @Override
     public GridPosition getPos() {
         return getGridPosition();
     }
