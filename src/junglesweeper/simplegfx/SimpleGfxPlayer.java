@@ -1,14 +1,16 @@
 package junglesweeper.simplegfx;
 
 import junglesweeper.collisiondetector.CollisionDetector;
-import junglesweeper.grid.Grid;
 import junglesweeper.grid.position.Direction;
 import junglesweeper.grid.position.GridPosition;
 import junglesweeper.player.Player;
 
 /**
- * Created by codecadet on 27/05/17.
+ * A/C - bootcamp8
+ * Project: JungleSweeper
+ * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
+
 public class SimpleGfxPlayer extends Player {
 
     private SimpleGfxGridPosition pos;
@@ -19,13 +21,11 @@ public class SimpleGfxPlayer extends Player {
     }
 
     public void move(Direction direction) {
-
         pos.movingDirection(direction);
 
         if (!getCollisionDetector().isPossible(getPos())) {
             pos.movingDirection(direction.getReverse(direction));
         }
-
     }
 
     @Override
@@ -33,7 +33,6 @@ public class SimpleGfxPlayer extends Player {
         dropKey();
         pos.setPos(0,0);
         pos.hide();
-        //pos.show();
     }
 
     public GridPosition getPos() {

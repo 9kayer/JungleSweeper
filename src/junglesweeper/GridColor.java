@@ -1,8 +1,12 @@
 package junglesweeper;
 
 /**
- * Created by fabio on 26/05/2017.
+ * A/C - bootcamp8
+ * Project: JungleSweeper
+ * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
+
+//TODO: Evaluate if this class instaces can be part of the GameObjectType class
 public enum GridColor {
 
     RED,

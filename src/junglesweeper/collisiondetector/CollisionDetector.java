@@ -5,17 +5,17 @@ import junglesweeper.grid.position.GridPosition;
 import junglesweeper.player.Player;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
- * Created by fabio on 26/05/2017.
+ * A/C - bootcamp8
+ * Project: JungleSweeper
+ * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
+
 public class CollisionDetector {
 
     private ArrayList<Collidable> objectsList;
     private Player player;
-    private boolean isDoorOpen;
 
     public void init(ArrayList<? extends Collidable> objectsList, Player player) {
         this.objectsList = new ArrayList<>(objectsList);
@@ -74,13 +74,4 @@ public class CollisionDetector {
         return null;
 
     }
-
-    public boolean isDoorOpen(){
-        return isDoorOpen;
-    }
-
-    public void closeDoor() {
-        isDoorOpen = false;
-    }
-
 }

@@ -1,16 +1,16 @@
 package junglesweeper.simplegfx;
 
-
-import junglesweeper.GridColor;
 import junglesweeper.grid.position.AbstractGridPosition;
 import junglesweeper.grid.position.Direction;
 import junglesweeper.grid.position.GridPosition;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 /**
- * Created by fabio on 26/05/2017.
+ * A/C - bootcamp8
+ * Project: JungleSweeper
+ * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
+
 public class SimpleGfxGridPosition extends AbstractGridPosition {
 
     private SimpleGfxGrid simpleGfxGrid;
@@ -24,12 +24,6 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
         int x = simpleGfxGrid.getX() + col * simpleGfxGrid.getCellSize();
         int y = simpleGfxGrid.getY() + row * simpleGfxGrid.getCellSize();
         this.picture = new Picture(x, y, imagePath);
-        //show();
-    }
-
-    @Override
-    public void setLayout(GridColor color) {
-        super.setLayout(color);
     }
 
     @Override
@@ -57,22 +51,15 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     @Override
     public void movingDirection(Direction direction) {
         super.movingDirection(direction);
-
     }
 
     @Override
-    public boolean equals(GridPosition g) {
-        if (getCol() == g.getCol() && getRow() == g.getRow()) {
+    public boolean equals(GridPosition gridPosition) {
+
+        if (getCol() == gridPosition.getCol() && getRow() == gridPosition.getRow()) {
             return true;
         }
 
         return false;
     }
-
-    public SimpleGfxGrid getSimpleGfxGrid() {
-        return simpleGfxGrid;
-    }
-
-
-
 }

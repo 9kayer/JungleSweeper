@@ -2,17 +2,15 @@ package junglesweeper.player;
 
 import junglesweeper.collisiondetector.Collidable;
 import junglesweeper.collisiondetector.CollisionDetector;
-import junglesweeper.gameobjects.Key;
-import junglesweeper.grid.Grid;
 import junglesweeper.grid.position.GridPosition;
 import junglesweeper.grid.position.Direction;
 
-import java.util.SimpleTimeZone;
-
-
 /**
- * Created by fabio on 26/05/2017.
+ * A/C - bootcamp8
+ * Project: JungleSweeper
+ * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
+
 public abstract class Player implements Collidable {
 
     private GridPosition pos;

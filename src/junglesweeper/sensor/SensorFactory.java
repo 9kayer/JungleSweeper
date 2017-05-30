@@ -1,12 +1,13 @@
 package junglesweeper.sensor;
 
 import junglesweeper.grid.GridType;
-import junglesweeper.simplegfx.SimpleGfxGrid;
-import junglesweeper.simplegfx.SimpleGfxSensor;
 
 /**
- * Created by codecadet on 28/05/17.
+ * A/C - bootcamp8
+ * Project: JungleSweeper
+ * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
+
 public class SensorFactory {
 
     private SensorFactory(GridType gridType) {

@@ -3,26 +3,27 @@ package junglesweeper.simplegfx;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 
 /**
- * Created by codecadet on 28/05/17.
+ * A/C - bootcamp8
+ * Project: JungleSweeper
+ * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
+
 public class SimpleGfxSensor {
 
     private Text traps;
 
-    public SimpleGfxSensor(int trap){
-
-        traps = new Text(10,10, Integer.toString(trap));
+    public SimpleGfxSensor(int trap) {
+        traps = new Text(10, 10, Integer.toString(trap));
         show();
     }
 
-    public void reWrite(int trap){
+    public void reWrite(int trap) {
         traps.delete();
-        traps = new Text(10,10, Integer.toString(trap));
+        traps = new Text(10, 10, Integer.toString(trap));
         show();
     }
 
     public void show() {
         traps.draw();
     }
-
 }

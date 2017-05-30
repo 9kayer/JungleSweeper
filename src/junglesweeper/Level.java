@@ -1,8 +1,12 @@
 package junglesweeper;
 
 /**
- * Created by codecadet on 27/05/17.
+ * A/C - bootcamp8
+ * Project: JungleSweeper
+ * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
+
+// Game levels matrices with the GameObjects
 public class Level {
 
     public static final int NUM_LEVELS = 3;

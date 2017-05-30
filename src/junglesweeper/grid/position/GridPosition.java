@@ -3,8 +3,11 @@ package junglesweeper.grid.position;
 import junglesweeper.GridColor;
 
 /**
- * Created by fabio on 26/05/2017.
+ * A/C - bootcamp8
+ * Project: JungleSweeper
+ * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
+
 public interface GridPosition {
 
     int getCol();
@@ -13,8 +16,6 @@ public interface GridPosition {
 
     void setPos(int col, int row);
 
-    void setLayout(GridColor color);
-
     void show();
 
     void hide();
@@ -22,6 +23,5 @@ public interface GridPosition {
     void movingDirection(Direction direction);
 
     boolean equals(GridPosition gridPosition);
-
 
 }

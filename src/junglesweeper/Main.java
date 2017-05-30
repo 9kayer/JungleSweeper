@@ -3,15 +3,19 @@ package junglesweeper;
 import junglesweeper.grid.GridType;
 
 /**
- * Created by fabio on 26/05/2017.
+ * A/C - bootcamp8
+ * Project: JungleSweeper
+ * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
+
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-        Game g = new Game(GridType.SIMPLE_GFX,20,20);
+        Game jungleSweeper = new Game(GridType.SIMPLE_GFX, 20, 20);
 
-        g.init();
-        g.start();
+        jungleSweeper.init();
+        jungleSweeper.start();
+
     }
 }

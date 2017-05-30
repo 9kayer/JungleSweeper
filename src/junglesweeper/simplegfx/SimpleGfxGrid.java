@@ -1,14 +1,15 @@
 package junglesweeper.simplegfx;
 
-import junglesweeper.GridColor;
 import junglesweeper.grid.Grid;
 import junglesweeper.grid.position.GridPosition;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 /**
- * Created by fabio on 26/05/2017.
+ * A/C - bootcamp8
+ * Project: JungleSweeper
+ * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
+
 public class SimpleGfxGrid implements Grid {
 
     private static final int CELL_SIZE = 35;
@@ -44,14 +45,6 @@ public class SimpleGfxGrid implements Grid {
         return rows;
     }
 
-    public int getWidth() {
-        return pictureScreen.getWidth();
-    }
-
-    public int getHeight() {
-        return pictureScreen.getHeight();
-    }
-
     public int getX() {
         return X_PADDING;
     }
@@ -64,8 +57,6 @@ public class SimpleGfxGrid implements Grid {
     public GridPosition makeGridPosition(int col, int row, String imagePath) {
         SimpleGfxGridPosition cell = new SimpleGfxGridPosition(col,row,this, imagePath);
 
-        //cell.show();
-
         return cell;
     }
 
@@ -76,5 +67,4 @@ public class SimpleGfxGrid implements Grid {
     public int columnToX(int column) {
         return X_PADDING + column * getCellSize();
     }
-
 }

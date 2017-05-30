@@ -4,18 +4,19 @@ import junglesweeper.GridColor;
 import junglesweeper.grid.Grid;
 
 /**
- * Created by fabio on 26/05/2017.
+ * A/C - bootcamp8
+ * Project: JungleSweeper
+ * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
+
 public abstract class AbstractGridPosition implements GridPosition {
     private int col;
     private int row;
-    //private GridColor color;
     private Grid grid;
 
     public AbstractGridPosition(int col, int row, Grid grid, String imagePath) {
         this.col = col;
         this.row = row;
-        //this.color = null;
         this.grid = grid;
     }
 
@@ -37,10 +38,6 @@ public abstract class AbstractGridPosition implements GridPosition {
     public void setPos(int col, int row) {
         this.col = col;
         this.row = row;
-    }
-
-    public void setLayout(GridColor color) {
-        //this.color = color;
     }
 
     public abstract void show();

@@ -4,8 +4,11 @@ import junglesweeper.GridColor;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
 /**
- * Created by fabio on 27/05/2017.
+ * A/C - bootcamp8
+ * Project: JungleSweeper
+ * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
+
 public class SimpleGfxColorMapper {
 
     private static final Color colors[] = {

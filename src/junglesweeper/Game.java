@@ -1,5 +1,4 @@
 package junglesweeper;
-
 import junglesweeper.collisiondetector.Collidable;
 import junglesweeper.collisiondetector.CollisionDetector;
 import junglesweeper.gameobjects.*;
@@ -7,7 +6,6 @@ import junglesweeper.grid.Grid;
 import junglesweeper.grid.GridFactory;
 import junglesweeper.grid.GridType;
 import junglesweeper.simplegfx.SimpleGfxSensor;
-import junglesweeper.simplegfx.controls.ControlType;
 import junglesweeper.player.Player;
 import junglesweeper.simplegfx.SimpleGfxPlayer;
 import junglesweeper.simplegfx.controls.MoveKeyMap;
@@ -17,8 +15,11 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 /**
- * Created by fabio on 26/05/2017.
+ * A/C - bootcamp8
+ * Project: JungleSweeper
+ * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
+
 public class Game {
 
     private static final int DELAY = 1;
@@ -38,7 +39,7 @@ public class Game {
 
         grid = GridFactory.makeGrid(gridType, cols, rows);
         gameObjectList = new ArrayList<>();
-        keyMap = new MoveKeyMap(ControlType.MODE_1);
+        keyMap = new MoveKeyMap(MoveKeyMap.ControlType.MODE_1);
         sensor = new Sensor(cols, rows, FIRST_LEVEL);
         stackArrayList = new ArrayList<>();
         collisionDetector = new CollisionDetector();
@@ -62,7 +63,7 @@ public class Game {
         player = new SimpleGfxPlayer(grid.makeGridPosition(0, 0, PLAYER_IMAGE_PATH), 3, collisionDetector);
 
         // After Create the game Objects we print the number of traps around them
-        traps = new SimpleGfxSensor(sensor.getEnemys(player.getPos().getRow(), player.getPos().getCol()));
+        traps = new SimpleGfxSensor(sensor.getEnemies(player.getPos().getRow(), player.getPos().getCol()));
 
     }
 
@@ -97,15 +98,11 @@ public class Game {
                     if (object instanceof Door && object.isActive()) {
                         break;
                     }
-
                 }
 
                 Thread.sleep(DELAY);
-
             }
-
         }
-
     }
 
     private Collidable movePlayer() {
@@ -117,7 +114,7 @@ public class Game {
             keyMap.stopMoving();
 
             // Update the danger sensor output
-            traps.reWrite(sensor.getEnemys(player.getPos().getRow(), player.getPos().getCol()));
+            traps.reWrite(sensor.getEnemies(player.getPos().getRow(), player.getPos().getCol()));
 
         }
 
@@ -134,7 +131,6 @@ public class Game {
         retrieveGameObjects();
 
         player.reset();
-        collisionDetector.closeDoor();
 
         // Create the game objects
         createGameObjects(i);
@@ -227,5 +223,4 @@ public class Game {
         player.getPos().show();
 
     }
-
 }
