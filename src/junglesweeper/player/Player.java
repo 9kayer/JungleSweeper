@@ -27,10 +27,6 @@ public abstract class Player implements Collidable {
         this.collisionDetector = collisionDetector;
     }
 
-    public GridPosition getPos() {
-        return pos;
-    }
-
     public boolean hasKey() {
         return key;
     }
@@ -43,23 +39,28 @@ public abstract class Player implements Collidable {
         key = false;
     }
 
-    public int getLives() {
-        return lives;
-    }
-
-    public abstract void move(Direction direction);
-
-    public void collide() {
-        lives--;
+    public boolean isAlive() {
+        return lives > 0;
     }
 
     public CollisionDetector getCollisionDetector() {
         return collisionDetector;
     }
 
-    public void setCollisionDetector(CollisionDetector collisionDetector) {
-        this.collisionDetector = collisionDetector;
+    public abstract void move(Direction direction);
+
+    @Override
+    public void collide() {
+        lives--;
     }
 
-    public abstract void reset();
+    @Override
+    public boolean isActive() {
+        return false;
+    }
+
+    @Override
+    public GridPosition getPos() {
+        return pos;
+    }
 }

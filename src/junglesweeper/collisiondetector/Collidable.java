@@ -9,6 +9,10 @@ public interface Collidable {
 
     void collide();
 
+    boolean isActive();
+
+    void reset();
+
     GridPosition getPos();
 
 }
