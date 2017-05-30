@@ -1,16 +1,14 @@
 package junglesweeper.sensor;
 
-import junglesweeper.grid.GridType;
-import junglesweeper.simplegfx.SimpleGfxGrid;
-import junglesweeper.simplegfx.SimpleGfxSensor;
+import junglesweeper.grid.DisplayType;
 
 /**
  * Created by codecadet on 28/05/17.
  */
 public class SensorFactory {
 
-    private SensorFactory(GridType gridType) {
-        switch(gridType){
+    private SensorFactory(DisplayType displayType) {
+        switch(displayType){
             case SIMPLE_GFX:
                 //return new SimpleGfxSensor();
             default:

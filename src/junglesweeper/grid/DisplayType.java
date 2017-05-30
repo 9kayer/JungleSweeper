@@ -3,13 +3,13 @@ package junglesweeper.grid;
 /**
  * Created by fabio on 26/05/2017.
  */
-public enum GridType {
+public enum DisplayType {
 
     SIMPLE_GFX("./assets/pictures/grid.png");
 
     private String imagePath;
 
-    GridType(String string){
+    DisplayType(String string){
         imagePath = string;
     }
 
