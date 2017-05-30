@@ -18,7 +18,7 @@ public class GameObjectFactory {
         switch (gameObjectsType) {
             case KEY:
                 if (stackArrayList.get(0).empty()) {
-                    return new Key(grid.makeGridPosition(col, row));
+                    return new Key(grid.makeGridPosition(col, row, GameObjectsType.KEY.getImagePath()));
                 }
                 //System.out.println("used key");
                 object = stackArrayList.get(0).pop();
@@ -27,7 +27,7 @@ public class GameObjectFactory {
                 return object;
             case PATH:
                 if (stackArrayList.get(1).empty()) {
-                    return new Path(grid.makeGridPosition(col, row));
+                    return new Path(grid.makeGridPosition(col, row, GameObjectsType.PATH.getImagePath()));
                 }
                 object = stackArrayList.get(1).pop();
                 object.getGridPosition().setPos(col, row);
@@ -37,7 +37,7 @@ public class GameObjectFactory {
                 if (stackArrayList.get(2).empty()) {
                     //System.out.println("new rock");
                     System.out.println(col + " | " + row);
-                    return new Rock(grid.makeGridPosition(col, row));
+                    return new Rock(grid.makeGridPosition(col, row, GameObjectsType.ROCK.getImagePath()));
                 }
                 System.out.println("used rock");
                 object = stackArrayList.get(2).pop();
@@ -47,7 +47,7 @@ public class GameObjectFactory {
             case TIGER:
                 if (stackArrayList.get(3).empty()) {
                     //System.out.println("new tiger");
-                    return new Tiger(grid.makeGridPosition(col, row));
+                    return new Tiger(grid.makeGridPosition(col, row, GameObjectsType.TIGER.getImagePath()));
                 }
                 //System.out.println("used tiger");
                 object = stackArrayList.get(3).pop();
@@ -56,7 +56,7 @@ public class GameObjectFactory {
                 return object;
             case DOOR:
                 if (stackArrayList.get(4).empty()) {
-                    return new Door(grid.makeGridPosition(col, row));
+                    return new Door(grid.makeGridPosition(col, row, GameObjectsType.DOOR.getImagePath()));
                 }
                 //System.out.println("used door");
                 object = stackArrayList.get(4).pop();
@@ -66,7 +66,7 @@ public class GameObjectFactory {
             default:
                 System.out.println("Something went terribly wrong!");
                 if (stackArrayList.get(1).empty()) {
-                    return new Path(grid.makeGridPosition(col, row));
+                    return new Path(grid.makeGridPosition(col, row, GameObjectsType.PATH.getImagePath()));
                 }
                 object = stackArrayList.get(1).pop();
                 object.getGridPosition().setPos(col, row);

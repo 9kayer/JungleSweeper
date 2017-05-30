@@ -4,6 +4,7 @@ import junglesweeper.GridColor;
 import junglesweeper.grid.Grid;
 import junglesweeper.grid.position.GridPosition;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 /**
  * Created by fabio on 26/05/2017.
@@ -16,22 +17,23 @@ public class SimpleGfxGrid implements Grid {
 
     private int cols;
     private int rows;
+    private Picture pictureScreen;
     private Rectangle screen;
 
     public int getCellSize() {
         return CELL_SIZE;
     }
 
-    public SimpleGfxGrid(int cols, int rows) {
+    public SimpleGfxGrid(int cols, int rows, String imagePath) {
         this.cols = cols;
         this.rows = rows;
+        pictureScreen = new Picture(X_PADDING, Y_PADDING,imagePath);
         screen = new Rectangle(X_PADDING, Y_PADDING, cols * getCellSize(), rows * getCellSize());
     }
 
     @Override
     public void init() {
-        screen.setColor(SimpleGfxColorMapper.getColor(GridColor.GREEN));
-        screen.fill();
+        pictureScreen.draw();
     }
 
     @Override
@@ -61,8 +63,8 @@ public class SimpleGfxGrid implements Grid {
     }
 
     @Override
-    public GridPosition makeGridPosition(int col, int row) {
-        SimpleGfxGridPosition cell = new SimpleGfxGridPosition(col,row,this);
+    public GridPosition makeGridPosition(int col, int row, String imagePath) {
+        SimpleGfxGridPosition cell = new SimpleGfxGridPosition(col,row,this, imagePath);
 
         cell.show();
 

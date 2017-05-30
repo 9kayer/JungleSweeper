@@ -7,33 +7,26 @@ import junglesweeper.GridColor;
  */
 public enum GameObjectsType {
 
-    ROCK(GridColor.GRAY, "\n   R", 1),
-    KEY(GridColor.YELLOW, "\n   K", 3),
-    PATH(GridColor.MAGENTA, "\n   B", 5),
-    DOOR(GridColor.BLACK, "\n   D", 4),
-    TIGER(GridColor.RED, "\n   T", 2);
+    ROCK(1, "./assets/pictures/rock.jpeg" ),
+    KEY(3, "./assets/pictures/key.jpeg"),
+    PATH(5, "./assets/pictures/path.jpeg"),
+    DOOR(4, "./assets/pictures/door.jpeg"),
+    TIGER(2, "./assets/pictures/tiger.jpeg");
 
-    private GridColor color;
-    private String text;
     private int referenceInMap;
+    private String imagePath;
 
-    GameObjectsType(GridColor color, String text, int referenceInMap) {
-        this.color = color;
-        this.text = text;
+    GameObjectsType(int referenceInMap, String imagePath) {
         this.referenceInMap = referenceInMap;
+        this.imagePath = imagePath;
     }
 
-    public GridColor getColor() {
-        return color;
+    public String getImagePath(){
+        return imagePath;
     }
 
-    public String getText() {
-        return text;
-    }
-
-
-    public void setColor(GridColor color) {
-        this.color = color;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public static GameObjectsType translateMapReference(int referenceInMap){

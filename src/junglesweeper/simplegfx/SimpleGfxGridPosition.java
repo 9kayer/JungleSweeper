@@ -6,7 +6,7 @@ import junglesweeper.grid.position.AbstractGridPosition;
 import junglesweeper.grid.position.Direction;
 import junglesweeper.grid.position.GridPosition;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-import org.academiadecodigo.simplegraphics.graphics.Text;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 /**
  * Created by fabio on 26/05/2017.
@@ -14,25 +14,26 @@ import org.academiadecodigo.simplegraphics.graphics.Text;
 public class SimpleGfxGridPosition extends AbstractGridPosition {
 
     private SimpleGfxGrid simpleGfxGrid;
-    private Rectangle rectangle;
+    //private Rectangle rectangle;
+    private Picture picture;
 
-    public SimpleGfxGridPosition(int col, int row, SimpleGfxGrid simpleGfxGrid) {
-        super(col, row, simpleGfxGrid);
+    public SimpleGfxGridPosition(int col, int row, SimpleGfxGrid simpleGfxGrid, String imagePath) {
+        super(col, row, simpleGfxGrid, imagePath);
 
         this.simpleGfxGrid = simpleGfxGrid;
 
         int x = simpleGfxGrid.getX() + col * simpleGfxGrid.getCellSize();
         int y = simpleGfxGrid.getY() + row * simpleGfxGrid.getCellSize();
 
-        this.rectangle = new Rectangle(x, y, simpleGfxGrid.getCellSize(), simpleGfxGrid.getCellSize());
-
+        //this.rectangle = new Rectangle(x, y, simpleGfxGrid.getCellSize(), simpleGfxGrid.getCellSize());
+        this.picture = new Picture(x, y, imagePath);
         show();
     }
 
     @Override
-    public void setColor(GridColor color) {
-        super.setColor(color);
-        rectangle.setColor(SimpleGfxColorMapper.getColor(color));
+    public void setLayout(GridColor color) {
+        super.setLayout(color);
+        //rectangle.setColor(SimpleGfxColorMapper.getColor(color));
     }
 
     @Override
@@ -44,17 +45,20 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
         int dX = simpleGfxGrid.columnToX(getCol()) - simpleGfxGrid.columnToX(lastMoveCol);
         int dY = simpleGfxGrid.rowToY(getRow()) - simpleGfxGrid.rowToY(lastMoveRow);
-        rectangle.translate(dX, dY);
+        //rectangle.translate(dX, dY);
+        picture.translate(dX, dY);
     }
 
     @Override
     public void show() {
-        rectangle.fill();
+        //rectangle.fill();
+        picture.draw();
     }
 
     @Override
     public void hide() {
-        rectangle.delete();
+        //rectangle.delete();
+        picture.delete();
     }
 
     @Override

@@ -11,9 +11,9 @@ public class GridFactory {
 
         switch(gridType){
             case SIMPLE_GFX:
-                return new SimpleGfxGrid(cols,rows);
+                return new SimpleGfxGrid(cols,rows,gridType.getImagePath());
             default:
-                return new SimpleGfxGrid(cols,rows);
+                return new SimpleGfxGrid(cols,rows, gridType.getImagePath());
         }
 
     }
