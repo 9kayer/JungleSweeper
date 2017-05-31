@@ -28,7 +28,7 @@ import junglesweeper.gameobjects.GameObjectsType;
 
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
-                sensorNumbers[i][j] = getNeigbours(i, j);
+                sensorNumbers[i][j] = getNeighbors(i, j);
             }
         }
     }
@@ -37,7 +37,7 @@ import junglesweeper.gameobjects.GameObjectsType;
         this.myArray = Level.getLevelMatrix(level);
     }
 
-    public int getNeigbours(int i, int j) {
+    public int getNeighbors(int i, int j) {
         int objectI = i;
         int objectJ = j;
         int total = 0;
@@ -110,7 +110,7 @@ public class Sensor {
 
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
-                trapsByPosition[i][j] = getNeigbours(i, j);
+                trapsByPosition[i][j] = getNeighbors(i, j);
             }
         }
     }
@@ -124,9 +124,7 @@ public class Sensor {
         this.actualGameMatrix = Level.getLevelMatrix(level);
     }
 
-    public int getNeigbours(int col, int row) {
-        //int objectI = col;
-        //int objectJ = row;
+    public int getNeighbors(int col, int row) {
         int total = 0;
 
         //TODO: Validate the new sensor solution
