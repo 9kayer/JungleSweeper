@@ -1,4 +1,5 @@
 package junglesweeper;
+
 import junglesweeper.collisiondetector.Collidable;
 import junglesweeper.collisiondetector.CollisionDetector;
 import junglesweeper.gameobjects.*;
@@ -8,6 +9,7 @@ import junglesweeper.player.Player;
 import junglesweeper.simplegfx.SimpleGfxPlayer;
 import junglesweeper.simplegfx.controls.MoveKeyMap;
 import junglesweeper.sensor.Sensor;
+
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -33,7 +35,7 @@ public class Game {
 
     public Game(DisplayType displayType, int cols, int rows) {
 
-        display = DisplayFactory.makeDisplay(displayType,10);
+        display = DisplayFactory.makeDisplay(displayType, 10);
         display.makeGrids();
 
         gameObjectList = new ArrayList<>();
@@ -68,7 +70,7 @@ public class Game {
         traps = new SimpleGfxSensor(sensor.getEnemies(player.getPos().getRow(), player.getPos().getCol()));
 
         //Waiting for player to press Space or Q key to start the game
-        while (!keyMap.isSpecialKey()){
+        while (!keyMap.isSpecialKey()) {
             try {
                 Thread.sleep(DELAY);
             } catch (InterruptedException e) {
@@ -83,10 +85,8 @@ public class Game {
         // Collidable to check
         Collidable object;
 
-        boolean end = false;
-
         // Level walkthrough
-        for (int i = 0; i < Level.NUM_LEVELS || !end; i++) {
+        for (int i = 0; i < Level.NUM_LEVELS && player.isActive(); i++) {
 
             // Create the level
             createLevel(i);
@@ -102,21 +102,20 @@ public class Game {
             drawObjects();
 
             // While player is alive
-
-
-            while (player.isAlive()) {
+            while (player.isActive()) {
 
                 // Move player and check for collisions
-                if ((object = movePlayer()) != null) {
+                if ((object = movePlayer()) == null) {
+                    continue;
+                }
 
-                    if (object instanceof Tiger) {
-                        i--;
-                        break;
-                    }
+                if (object instanceof Tiger) {
+                    i--;
+                    break;
+                }
 
-                    if (object instanceof Door && object.isActive()) {
-                        break;
-                    }
+                if (object instanceof Door && object.isActive()) {
+                    break;
                 }
 
 
@@ -124,7 +123,12 @@ public class Game {
 
             }
 
+        }
 
+        if (!player.isActive()) {
+            // show game over
+        } else  {
+            // Winner
         }
     }
 
@@ -135,15 +139,9 @@ public class Game {
             // Move the player one cell at a time
             player.getPos().hide();
 
-            int col = player.getPos().getCol();
-            int row = player.getPos().getRow();
-
             player.move(keyMap.getDirection());
 
             drawPath();
-
-
-
 
             player.getPos().show();
 
@@ -206,7 +204,6 @@ public class Game {
                                 stackArrayList
                         )
                 );
-
             }
         }
     }
@@ -253,7 +250,7 @@ public class Game {
 
         // Draw all the game objects
         for (GameObject go : gameObjectList) {
-            if(!go.getType().equals(GameObjectsType.TIGER)){
+            if (!go.getType().equals(GameObjectsType.TIGER)) {
                 go.getGridPosition().show();
             }
         }
@@ -263,10 +260,10 @@ public class Game {
 
     }
 
-    private void drawPath (){
+    private void drawPath() {
 
-        GameObject newPath = GameObjectFactory.create(player.getPos().getCol(),player.getPos().getRow(),
-                display.getGrid(1),GameObjectsType.PATH,stackArrayList);
+        GameObject newPath = GameObjectFactory.create(player.getPos().getCol(), player.getPos().getRow(),
+                display.getGrid(1), GameObjectsType.PATH, stackArrayList);
         newPath.getPos().show();
         gameObjectList.add(newPath);
 
