@@ -23,6 +23,7 @@ public class Game {
 
     private static final int DELAY = 25;
     private static final int FIRST_LEVEL = 0;
+    private static final int PLAYER_LIVES = 3;
 
     private ArrayList<GameObject> gameObjectList;
     private ArrayList<Stack<GameObject>> stackArrayList;
@@ -62,17 +63,26 @@ public class Game {
         // Start the player
         player = new SimpleGfxPlayer(
                 display.getGrid(1).makeGridPosition(0, 0, SimpleGfxPlayer.DOWN_ICON),
-                3,
+                PLAYER_LIVES,
                 collisionDetector
         );
 
         // After Create the game Objects we print the number of traps around them
-        traps = new SimpleGfxSensor(sensor.getEnemies(player.getPos().getRow(), player.getPos().getCol()));
+        traps = new SimpleGfxSensor(sensor.getEnemies(player.getPos().getCol(), player.getPos().getRow()));
 
         //Waiting for player to press Space or Q key to start the game
         while (!keyMap.isSpecialKey()) {
             try {
                 Thread.sleep(DELAY);
+
+                if (keyMap.isLeave()) {
+                    throw new UnsupportedOperationException("No game for me please");
+                }
+
+                if (keyMap.isSpecialKey()){
+                    player.restartLives();
+                }
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -85,50 +95,66 @@ public class Game {
         // Collidable to check
         Collidable object;
 
-        // Level walkthrough
-        for (int i = 0; i < Level.NUM_LEVELS && player.isActive(); i++) {
+        boolean end = false;
 
-            // Create the level
-            createLevel(i);
+        while(!end){
 
-            //Draw all Grids
-            display.showGrid(1);
-            display.showGrid(2);
+            if(player.isActive())
+                System.out.println("player is active");
 
-            //displays number of enemies
-            traps.show();
+            // Level walkthrough
+            for (int i = 0; i < Level.NUM_LEVELS && player.isActive() ; i++) {
 
-            // Draw all the objects
-            drawObjects();
+                System.out.println(" inside");
 
-            // While player is alive
-            while (player.isActive()) {
+                // Create the level
+                createLevel(i);
 
-                // Move player and check for collisions
-                if ((object = movePlayer()) == null) {
-                    continue;
+                //Draw all Grids
+                display.showAll();
+
+                //displays number of enemies
+                traps.show();
+
+                // Draw all the objects
+                drawObjects();
+
+                // While player is alive
+                while (player.isActive()) {
+
+                    // Move player and check for collisions
+                    if ((object = movePlayer()) == null) {
+                        continue;
+                    }
+
+                    if (object instanceof Tiger) {
+                        i--;
+                        break;
+                    }
+
+                    if (object instanceof Door && object.isActive()) {
+                        break;
+                    }
+
+
+                    Thread.sleep(DELAY);
+
                 }
 
-                if (object instanceof Tiger) {
-                    i--;
-                    break;
+
+                removeObjects();
+
+                if(!player.isActive()){
+                    keyMap.lockDirectionKeys();
                 }
-
-                if (object instanceof Door && object.isActive()) {
-                    break;
-                }
-
-
-                Thread.sleep(DELAY);
 
             }
 
-        }
+            end = waitForPlayer();
 
-        if (!player.isActive()) {
-            // show game over
-        } else  {
-            // Winner
+            Thread.sleep(DELAY);
+
+            System.out.println(keyMap.isSpecialKey());
         }
     }
 
@@ -148,7 +174,7 @@ public class Game {
             keyMap.stopMoving();
 
             // Update the danger sensor output
-            traps.reWrite(sensor.getEnemies(player.getPos().getRow(), player.getPos().getCol()));
+            traps.reWrite(sensor.getEnemies(player.getPos().getCol(), player.getPos().getRow()));
 
         }
 
@@ -162,9 +188,9 @@ public class Game {
         // - Reset the player
         // - Close the door
 
-        retrieveGameObjects();
+        //retrieveGameObjects();
 
-        player.reset();
+        //player.reset();
 
         // Create the game objects
         createGameObjects(i);
@@ -267,6 +293,31 @@ public class Game {
         newPath.getPos().show();
         gameObjectList.add(newPath);
 
+    }
+
+    private void removeObjects(){
+
+        retrieveGameObjects();
+
+        player.reset();
+
+        display.hideAll();
+
+
+    }
+
+    private boolean waitForPlayer(){
+
+        if (keyMap.isLeave()) {
+            System.out.println("leaving");
+            return true;
+        }
+
+        if (keyMap.isSpecialKey()){
+            System.out.println("inside special key");
+            player.restartLives();
+        }
+        return false;
     }
 
 }

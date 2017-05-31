@@ -14,8 +14,15 @@ public class Main {
 
         Game jungleSweeper = new Game(DisplayType.SIMPLE_GFX, 16, 18);
 
-        jungleSweeper.init();
-        jungleSweeper.start();
+        try{
+            jungleSweeper.init();
+            jungleSweeper.start();
+
+        }catch (UnsupportedOperationException u){
+            System.out.println(u.getMessage());
+        }
+
+        System.exit(0);
 
     }
 }

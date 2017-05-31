@@ -16,12 +16,14 @@ public abstract class Player implements Collidable {
     private GridPosition pos;
     private boolean key;
     private int lives;
+    private int maxlives;
     private CollisionDetector collisionDetector;
 
     // Initialize our Player
     public Player(GridPosition pos, int lives, CollisionDetector collisionDetector) {
         this.pos = pos;
         this.lives = lives;
+        this.maxlives = lives;
         this.collisionDetector = collisionDetector;
     }
 
@@ -57,5 +59,11 @@ public abstract class Player implements Collidable {
     @Override
     public GridPosition getPos() {
         return pos;
+    }
+
+    public void restartLives(){
+        System.out.println("restarting lives");
+        lives = maxlives;
+
     }
 }

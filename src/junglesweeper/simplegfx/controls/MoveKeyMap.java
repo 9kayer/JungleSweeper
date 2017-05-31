@@ -19,7 +19,8 @@ public class MoveKeyMap implements KeyboardHandler {
             KeyboardEvent.KEY_RIGHT,
             KeyboardEvent.KEY_DOWN,
             KeyboardEvent.KEY_LEFT,
-            KeyboardEvent.KEY_SPACE
+            KeyboardEvent.KEY_SPACE,
+            KeyboardEvent.KEY_N
     };
 
     private static final int[] KEYS_2 = {
@@ -27,7 +28,8 @@ public class MoveKeyMap implements KeyboardHandler {
             KeyboardEvent.KEY_D,
             KeyboardEvent.KEY_S,
             KeyboardEvent.KEY_A,
-            KeyboardEvent.KEY_Q
+            KeyboardEvent.KEY_Q,
+            KeyboardEvent.KEY_N
     };
 
     private int[] keys;
@@ -35,6 +37,7 @@ public class MoveKeyMap implements KeyboardHandler {
     private Direction direction;
     private boolean moving;
     private boolean specialKey;
+    private boolean leave;
 
     /**
      * Constructor
@@ -70,9 +73,15 @@ public class MoveKeyMap implements KeyboardHandler {
     public void keyPressed(KeyboardEvent e) {
 
         // Space or Q
-        if (e.getKey() == keys[4]) {
+        if (e.getKey() == keys[4] && !specialKey) {
             specialKey = true;
-            System.out.println("specialkey");
+            System.out.println("specialkey " + specialKey);
+        }
+
+        // N (its common for both because it's the button for leaving the game
+        if (e.getKey() == keys[5] && !specialKey) {
+            leave = true;
+            System.out.println("leaveKey");
         }
 
         if (!specialKey) {
@@ -165,6 +174,10 @@ public class MoveKeyMap implements KeyboardHandler {
 
     public void lockDirectionKeys() {
         specialKey = false;
+    }
+
+    public boolean isLeave() {
+        return leave;
     }
 
     public enum ControlType {
