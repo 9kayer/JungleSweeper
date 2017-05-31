@@ -128,19 +128,19 @@ public class Sensor {
         int total = 0;
 
         //TODO: Validate the new sensor solution
-        if ((col - 1 >= 0) && GameObjectsType.translateMapReference(actualGameMatrix[col - 1][row]).equals(GameObjectsType.TIGER)) {
+        if ((col - 1 >= 0) && GameObjectsType.get(actualGameMatrix[col - 1][row]).equals(GameObjectsType.TIGER)) {
             total++;
         }
 
-        if ((col + 1 < cols) && GameObjectsType.translateMapReference(actualGameMatrix[col + 1][row]).equals(GameObjectsType.TIGER)) {
+        if ((col + 1 < cols) && GameObjectsType.get(actualGameMatrix[col + 1][row]).equals(GameObjectsType.TIGER)) {
             total++;
         }
 
-        if ((row - 1 >= 0) && GameObjectsType.translateMapReference(actualGameMatrix[col][row - 1]).equals(GameObjectsType.TIGER)) {
+        if ((row - 1 >= 0) && GameObjectsType.get(actualGameMatrix[col][row - 1]).equals(GameObjectsType.TIGER)) {
             total++;
         }
 
-        if ((row + 1 < rows) && GameObjectsType.translateMapReference(actualGameMatrix[col][row + 1]).equals(GameObjectsType.TIGER)) {
+        if ((row + 1 < rows) && GameObjectsType.get(actualGameMatrix[col][row + 1]).equals(GameObjectsType.TIGER)) {
             total++;
         }
 
