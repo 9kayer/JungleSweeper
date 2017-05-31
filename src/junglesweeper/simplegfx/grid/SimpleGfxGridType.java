@@ -1,8 +1,11 @@
 package junglesweeper.simplegfx.grid;
 
 /**
- * Created by codecadet on 30/05/17.
+ * A/C - bootcamp8
+ * Project: JungleSweeper
+ * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
+
 public enum SimpleGfxGridType {
     INFO_GRID("./assets/Game/sidebarBG.png", 2, 32, 35, -1, -1, 1),
     MAP_GRID("./assets/Game/gridsmall.png", 1, 190, 35, 17, 17, 40);
@@ -17,7 +20,7 @@ public enum SimpleGfxGridType {
     private int cellSize;
 
     SimpleGfxGridType(String imagePath, int priority, int xPadding, int yPadding, int cols, int rows, int cellSize) {
-        this.priority= priority;
+        this.priority = priority;
         this.imagePath = imagePath;
         this.xPadding = xPadding;
         this.yPadding = yPadding;
@@ -26,31 +29,73 @@ public enum SimpleGfxGridType {
         this.cellSize = cellSize;
     }
 
+    /**
+     * Get the priority of the grid
+     *
+     * @return An int with the priority level
+     */
     public int getPriority() {
+
         return priority;
     }
 
+    /**
+     * Get the image path
+     *
+     * @return A String with the image path
+     */
     public String getImagePath() {
+
         return imagePath;
     }
 
+    /**
+     * Get the horizontal padding
+     *
+     * @return An int with the padding value
+     */
     public int getxPadding() {
+
         return xPadding;
     }
 
+    /**
+     * Get the vertical padding
+     *
+     * @return An int with the padding value
+     */
     public int getyPadding() {
+
         return yPadding;
     }
 
+    /**
+     * Get the cell size
+     *
+     * @return An int with the cell size value
+     */
     public int getCellSize() {
+
         return cellSize;
     }
 
+    /**
+     * Get total of columns
+     *
+     * @return An int with the number of  columns
+     */
     public int getCols() {
+
         return cols;
     }
 
+    /**
+     * Get total of rows
+     *
+     * @return An int with the number of rows
+     */
     public int getRows() {
+
         return rows;
     }
 }

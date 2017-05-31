@@ -18,45 +18,89 @@ public abstract class Player implements Collidable {
     private int lives;
     private CollisionDetector collisionDetector;
 
-    // Initialize our Player
+    /**
+     * Initialize our Player
+     *
+     * @param pos Receives a position
+     * @param lives Receives the number of lives
+     * @param collisionDetector
+     */
     public Player(GridPosition pos, int lives, CollisionDetector collisionDetector) {
         this.pos = pos;
         this.lives = lives;
         this.collisionDetector = collisionDetector;
     }
 
+    /**
+     * Player has the key
+     *
+     * @return A boolean
+     */
     public boolean hasKey() {
         return key;
     }
 
+    /**
+     * Flags the key as collected
+     */
     public void collectKey() {
         key = true;
     }
 
+    /**
+     * Flags the key as dropped
+     */
     public void dropKey() {
         key = false;
     }
 
+    /**
+     * Evaluates if the player as more lives
+     * @return A boolean
+     */
     public boolean isAlive() {
         return lives > 0;
     }
 
+    /**
+     * Get the player collision detector
+     * @return A collisionDetector
+     */
     public CollisionDetector getCollisionDetector() {
         return collisionDetector;
     }
 
+    /**
+     * Abstrat method to be implemented
+     *
+     * @param direction A move direction
+     * @return A boolean
+     */
     public abstract boolean move(Direction direction);
 
+    /**
+     * Decrease lives if catch up by a jungle trap
+     */
     @Override
     public void collide() {
         lives--;
     }
 
+    /**
+     * Asks if the player is alive
+     *
+     * @return throws an exception
+     */
     @Override
     public boolean isActive() {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException(); //TODO: Verify this!
     }
 
+    /**
+     * Request a grid position
+     *
+     * @return A posiiton in the grid
+     */
     @Override
     public GridPosition getPos() {
         return pos;

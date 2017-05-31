@@ -21,14 +21,28 @@ public class SimpleGfxPlayer extends Player {
 
     private SimpleGfxGridPosition pos;
 
+    /**
+     * SimpleGfxPlayer Constructor
+     *
+     * @param pos               The player position
+     * @param lives             The number of lives
+     * @param collisionDetector To validate the player moves
+     */
     public SimpleGfxPlayer(GridPosition pos, int lives, CollisionDetector collisionDetector) {
         super(pos, lives, collisionDetector);
         this.pos = (SimpleGfxGridPosition) pos;
     }
 
+    /**
+     * Attributes the player direction image
+     *
+     * @param direction Receive the player direction
+     * @return A boolean. True if possible or False if not
+     */
     public boolean move(Direction direction) {
 
         switch (direction) {
+
             case UP:
                 pos.setPicture(UP_ICON);
                 break;
@@ -46,18 +60,28 @@ public class SimpleGfxPlayer extends Player {
 
         if (!getCollisionDetector().isPossible(getPos())) {
             pos.movingDirection(direction.getReverse(direction));
+
             return false;
         }
+
         return true;
     }
 
+    /**
+     * Makes a reset
+     */
     @Override
     public void reset() {
         dropKey();
-        pos.setPos(0,0);
+        pos.setPos(0, 0);
         pos.hide();
     }
 
+    /**
+     * Requests a position in the grid
+     *
+     * @return The grid position
+     */
     public GridPosition getPos() {
         return pos;
     }

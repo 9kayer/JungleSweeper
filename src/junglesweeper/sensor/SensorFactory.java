@@ -12,7 +12,7 @@ public class SensorFactory {
 
     private SensorFactory(DisplayType displayType) {
 
-        switch(displayType){
+        switch (displayType) {
             case SIMPLE_GFX:
                 //return new SimpleGfxSensor();
             default:

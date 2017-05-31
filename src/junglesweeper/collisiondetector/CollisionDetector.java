@@ -17,14 +17,30 @@ public class CollisionDetector {
     private ArrayList<Collidable> objectsList;
     private Player player;
 
+    /**
+     * Collision Detector initialization
+     *
+     * @param objectsList Receives the list of game objects
+     * @param player Receives the game player
+     */
     public void init(ArrayList<? extends Collidable> objectsList, Player player) {
+
         this.objectsList = new ArrayList<>(objectsList);
         this.player = player;
     }
 
-    public boolean isPossible(GridPosition pos) {
-        for (Collidable c : objectsList) {
-            if (c instanceof Rock && c.getPos().equals(pos)) {
+    /**
+     * Evaluation of the position
+     *
+     * @param gridPosition Receives a grid position
+     * @return A boolean
+     */
+    public boolean isPossible(GridPosition gridPosition) {
+
+        for (Collidable object : objectsList) {
+
+            if (object instanceof Rock && object.getPos().equals(gridPosition)) {
+
                 return false;
             }
         }
@@ -32,45 +48,45 @@ public class CollisionDetector {
         return true;
     }
 
+    /**
+     * Evaluate collision with the key, tiger, door or path
+     * @return The collision object otherwise null
+     */
     public Collidable collision() {
 
-        for (Collidable c : objectsList) {
+        for (Collidable object : objectsList) {
 
-            if (!player.getPos().equals(c.getPos())) {
+            if (!player.getPos().equals(object.getPos())) {
+
                 continue;
             }
 
-            if (c instanceof Key && c.isActive()) {
-                System.out.println("Key");
-                c.collide();
+            if (object instanceof Key && object.isActive()) {
+                object.collide();
                 player.collectKey();
 
-                return c;
+                return object;
             }
 
-            if (c instanceof Tiger) {
-                System.out.println("Tiger");
+            if (object instanceof Tiger) {
                 player.collide();
                 player.reset();
                 player.getPos().show();
 
-                return c;
+                return object;
             }
 
-            if (c instanceof Door && player.hasKey()) {
-                System.out.println("Door");
-                c.collide();
+            if (object instanceof Door && player.hasKey()) {
+                object.collide();
 
-                return c;
+                return object;
             }
 
-            if (c instanceof Path) {
-                c.collide();
+            if (object instanceof Path) {
+                object.collide();
             }
-
         }
 
         return null;
-
     }
 }

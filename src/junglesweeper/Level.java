@@ -6,7 +6,9 @@ package junglesweeper;
  * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
 
-// Game levels matrices with the GameObjects
+/**
+ *  Game levels matrices with the GameObjects
+ */
 public class Level {
 
     public static final int NUM_LEVELS = 5;
@@ -112,9 +114,16 @@ public class Level {
             {2, 0, 0, 2, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 4}
     };
 
+    /**
+     * Aquiring Matrix to play
+     *
+     * @param level level to play
+     * @return the matrix
+     */
+    public static int[][] getLevelMatrix(int level) {
 
-    public static int[][] getLevelMatrix(int i) {
-        switch (i) {
+        switch (level) {
+
             case 0:
                 return LEVEL_MATRIX_1;
             case 1:

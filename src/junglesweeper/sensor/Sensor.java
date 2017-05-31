@@ -9,81 +9,6 @@ import junglesweeper.gameobjects.GameObjectsType;
  * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
 
-/*public class Sensor {
-
-    private int col;
-    private int row;
-    private int[][] myArray;
-    private int[][] sensorNumbers;
-
-    public Sensor(int col, int row, int level) {
-        this.col = col;
-        this.row = row;
-        this.myArray = Level.getLevelMatrix(level);
-    }
-
-    public void init() {
-
-        sensorNumbers = new int[row][col];
-
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                sensorNumbers[i][j] = getNeighbors(i, j);
-            }
-        }
-    }
-
-    public void updateLevel(int level) {
-        this.myArray = Level.getLevelMatrix(level);
-    }
-
-    public int getNeighbors(int i, int j) {
-        int objectI = i;
-        int objectJ = j;
-        int total = 0;
-
-        for (int xoff = -1; xoff <= 1; xoff++) {
-            int number = i + xoff;
-
-            if (number < 0 || number >= myArray.length) {
-                continue;
-            }
-
-            for (int yoff = -1; yoff <= 1; yoff++) {
-
-                if (xoff == -1 && yoff == -1 || xoff == 1 && yoff == -1 || xoff == -1 && yoff == 1 || xoff == 1 && yoff == 1) {
-                    continue;
-                }
-
-                int number2 = j + yoff;
-
-                if (number2 < 0 || number2 >= myArray.length) {
-                    continue;
-                }
-
-                GameObjectsType neighbor = GameObjectsType.get(myArray[number][number2]);
-
-                int neighborI = number;
-                int neighborJ = number2;
-
-                if (objectI == neighborI && objectJ == neighborJ) {
-                    continue;
-                }
-
-                if (neighbor.equals(GameObjectsType.TIGER)) {
-                    total++;
-                }
-            }
-        }
-
-        return total;
-    }
-
-    public int getEnemies(int i, int j) {
-        return sensorNumbers[i][j];
-    }
-}*/
-
 public class Sensor {
 
     private int cols;
@@ -143,40 +68,6 @@ public class Sensor {
         if ((row + 1 < rows) && GameObjectsType.get(actualGameMatrix[col][row + 1]).equals(GameObjectsType.TIGER)) {
             total++;
         }
-
-        /*for (int xoff = -1; xoff <= 1; xoff++) {
-            int sonarCol = col + xoff;
-
-            if (sonarCol < 0 || sonarCol >= actualGameMatrix.length) {
-                continue;
-            }
-
-            for (int yoff = -1; yoff <= 1; yoff++) {
-
-                if (xoff == -1 && yoff == -1 || xoff == 1 && yoff == -1 || xoff == -1 && yoff == 1 || xoff == 1 && yoff == 1) {
-                    continue;
-                }
-
-                int sonarRow = row + yoff;
-
-                if (sonarRow < 0 || sonarRow >= actualGameMatrix.length) {
-                    continue;
-                }
-
-                GameObjectsType neighbor = GameObjectsType.translateMapReference(actualGameMatrix[sonarCol][sonarRow]);
-
-                //int neighborI = sonarCol;
-                //int neighborJ = sonarRow;
-
-                if (col == sonarCol && row == sonarRow) {
-                    continue;
-                }
-
-                if (neighbor.equals(GameObjectsType.TIGER)) {
-                    total++;
-                }
-            }
-        }*/
 
         return total;
     }

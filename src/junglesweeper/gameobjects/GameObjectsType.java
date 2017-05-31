@@ -8,7 +8,7 @@ package junglesweeper.gameobjects;
 
 public enum GameObjectsType {
 
-    ROCK(1, "./assets/pictures/rock.png" ), //TODO: Can we move here the the GridColor(s)?
+    ROCK(1, "./assets/pictures/rock.png"), //TODO: Can we move here the the GridColor(s)?
     KEY(3, "./assets/pictures/key.png"),
     PATH(5, "./assets/pictures/path.jpeg"),
     DOOR(4, "./assets/pictures/door.png"),
@@ -17,19 +17,37 @@ public enum GameObjectsType {
     private int referenceInMap; //TODO: Confirm if this property is really needed
     private String imagePath;
 
+    /**
+     * GameObjectsType Constructor
+     *
+     * @param referenceInMap Reference for the level matrix
+     * @param imagePath Path for the game objects images
+     */
     GameObjectsType(int referenceInMap, String imagePath) {
         this.referenceInMap = referenceInMap;
         this.imagePath = imagePath;
     }
 
+    /**
+     * Get the images path
+     *
+     * @return The path
+     */
     public String getImagePath() {
+
         return imagePath;
     }
 
-    // Translator for the level grid matrix
+    /**
+     * Translator for the level grid matrix
+     *
+     * @param referenceInMap Reference to the game object
+     * @return Corresponding game object
+     */
     public static GameObjectsType get(int referenceInMap) {
 
         switch (referenceInMap) {
+
             case 1:
                 return ROCK;
             case 2:

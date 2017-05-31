@@ -1,8 +1,11 @@
 package junglesweeper.grid.position;
 
 /**
- * Created by codecadet on 26/05/17.
+ * A/C - bootcamp8
+ * Project: JungleSweeper
+ * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
+
 public enum Direction {
 
     UP,

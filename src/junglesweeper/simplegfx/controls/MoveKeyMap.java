@@ -37,7 +37,9 @@ public class MoveKeyMap implements KeyboardHandler {
     private boolean specialKey;
 
     /**
-     * Constructor
+     * MoveKeyMap Constructor
+     *
+     * @param type Keyboard type
      */
     public MoveKeyMap(ControlType type) {
 

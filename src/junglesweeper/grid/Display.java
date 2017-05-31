@@ -1,17 +1,18 @@
 package junglesweeper.grid;
 
-import java.util.Stack;
-
 /**
- * Created by codecadet on 30/05/17.
+ * A/C - bootcamp8
+ * Project: JungleSweeper
+ * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
+
 public interface Display {
 
     Grid getGrid(int priority);
 
     void show();
 
-    void hide();
+    void hide(); //TODO: To be deleted?
 
     void makeGrids();
 }
