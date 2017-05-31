@@ -12,8 +12,6 @@ public interface Display {
 
     void showAll();
 
-    void hide(); //TODO: To be deleted?
-
     void setBackground(String background);
 
     void showGrid(int priority);

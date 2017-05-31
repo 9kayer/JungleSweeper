@@ -43,7 +43,7 @@ public class CollisionDetector {
 
                 return false;
             }
-            if (!player.hasKey() && c instanceof Door && c.getPos().equals(pos)) {
+            if (!player.hasKey() && object instanceof Door && object.getPos().equals(gridPosition)) {
                 return false;
             }
         }
