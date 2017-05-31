@@ -83,9 +83,10 @@ public class Game {
         // Collidable to check
         Collidable object;
 
+        boolean end = false;
 
         // Level walkthrough
-        for (int i = 0; i < Level.NUM_LEVELS; i++) {
+        for (int i = 0; i < Level.NUM_LEVELS || !end; i++) {
 
             // Create the level
             createLevel(i);
@@ -94,10 +95,15 @@ public class Game {
             display.showGrid(1);
             display.showGrid(2);
 
+            //displays number of enemies
+            traps.show();
+
             // Draw all the objects
             drawObjects();
 
             // While player is alive
+
+
             while (player.isAlive()) {
 
                 // Move player and check for collisions
@@ -113,8 +119,12 @@ public class Game {
                     }
                 }
 
+
                 Thread.sleep(DELAY);
+
             }
+
+
         }
     }
 
