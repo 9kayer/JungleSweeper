@@ -37,9 +37,6 @@ public abstract class Player implements Collidable {
         key = false;
     }
 
-    public boolean isAlive() {
-        return lives > 0;
-    }
 
     public CollisionDetector getCollisionDetector() {
         return collisionDetector;
@@ -54,7 +51,7 @@ public abstract class Player implements Collidable {
 
     @Override
     public boolean isActive() {
-        throw new UnsupportedOperationException();
+        return lives > 0;
     }
 
     @Override

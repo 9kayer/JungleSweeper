@@ -1,4 +1,5 @@
 package junglesweeper;
+
 import junglesweeper.collisiondetector.Collidable;
 import junglesweeper.collisiondetector.CollisionDetector;
 import junglesweeper.gameobjects.*;
@@ -8,6 +9,7 @@ import junglesweeper.player.Player;
 import junglesweeper.simplegfx.SimpleGfxPlayer;
 import junglesweeper.simplegfx.controls.MoveKeyMap;
 import junglesweeper.sensor.Sensor;
+
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -33,7 +35,7 @@ public class Game {
 
     public Game(DisplayType displayType, int cols, int rows) {
 
-        display = DisplayFactory.makeDisplay(displayType,10);
+        display = DisplayFactory.makeDisplay(displayType, 10);
         display.makeGrids();
 
         gameObjectList = new ArrayList<>();
@@ -45,7 +47,6 @@ public class Game {
     }
 
     public void init() {
-        display.show();
 
         // Init the stacks for game object collection
         for (int i = 0; i < GameObjectsType.values().length; i++) {
@@ -68,42 +69,63 @@ public class Game {
         // After Create the game Objects we print the number of traps around them
         traps = new SimpleGfxSensor(sensor.getEnemies(player.getPos().getRow(), player.getPos().getCol()));
 
+        //Waiting for player to press Space or Q key to start the game
+        while (!keyMap.isSpecialKey()) {
+            try {
+                Thread.sleep(DELAY);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     public void start() throws InterruptedException {
-
-        ArrayList<GameObject> pathArray = new ArrayList<>();
 
         // Collidable to check
         Collidable object;
 
         // Level walkthrough
-        for (int i = 0; i < Level.NUM_LEVELS; i++) {
+        for (int i = 0; i < Level.NUM_LEVELS && player.isActive(); i++) {
 
             // Create the level
             createLevel(i);
+
+            //Draw all Grids
+            display.showGrid(1);
+            display.showGrid(2);
 
             // Draw all the objects
             drawObjects();
 
             // While player is alive
-            while (player.isAlive()) {
+            while (player.isActive()) {
 
                 // Move player and check for collisions
-                if ((object = movePlayer()) != null) {
-
-                    if (object instanceof Tiger) {
-                        i--;
-                        break;
-                    }
-
-                    if (object instanceof Door && object.isActive()) {
-                        break;
-                    }
+                if ((object = movePlayer()) == null) {
+                    continue;
                 }
 
+                if (object instanceof Tiger) {
+                    i--;
+                    break;
+                }
+
+                if (object instanceof Door && object.isActive()) {
+                    break;
+                }
+
+
                 Thread.sleep(DELAY);
+
             }
+
+        }
+
+        if (!player.isActive()) {
+            // show game over
+        } else  {
+            // Winner
         }
     }
 
@@ -114,15 +136,9 @@ public class Game {
             // Move the player one cell at a time
             player.getPos().hide();
 
-            int col = player.getPos().getCol();
-            int row = player.getPos().getRow();
-
             player.move(keyMap.getDirection());
 
             drawPath();
-
-
-
 
             player.getPos().show();
 
@@ -185,7 +201,6 @@ public class Game {
                                 stackArrayList
                         )
                 );
-
             }
         }
     }
@@ -232,7 +247,7 @@ public class Game {
 
         // Draw all the game objects
         for (GameObject go : gameObjectList) {
-            if(!go.getType().equals(GameObjectsType.TIGER)){
+            if (!go.getType().equals(GameObjectsType.TIGER)) {
                 go.getGridPosition().show();
             }
         }
@@ -242,11 +257,13 @@ public class Game {
 
     }
 
-    private void drawPath (){
-        GameObject newPath = GameObjectFactory.create(player.getPos().getCol(),player.getPos().getRow(),
-                display.getGrid(1),GameObjectsType.PATH,stackArrayList);
+    private void drawPath() {
+
+        GameObject newPath = GameObjectFactory.create(player.getPos().getCol(), player.getPos().getRow(),
+                display.getGrid(1), GameObjectsType.PATH, stackArrayList);
         newPath.getPos().show();
         gameObjectList.add(newPath);
+
     }
 
 }

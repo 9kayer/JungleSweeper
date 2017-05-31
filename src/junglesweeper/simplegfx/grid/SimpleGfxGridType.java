@@ -1,5 +1,7 @@
 package junglesweeper.simplegfx.grid;
 
+import junglesweeper.Level;
+
 /**
  * Created by codecadet on 30/05/17.
  */

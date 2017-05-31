@@ -59,7 +59,7 @@ public class MoveKeyMap implements KeyboardHandler {
     public void init() {
 
         // Direction keys
-        for (int i = 0; i < keys.length - 1; i++) {
+        for (int i = 0; i < keys.length; i++) {
 
             addKeyboardEvent(keys[i], KeyboardEventType.KEY_PRESSED);
             addKeyboardEvent(keys[i], KeyboardEventType.KEY_RELEASED);
@@ -68,37 +68,44 @@ public class MoveKeyMap implements KeyboardHandler {
 
     @Override
     public void keyPressed(KeyboardEvent e) {
-        moving = true;
+
+        // Space or Q
+        if (e.getKey() == keys[4]) {
+            specialKey = true;
+            System.out.println("specialkey");
+        }
+
+        if (!specialKey) {
+            return;
+        }
 
         // Up or W
         if (e.getKey() == keys[0]) {
+            moving = true;
             direction = Direction.UP;
             //System.out.println(direction);
         }
 
         // Right or D
         if (e.getKey() == keys[1]) {
+            moving = true;
             direction = Direction.RIGHT;
             //System.out.println(direction);
         }
 
         // Down or S
         if (e.getKey() == keys[2]) {
+            moving = true;
             direction = Direction.DOWN;
             //System.out.println(direction);
         }
 
         // Left or A
         if (e.getKey() == keys[3]) {
+            moving = true;
             direction = Direction.LEFT;
             //System.out.println(direction);
         }
-
-        // Space or Q
-        if (e.getKey() == keys[4]) {
-            specialKey = true;
-        }
-
     }
 
     @Override
@@ -154,6 +161,10 @@ public class MoveKeyMap implements KeyboardHandler {
 
         keyboard.addEventListener(temp);
 
+    }
+
+    public void lockDirectionKeys() {
+        specialKey = false;
     }
 
     public enum ControlType {

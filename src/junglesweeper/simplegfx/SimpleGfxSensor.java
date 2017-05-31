@@ -1,6 +1,5 @@
 package junglesweeper.simplegfx;
 
-import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 /**

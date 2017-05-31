@@ -102,14 +102,15 @@ public class Sensor {
         this.cols = cols;
         this.rows = rows;
         this.actualGameMatrix = Level.getLevelMatrix(level);
+
     }
 
     public void init() {
 
-        trapsByPosition = new int[rows][cols];
+        trapsByPosition = new int[cols][rows];
 
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
+        for (int i = 0; i < cols; i++) {
+            for (int j = 0; j < rows; j++) {
                 trapsByPosition[i][j] = getNeighbors(i, j);
             }
         }

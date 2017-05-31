@@ -39,7 +39,6 @@ public enum GameObjectsType {
             case 4:
                 return DOOR;
             default:
-                System.out.println("Default GameObjectsType");
                 return ROCK;
         }
     }
