@@ -23,7 +23,7 @@ public class Path extends GameObject {
 
     @Override
     public void reset() {
-        // Nothing to execute
+
     }
 
     @Override

@@ -4,6 +4,7 @@ import junglesweeper.collisiondetector.Collidable;
 import junglesweeper.collisiondetector.CollisionDetector;
 import junglesweeper.gameobjects.*;
 import junglesweeper.grid.*;
+import junglesweeper.grid.position.GridPosition;
 import junglesweeper.simplegfx.SimpleGfxSensor;
 import junglesweeper.simplegfx.controls.ControlType;
 import junglesweeper.player.Player;
@@ -73,6 +74,8 @@ public class Game {
 
     public void start() throws InterruptedException {
 
+        ArrayList<GameObject> pathArray = new ArrayList<>();
+
         // Collidable to check
         Collidable object;
 
@@ -115,13 +118,28 @@ public class Game {
         // If a key is being pressed
         if (keyMap.isMoving()) {
             // Move the player one cell at a time
+            player.getPos().hide();
+
+            int col = player.getPos().getCol();
+            int row = player.getPos().getRow();
+
             player.move(keyMap.getDirection());
+
+            drawPath();
+
+
+
+
+            player.getPos().show();
+
             keyMap.stopMoving();
 
             // Update the danger sensor output
             traps.reWrite(sensor.getEnemys(player.getPos().getRow(), player.getPos().getCol()));
 
         }
+
+
 
         // Check collisions
         return collisionDetector.collision();
@@ -222,11 +240,22 @@ public class Game {
 
         // Draw all the game objects
         for (GameObject go : gameObjectList) {
-            go.getGridPosition().show();
+            if(!go.getType().equals(GameObjectsType.TIGER)){
+                go.getGridPosition().show();
+            }
         }
-
+        drawPath();
         // Draw the players
         player.getPos().show();
+
+    }
+
+    private void drawPath (){
+
+        GameObject newPath = GameObjectFactory.createNewGameObjects(player.getPos().getCol(),player.getPos().getRow(),
+                display.getGrid(1),GameObjectsType.PATH,stackArrayList);
+        newPath.getPos().show();
+        gameObjectList.add(newPath);
 
     }
 
