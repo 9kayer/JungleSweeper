@@ -23,8 +23,8 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
         this.simpleGfxGrid = simpleGfxGrid;
 
-        int x = simpleGfxGrid.getX() + col * simpleGfxGrid.getCellSize();
-        int y = simpleGfxGrid.getY() + row * simpleGfxGrid.getCellSize();
+        int x = simpleGfxGrid.getX() + col * simpleGfxGrid.getCellSize() + 30;
+        int y = simpleGfxGrid.getY() + row * simpleGfxGrid.getCellSize() + 20;
         this.picture = new Picture(x, y, imagePath);
     }
 

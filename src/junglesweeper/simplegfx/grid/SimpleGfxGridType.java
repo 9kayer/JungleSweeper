@@ -4,8 +4,9 @@ package junglesweeper.simplegfx.grid;
  * Created by codecadet on 30/05/17.
  */
 public enum SimpleGfxGridType {
-    INFO_GRID("./assets/Game/sidebarBG.png", 2, 32, 35, -1, -1, 1),
-    MAP_GRID("./assets/Game/gridsmall.png", 1, 190, 35, 17, 17, 40);
+    // Paths Priority, xPadding , yPadding , Col , Rows , CellSize //
+    INFO_GRID("./assets/Game/sidebarBg.png", 2, 32, 35, -1, -1, 1),
+    MAP_GRID("./assets/Game/grid.png", 1, 190, 35, 17, 17, 40);
 
 
     private int priority;

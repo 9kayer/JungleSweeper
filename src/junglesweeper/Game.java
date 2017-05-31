@@ -243,12 +243,10 @@ public class Game {
     }
 
     private void drawPath (){
-
         GameObject newPath = GameObjectFactory.create(player.getPos().getCol(),player.getPos().getRow(),
                 display.getGrid(1),GameObjectsType.PATH,stackArrayList);
         newPath.getPos().show();
         gameObjectList.add(newPath);
-
     }
 
 }

@@ -61,4 +61,8 @@ public abstract class Player implements Collidable {
     public GridPosition getPos() {
         return pos;
     }
+
+    public int getLives() {
+        return lives;
+    }
 }

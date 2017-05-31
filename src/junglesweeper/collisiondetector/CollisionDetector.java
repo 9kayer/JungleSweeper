@@ -27,6 +27,9 @@ public class CollisionDetector {
             if (c instanceof Rock && c.getPos().equals(pos)) {
                 return false;
             }
+            if (!player.hasKey() && c instanceof Door && c.getPos().equals(pos)) {
+                return false;
+            }
         }
 
         return true;
