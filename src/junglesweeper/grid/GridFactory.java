@@ -22,13 +22,7 @@ public class GridFactory {
                     case INFO_GRID:
                         return new SimpleGfxGrid(SimpleGfxGridType.INFO_GRID);
                 }
-            default:
-                switch (simpleGfxGridType){
-                    case MAP_GRID:
-                        return new SimpleGfxGrid(SimpleGfxGridType.MAP_GRID);
-                    case INFO_GRID:
-                        return new SimpleGfxGrid(SimpleGfxGridType.INFO_GRID);
-                }
+
         }
         return null;
     }
