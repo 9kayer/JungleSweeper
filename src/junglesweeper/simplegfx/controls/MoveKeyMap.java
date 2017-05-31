@@ -7,10 +7,11 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import junglesweeper.grid.position.Direction;
 
 /**
- * <Academia de Código_>
- * Created by André Martins <Code Cadet>
- * Project CarCrashX (23/05/17)
+ * A/C - bootcamp8
+ * Project: JungleSweeper
+ * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
+
 public class MoveKeyMap implements KeyboardHandler {
 
     private static final int[] KEYS_1 = {
@@ -33,7 +34,7 @@ public class MoveKeyMap implements KeyboardHandler {
     private Keyboard keyboard;
     private Direction direction;
     private boolean moving;
-    //private boolean specialMove;
+    private boolean specialKey;
 
     /**
      * Constructor
@@ -52,7 +53,6 @@ public class MoveKeyMap implements KeyboardHandler {
         keyboard = new Keyboard(this);
         direction = Direction.UP;
         moving = false;
-        //specialMove = false;
 
     }
 
@@ -63,12 +63,7 @@ public class MoveKeyMap implements KeyboardHandler {
 
             addKeyboardEvent(keys[i], KeyboardEventType.KEY_PRESSED);
             addKeyboardEvent(keys[i], KeyboardEventType.KEY_RELEASED);
-
         }
-
-        // Special key
-        //addKeyboardEvent(keys[keys.length - 1], KeyboardEventType.KEY_PRESSED);
-
     }
 
     @Override
@@ -100,21 +95,19 @@ public class MoveKeyMap implements KeyboardHandler {
         }
 
         // Space or Q
-        /*if (e.getKey() == keys[4]) {
-            specialMove = true;
-        }*/
+        if (e.getKey() == keys[4]) {
+            specialKey = true;
+        }
 
     }
 
     @Override
     public void keyReleased(KeyboardEvent e) {
-
         moving = false;
-
     }
 
     /**
-     * Get the direction for the car to use
+     * Get the direction for the player to use
      *
      * @return direction
      */
@@ -123,7 +116,7 @@ public class MoveKeyMap implements KeyboardHandler {
     }
 
     /**
-     * Flag for moving the car
+     * Flag for moving the player
      *
      * @return boolean
      */
@@ -131,18 +124,21 @@ public class MoveKeyMap implements KeyboardHandler {
         return moving;
     }
 
+    /**
+     * Stop moving the player
+     */
     public void stopMoving() {
         moving = false;
     }
 
     /**
-     * Flag for turbo
+     * Flag to start the game
      *
      * @return boolean
      */
-    /*public boolean isSpecialMove() {
-        return specialMove;
-    }*/
+    public boolean isSpecialKey() {
+        return specialKey;
+    }
 
     /**
      * Add a keyboard event
@@ -157,6 +153,13 @@ public class MoveKeyMap implements KeyboardHandler {
         temp.setKeyboardEventType(type);
 
         keyboard.addEventListener(temp);
+
+    }
+
+    public enum ControlType {
+
+        MODE_1,
+        MODE_2
 
     }
 }

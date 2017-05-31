@@ -8,8 +8,11 @@ import junglesweeper.simplegfx.grid.SimpleGfxGrid;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 /**
- * Created by fabio on 26/05/2017.
+ * A/C - bootcamp8
+ * Project: JungleSweeper
+ * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
+
 public class SimpleGfxGridPosition extends AbstractGridPosition {
 
     private SimpleGfxGrid simpleGfxGrid;
@@ -50,16 +53,6 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     @Override
     public void movingDirection(Direction direction) {
         super.movingDirection(direction);
-
-    }
-
-    @Override
-    public boolean equals(GridPosition g) {
-        if (getCol() == g.getCol() && getRow() == g.getRow()) {
-            return true;
-        }
-
-        return false;
     }
 
     public SimpleGfxGrid getSimpleGfxGrid() {
