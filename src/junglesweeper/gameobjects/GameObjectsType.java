@@ -1,17 +1,20 @@
 package junglesweeper.gameobjects;
 
 /**
- * Created by codecadet on 26/05/17.
+ * A/C - bootcamp8
+ * Project: JungleSweeper
+ * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
+
 public enum GameObjectsType {
 
-    ROCK(1, "./assets/pictures/rock.png" ),
+    ROCK(1, "./assets/pictures/rock.png" ), //TODO: Can we move here the the GridColor(s)?
     KEY(3, "./assets/pictures/key.png"),
     PATH(5, "./assets/pictures/path.jpeg"),
     DOOR(4, "./assets/pictures/door.png"),
     TIGER(2, "./assets/pictures/tiger.png");
 
-    private int referenceInMap;
+    private int referenceInMap; //TODO: Confirm if this property is really needed
     private String imagePath;
 
     GameObjectsType(int referenceInMap, String imagePath) {
@@ -19,17 +22,14 @@ public enum GameObjectsType {
         this.imagePath = imagePath;
     }
 
-    public String getImagePath(){
+    public String getImagePath() {
         return imagePath;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
+    // Translator for the level grid matrix
+    public static GameObjectsType get(int referenceInMap) {
 
-    public static GameObjectsType translateMapReference(int referenceInMap){
-
-        switch (referenceInMap){
+        switch (referenceInMap) {
             case 1:
                 return ROCK;
             case 2:

@@ -7,8 +7,11 @@ import junglesweeper.player.Player;
 import junglesweeper.simplegfx.grid.SimpleGfxGridPosition;
 
 /**
- * Created by codecadet on 27/05/17.
+ * A/C - bootcamp8
+ * Project: JungleSweeper
+ * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
+
 public class SimpleGfxPlayer extends Player {
 
     public static final String UP_ICON = "./assets/pictures/player-up.png";
@@ -17,13 +20,13 @@ public class SimpleGfxPlayer extends Player {
     public static final String LEFT_ICON = "./assets/pictures/player-left.png";
 
     private SimpleGfxGridPosition pos;
-    
+
     public SimpleGfxPlayer(GridPosition pos, int lives, CollisionDetector collisionDetector) {
         super(pos, lives, collisionDetector);
         this.pos = (SimpleGfxGridPosition) pos;
     }
 
-    public void move(Direction direction) {
+    public boolean move(Direction direction) {
 
         switch (direction) {
             case UP:
@@ -43,8 +46,9 @@ public class SimpleGfxPlayer extends Player {
 
         if (!getCollisionDetector().isPossible(getPos())) {
             pos.movingDirection(direction.getReverse(direction));
+            return false;
         }
-
+        return true;
     }
 
     @Override
@@ -52,7 +56,6 @@ public class SimpleGfxPlayer extends Player {
         dropKey();
         pos.setPos(0,0);
         pos.hide();
-        //pos.show();
     }
 
     public GridPosition getPos() {

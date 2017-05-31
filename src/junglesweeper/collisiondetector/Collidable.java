@@ -3,8 +3,11 @@ package junglesweeper.collisiondetector;
 import junglesweeper.grid.position.GridPosition;
 
 /**
- * Created by andrb on 27/05/2017.
+ * A/C - bootcamp8
+ * Project: JungleSweeper
+ * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
+
 public interface Collidable {
 
     void collide();

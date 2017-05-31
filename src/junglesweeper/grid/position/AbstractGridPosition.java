@@ -3,8 +3,11 @@ package junglesweeper.grid.position;
 import junglesweeper.grid.Grid;
 
 /**
- * Created by fabio on 26/05/2017.
+ * A/C - bootcamp8
+ * Project: JungleSweeper
+ * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
+
 public abstract class AbstractGridPosition implements GridPosition {
     private int col;
     private int row;
@@ -90,4 +93,14 @@ public abstract class AbstractGridPosition implements GridPosition {
         }
 
     }
+
+    @Override
+    public boolean equals(GridPosition g) {
+        if (getCol() == g.getCol() && getRow() == g.getRow()) {
+            return true;
+        }
+
+        return false;
+    }
+
 }
