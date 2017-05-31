@@ -28,7 +28,6 @@ public class SimpleGfxPlayer extends Player {
         super(pos, lives, collisionDetector);
         this.pos = (SimpleGfxGridPosition) pos;
         livesImg = new Picture(53, 320, "./assets/Game/hud_heartFull.png");
-        livesImg.draw();
     }
 
     public boolean move(Direction direction) {
@@ -82,4 +81,10 @@ public class SimpleGfxPlayer extends Player {
                 break;
         }
     }
+
+    public void show() {
+        livesImg.draw();
+        pos.show();
+    }
+
 }

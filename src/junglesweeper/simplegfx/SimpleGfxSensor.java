@@ -14,7 +14,6 @@ public class SimpleGfxSensor {
 
     public SimpleGfxSensor(int trap) {
         pic = new Picture(85, 65, "./assets/Game/SliderBarNone.png");
-        pic.draw();
     }
 
     //Change image by the number of enemys around
@@ -34,5 +33,9 @@ public class SimpleGfxSensor {
                 pic.load("./assets/Game/SliderBarRed.png");
                 break;
         }
+    }
+
+    public void show() {
+        pic.draw();
     }
 }

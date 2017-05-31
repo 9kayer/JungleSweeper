@@ -67,7 +67,7 @@ public class Game {
         );
 
         // After Create the game Objects we print the number of traps around them
-        traps = new SimpleGfxSensor(sensor.getEnemies(player.getPos().getRow(), player.getPos().getCol()));
+        traps = new SimpleGfxSensor(sensor.getEnemies(player.getPos().getCol(), player.getPos().getRow()));
 
         //Waiting for player to press Space or Q key to start the game
         while (!keyMap.isSpecialKey()) {
@@ -145,7 +145,7 @@ public class Game {
             keyMap.stopMoving();
 
             // Update the danger sensor output
-            traps.reWrite(sensor.getEnemies(player.getPos().getRow(), player.getPos().getCol()));
+            traps.reWrite(sensor.getEnemies(player.getPos().getCol(), player.getPos().getRow()));
 
         }
 
@@ -252,8 +252,12 @@ public class Game {
             }
         }
         drawPath();
+
         // Draw the players
-        player.getPos().show();
+        //player.getPos().show();
+        player.show();
+
+        traps.show();
 
     }
 

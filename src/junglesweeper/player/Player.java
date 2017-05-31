@@ -44,6 +44,8 @@ public abstract class Player implements Collidable {
 
     public abstract boolean move(Direction direction);
 
+    public abstract void show();
+
     @Override
     public void collide() {
         lives--;
