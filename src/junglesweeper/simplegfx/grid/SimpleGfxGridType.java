@@ -6,8 +6,10 @@ import junglesweeper.Level;
  * Created by codecadet on 30/05/17.
  */
 public enum SimpleGfxGridType {
-    MAP_GRID("./assets/pictures/grid.png", 1, 190, 35, Level.getLevelMatrix(0).length, Level.getLevelMatrix(0)[0].length, 40),
-    INFO_GRID("./assets/pictures/sensor.png", 2, 32, 35, -1, -1, 1);
+    // Paths Priority, xPadding , yPadding , Col , Rows , CellSize //
+    INFO_GRID("./assets/Game/sidebarBg.png", 2, 32, 35, -1, -1, 1),
+    MAP_GRID("./assets/Game/grid.png", 1, 190, 35, Level.getLevelMatrix(0).length, Level.getLevelMatrix(0)[0].length, 40);
+
 
     private int priority;
     private String imagePath;

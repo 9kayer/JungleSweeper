@@ -10,8 +10,8 @@ public enum GameObjectsType {
 
     ROCK(1, "./assets/pictures/rock.png" ), //TODO: Can we move here the the GridColor(s)?
     KEY(3, "./assets/pictures/key.png"),
-    PATH(5, "./assets/pictures/path.jpeg"),
-    DOOR(4, "./assets/pictures/door.png"),
+    PATH(5, "./assets/Game/path.png"),
+    DOOR(4, "./assets/Game/Door.png"),
     TIGER(2, "./assets/pictures/tiger.png");
 
     private int referenceInMap; //TODO: Confirm if this property is really needed

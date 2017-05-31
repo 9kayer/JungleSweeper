@@ -46,6 +46,8 @@ public abstract class Player implements Collidable {
 
     public abstract boolean move(Direction direction);
 
+    public abstract void show();
+
     @Override
     public void collide() {
         lives--;
@@ -65,5 +67,9 @@ public abstract class Player implements Collidable {
         System.out.println("restarting lives");
         lives = maxlives;
 
+    }
+
+    public int getLives() {
+        return lives;
     }
 }

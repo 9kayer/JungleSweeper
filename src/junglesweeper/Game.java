@@ -223,8 +223,8 @@ public class Game {
                 // Add a game object based on the level matrix
                 gameObjectList.add(
                         GameObjectFactory.create(
-                                row,
                                 col,
+                                row,
                                 display.getGrid(1),
                                 GameObjectsType.get(Level.getLevelMatrix(i)[col][row]),
                                 stackArrayList
@@ -281,8 +281,12 @@ public class Game {
             }
         }
         drawPath();
+
         // Draw the players
-        player.getPos().show();
+        //player.getPos().show();
+        player.show();
+
+        traps.show();
 
     }
 
