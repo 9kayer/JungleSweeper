@@ -16,6 +16,8 @@ public interface Grid {
 
     void init();
 
+    void hide();
+
     GridPosition makeGridPosition(int col, int row, String layout);
 
 }

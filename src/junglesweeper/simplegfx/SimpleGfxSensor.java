@@ -13,13 +13,13 @@ public class SimpleGfxSensor {
     private Text traps;
 
     public SimpleGfxSensor(int trap) {
-        traps = new Text(10, 10, Integer.toString(trap));
-        show();
+        traps = new Text(50, 50, Integer.toString(trap));
     }
 
     public void reWrite(int trap) {
         traps.delete();
-        traps = new Text(10, 10, Integer.toString(trap));
+        traps.setText(Integer.toString(trap));
+        //traps = new Text(50, 50, Integer.toString(trap));
         show();
     }
 

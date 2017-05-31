@@ -45,7 +45,6 @@ public class Game {
     }
 
     public void init() {
-        display.show();
 
         // Init the stacks for game object collection
         for (int i = 0; i < GameObjectsType.values().length; i++) {
@@ -68,25 +67,43 @@ public class Game {
         // After Create the game Objects we print the number of traps around them
         traps = new SimpleGfxSensor(sensor.getEnemies(player.getPos().getRow(), player.getPos().getCol()));
 
+        //Waiting for player to press Space or Q key to start the game
+        while (!keyMap.isSpecialKey()){
+            try {
+                Thread.sleep(DELAY);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     public void start() throws InterruptedException {
 
-        ArrayList<GameObject> pathArray = new ArrayList<>();
-
         // Collidable to check
         Collidable object;
 
+        boolean end = false;
+
         // Level walkthrough
-        for (int i = 0; i < Level.NUM_LEVELS; i++) {
+        for (int i = 0; i < Level.NUM_LEVELS || !end; i++) {
 
             // Create the level
             createLevel(i);
+
+            //Draw all Grids
+            display.showGrid(1);
+            display.showGrid(2);
+
+            //displays number of enemies
+            traps.show();
 
             // Draw all the objects
             drawObjects();
 
             // While player is alive
+
+
             while (player.isAlive()) {
 
                 // Move player and check for collisions
@@ -102,8 +119,12 @@ public class Game {
                     }
                 }
 
+
                 Thread.sleep(DELAY);
+
             }
+
+
         }
     }
 
