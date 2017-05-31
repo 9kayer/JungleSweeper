@@ -8,8 +8,6 @@ import junglesweeper.player.Player;
 import junglesweeper.simplegfx.SimpleGfxPlayer;
 import junglesweeper.simplegfx.controls.MoveKeyMap;
 import junglesweeper.sensor.Sensor;
-import org.academiadecodigo.simplegraphics.pictures.Picture;
-
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -74,6 +72,8 @@ public class Game {
 
     public void start() throws InterruptedException {
 
+        ArrayList<GameObject> pathArray = new ArrayList<>();
+
         // Collidable to check
         Collidable object;
 
@@ -112,7 +112,20 @@ public class Game {
         // If a key is being pressed
         if (keyMap.isMoving()) {
             // Move the player one cell at a time
+            player.getPos().hide();
+
+            int col = player.getPos().getCol();
+            int row = player.getPos().getRow();
+
             player.move(keyMap.getDirection());
+
+            drawPath();
+
+
+
+
+            player.getPos().show();
+
             keyMap.stopMoving();
 
             // Update the danger sensor output
@@ -218,11 +231,23 @@ public class Game {
 
         // Draw all the game objects
         for (GameObject go : gameObjectList) {
-            go.getGridPosition().show();
+            if(!go.getType().equals(GameObjectsType.TIGER)){
+                go.getGridPosition().show();
+            }
         }
-
+        drawPath();
         // Draw the players
         player.getPos().show();
 
     }
+
+    private void drawPath (){
+
+        GameObject newPath = GameObjectFactory.createNewGameObjects(player.getPos().getCol(),player.getPos().getRow(),
+                display.getGrid(1),GameObjectsType.PATH,stackArrayList);
+        newPath.getPos().show();
+        gameObjectList.add(newPath);
+
+    }
+
 }

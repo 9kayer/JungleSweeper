@@ -55,16 +55,6 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
         super.movingDirection(direction);
     }
 
-    @Override
-    public boolean equals(GridPosition gridPosition) {
-
-        if (getCol() == gridPosition.getCol() && getRow() == gridPosition.getRow()) {
-            return true;
-        }
-
-        return false;
-    }
-
     public SimpleGfxGrid getSimpleGfxGrid() {
         return simpleGfxGrid;
     }

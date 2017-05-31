@@ -26,7 +26,7 @@ public class SimpleGfxPlayer extends Player {
         this.pos = (SimpleGfxGridPosition) pos;
     }
 
-    public void move(Direction direction) {
+    public boolean move(Direction direction) {
 
         switch (direction) {
             case UP:
@@ -46,7 +46,9 @@ public class SimpleGfxPlayer extends Player {
 
         if (!getCollisionDetector().isPossible(getPos())) {
             pos.movingDirection(direction.getReverse(direction));
+            return false;
         }
+        return true;
     }
 
     @Override

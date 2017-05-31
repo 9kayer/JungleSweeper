@@ -45,7 +45,7 @@ public abstract class Player implements Collidable {
         return collisionDetector;
     }
 
-    public abstract void move(Direction direction);
+    public abstract boolean move(Direction direction);
 
     @Override
     public void collide() {
@@ -54,7 +54,7 @@ public abstract class Player implements Collidable {
 
     @Override
     public boolean isActive() {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override

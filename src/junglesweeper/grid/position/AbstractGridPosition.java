@@ -93,4 +93,14 @@ public abstract class AbstractGridPosition implements GridPosition {
         }
 
     }
+
+    @Override
+    public boolean equals(GridPosition g) {
+        if (getCol() == g.getCol() && getRow() == g.getRow()) {
+            return true;
+        }
+
+        return false;
+    }
+
 }
