@@ -54,10 +54,6 @@ public abstract class Player implements Collidable {
         key = false;
     }
 
-    /**
-     * Evaluates if the player as more lives
-     * @return A boolean
-     */
     public boolean isAlive() {
         return lives > 0;
     }
@@ -78,6 +74,8 @@ public abstract class Player implements Collidable {
      */
     public abstract boolean move(Direction direction);
 
+    public abstract void show();
+
     /**
      * Decrease lives if catch up by a jungle trap
      */
@@ -93,7 +91,7 @@ public abstract class Player implements Collidable {
      */
     @Override
     public boolean isActive() {
-        throw new UnsupportedOperationException(); //TODO: Verify this!
+        return lives > 0;
     }
 
     /**
@@ -104,5 +102,9 @@ public abstract class Player implements Collidable {
     @Override
     public GridPosition getPos() {
         return pos;
+    }
+
+    public int getLives() {
+        return lives;
     }
 }

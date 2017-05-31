@@ -27,14 +27,15 @@ public class Sensor {
         this.cols = cols;
         this.rows = rows;
         this.actualGameMatrix = Level.getLevelMatrix(level);
+
     }
 
     public void init() {
 
-        trapsByPosition = new int[rows][cols];
+        trapsByPosition = new int[cols][rows];
 
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
+        for (int i = 0; i < cols; i++) {
+            for (int j = 0; j < rows; j++) {
                 trapsByPosition[i][j] = getNeighbors(i, j);
             }
         }
@@ -52,7 +53,6 @@ public class Sensor {
     public int getNeighbors(int col, int row) {
         int total = 0;
 
-        //TODO: Validate the new sensor solution
         if ((col - 1 >= 0) && GameObjectsType.get(actualGameMatrix[col - 1][row]).equals(GameObjectsType.TIGER)) {
             total++;
         }

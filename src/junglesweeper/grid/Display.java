@@ -10,9 +10,17 @@ public interface Display {
 
     Grid getGrid(int priority);
 
-    void show();
+    void showAll();
 
     void hide(); //TODO: To be deleted?
+
+    void setBackground(String background);
+
+    void showGrid(int priority);
+
+    void hideAll();
+
+    void hideGrid(int priority);
 
     void makeGrids();
 }

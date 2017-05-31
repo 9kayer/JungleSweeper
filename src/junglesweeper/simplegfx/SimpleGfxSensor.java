@@ -1,6 +1,6 @@
 package junglesweeper.simplegfx;
 
-import org.academiadecodigo.simplegraphics.graphics.Text;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 /**
  * A/C - bootcamp8
@@ -10,20 +10,32 @@ import org.academiadecodigo.simplegraphics.graphics.Text;
 
 public class SimpleGfxSensor {
 
-    private Text traps;
+    private Picture pic;
 
     public SimpleGfxSensor(int trap) {
-        traps = new Text(10, 10, Integer.toString(trap));
-        show();
+        pic = new Picture(85, 65, "./assets/Game/SliderBarNone.png");
     }
 
+    //Change image by the number of enemys around
+
     public void reWrite(int trap) {
-        traps.delete();
-        traps = new Text(10, 10, Integer.toString(trap));
-        show();
+        switch (trap) {
+            case 0:
+                pic.load("./assets/Game/SliderBarNone.png");
+                break;
+            case 1:
+                pic.load("./assets/Game/SliderBarBlue.png");
+                break;
+            case 2:
+                pic.load("./assets/Game/SliderBarOrange.png");
+                break;
+            case 3:
+                pic.load("./assets/Game/SliderBarRed.png");
+                break;
+        }
     }
 
     public void show() {
-        traps.draw();
+        pic.draw();
     }
 }

@@ -43,6 +43,9 @@ public class CollisionDetector {
 
                 return false;
             }
+            if (!player.hasKey() && c instanceof Door && c.getPos().equals(pos)) {
+                return false;
+            }
         }
 
         return true;

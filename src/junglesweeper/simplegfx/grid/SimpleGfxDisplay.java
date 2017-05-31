@@ -30,15 +30,17 @@ public class SimpleGfxDisplay implements Display {
      * @param padding     Distance from canvas to the game border
      */
     public SimpleGfxDisplay(DisplayType displayType, int padding) {
+        background = new Picture(X_PADDING, Y_PADDING, "./assets/Game/FinalBG.jpg");
 
         background = new Picture(X_PADDING, Y_PADDING, "./assets/pictures/bg.jpg");
         this.displayType = displayType;
         this.padding = padding;
+        background.draw();
+
     }
 
-    public Picture getBackground() { //TODO: To be deleted?
-
-        return background;
+    public void setBackground(String string) {
+        background.load(string);
     }
 
     public Grid getInfoGrid() { //TODO: To be deleted?
@@ -77,15 +79,40 @@ public class SimpleGfxDisplay implements Display {
      * Draw the background and initialize both grids
      */
     @Override
-    public void show() {
-        background.draw();
+    public void showAll() {
+        //background.draw();
         infoGrid.init();
         mapGrid.init();
     }
 
     @Override
-    public void hide() {
-        throw new UnsupportedOperationException(); //TODO: This is to mantain?
+    public void showGrid(int priority) {
+        if (SimpleGfxGridType.INFO_GRID.getPriority() == priority) {
+            infoGrid.init();
+            return;
+        }
+        if (SimpleGfxGridType.MAP_GRID.getPriority() == priority) {
+            mapGrid.init();
+            return;
+        }
+    }
+
+    @Override
+    public void hideGrid(int priority) {
+        if (SimpleGfxGridType.INFO_GRID.getPriority() == priority) {
+            infoGrid.hide();
+            return;
+        }
+        if (SimpleGfxGridType.MAP_GRID.getPriority() == priority) {
+            mapGrid.hide();
+            return;
+        }
+    }
+
+    @Override
+    public void hideAll() {
+        infoGrid.hide();
+        mapGrid.hide();
     }
 
     /**
