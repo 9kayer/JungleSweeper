@@ -3,8 +3,11 @@ package junglesweeper.gameobjects;
 import junglesweeper.grid.position.GridPosition;
 
 /**
- * Created by codecadet on 27/05/17.
+ * A/C - bootcamp8
+ * Project: JungleSweeper
+ * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
+
 public class Door extends GameObject {
 
     private boolean active;
@@ -32,5 +35,4 @@ public class Door extends GameObject {
     public GridPosition getPos() {
         return getGridPosition();
     }
-
 }
