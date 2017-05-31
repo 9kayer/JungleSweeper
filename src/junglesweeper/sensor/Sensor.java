@@ -86,30 +86,30 @@ import junglesweeper.gameobjects.GameObjectsType;
 
 public class Sensor {
 
-    private int col;
-    private int row;
+    private int cols;
+    private int rows;
     private int[][] actualGameMatrix;
     private int[][] trapsByPosition;
 
     /**
      * Sensor logic constructor
      *
-     * @param col   game matix columns
-     * @param row   game matix rows
+     * @param cols   game matix columns
+     * @param rows   game matix rows
      * @param level game level
      */
-    public Sensor(int col, int row, int level) {
-        this.col = col;
-        this.row = row;
+    public Sensor(int cols, int rows, int level) {
+        this.cols = cols;
+        this.rows = rows;
         this.actualGameMatrix = Level.getLevelMatrix(level);
     }
 
     public void init() {
 
-        trapsByPosition = new int[row][col];
+        trapsByPosition = new int[rows][cols];
 
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
                 trapsByPosition[i][j] = getNeighbors(i, j);
             }
         }
@@ -132,7 +132,7 @@ public class Sensor {
             total++;
         }
 
-        if ((col + 1 < actualGameMatrix.length) && GameObjectsType.translateMapReference(actualGameMatrix[col + 1][row]).equals(GameObjectsType.TIGER)) {
+        if ((col + 1 < cols) && GameObjectsType.translateMapReference(actualGameMatrix[col + 1][row]).equals(GameObjectsType.TIGER)) {
             total++;
         }
 
@@ -140,7 +140,7 @@ public class Sensor {
             total++;
         }
 
-        if ((row + 1 < actualGameMatrix.length) && GameObjectsType.translateMapReference(actualGameMatrix[col][row + 1]).equals(GameObjectsType.TIGER)) {
+        if ((row + 1 < rows) && GameObjectsType.translateMapReference(actualGameMatrix[col][row + 1]).equals(GameObjectsType.TIGER)) {
             total++;
         }
 
