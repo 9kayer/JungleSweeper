@@ -10,7 +10,6 @@ import junglesweeper.player.Player;
 import junglesweeper.simplegfx.SimpleGfxPlayer;
 import junglesweeper.simplegfx.controls.MoveKeyMap;
 import junglesweeper.sensor.Sensor;
-import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.util.ArrayList;
 import java.util.Stack;
@@ -20,7 +19,7 @@ import java.util.Stack;
  */
 public class Game {
 
-    private static final int DELAY = 1;
+    private static final int DELAY = 50;
     private static final int FIRST_LEVEL = 0;
 
     private ArrayList<GameObject> gameObjectList;
@@ -85,7 +84,7 @@ public class Game {
             // Draw all the objects
             drawObjects();
 
-            // While the goal is not completed
+            // While player is alive
             while (player.isAlive()) {
 
                 // Move player and check for collisions
@@ -168,11 +167,12 @@ public class Game {
 
                 // Add a game object based on the level matrix
                 gameObjectList.add(
-                        GameObjectFactory.createNewGameObjects(
+                        GameObjectFactory.create(
                                 row,
                                 col,
                                 display.getGrid(1),
-                                GameObjectsType.translateMapReference(Level.getLevelMatrix(i)[col][row]), stackArrayList
+                                GameObjectsType.get(Level.getLevelMatrix(i)[col][row]),
+                                stackArrayList
                         )
                 );
 

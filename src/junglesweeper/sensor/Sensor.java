@@ -1,7 +1,6 @@
 package junglesweeper.sensor;
 
 import junglesweeper.Level;
-import junglesweeper.gameobjects.GameObject;
 import junglesweeper.gameobjects.GameObjectsType;
 
 /**
@@ -51,7 +50,7 @@ public class Sensor {
                 int number2 = j + yoff;
                 if (number2 < 0 || number2 >= myArray.length) continue;
 
-                GameObjectsType neighbor = GameObjectsType.translateMapReference(myArray[number][number2]);
+                GameObjectsType neighbor = GameObjectsType.get(myArray[number][number2]);
 
                 int neighborI = number;
                 int neighborJ = number2;

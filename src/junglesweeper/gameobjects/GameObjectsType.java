@@ -27,7 +27,7 @@ public enum GameObjectsType {
         this.imagePath = imagePath;
     }
 
-    public static GameObjectsType translateMapReference(int referenceInMap){
+    public static GameObjectsType get(int referenceInMap){
 
         switch (referenceInMap){
             case 1:

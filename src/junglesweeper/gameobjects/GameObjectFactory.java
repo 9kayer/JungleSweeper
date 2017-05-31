@@ -11,7 +11,7 @@ import java.util.Stack;
  */
 public class GameObjectFactory {
 
-    public static GameObject createNewGameObjects(int col, int row, Grid grid, GameObjectsType gameObjectsType, ArrayList<Stack<GameObject>> stackArrayList) {
+    public static GameObject create(int col, int row, Grid grid, GameObjectsType gameObjectsType, ArrayList<Stack<GameObject>> stackArrayList) {
         int i = 0;
         GameObject object;
 
