@@ -33,10 +33,8 @@ public class GameObjectFactory {
 
             case ROCK:
                 if (stackArrayList.get(2).empty()) {
-                    System.out.println(col + " | " + row);
                     return new Rock(grid.makeGridPosition(col, row, GameObjectsType.ROCK.getImagePath()));
                 }
-                System.out.println("used rock");
                 object = stackArrayList.get(2).pop();
                 object.getGridPosition().setPos(col, row);
                 return object;

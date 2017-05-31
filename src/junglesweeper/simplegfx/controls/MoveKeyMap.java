@@ -59,7 +59,7 @@ public class MoveKeyMap implements KeyboardHandler {
     public void init() {
 
         // Direction keys
-        for (int i = 0; i < keys.length - 1; i++) {
+        for (int i = 0; i < keys.length; i++) {
 
             addKeyboardEvent(keys[i], KeyboardEventType.KEY_PRESSED);
             addKeyboardEvent(keys[i], KeyboardEventType.KEY_RELEASED);
@@ -97,6 +97,7 @@ public class MoveKeyMap implements KeyboardHandler {
         // Space or Q
         if (e.getKey() == keys[4]) {
             specialKey = true;
+            System.out.println("specialkey");
         }
 
     }

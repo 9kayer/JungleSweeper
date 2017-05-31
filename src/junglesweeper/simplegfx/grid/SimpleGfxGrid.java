@@ -39,6 +39,11 @@ public class SimpleGfxGrid implements Grid {
     }
 
     @Override
+    public void hide() {
+        pictureScreen.delete();
+    }
+
+    @Override
     public int getCols() {
         return cols;
     }
