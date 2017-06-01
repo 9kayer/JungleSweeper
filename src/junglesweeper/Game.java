@@ -35,12 +35,14 @@ public class Game {
     private MoveKeyMap keyMap;
     private SimpleGfxSensor traps;
     private Picture gameOverPic;
+    private Sound music;
 
     public Game(DisplayType displayType, int cols, int rows) {
 
         display = DisplayFactory.makeDisplay(displayType, 10);
         display.makeGrids();
-
+        music = new Sound("/ttps/WelcometotheJunglewav.wav");
+        music.setLoop(1000);
         gameObjectList = new ArrayList<>();
         keyMap = new MoveKeyMap(MoveKeyMap.ControlType.MODE_1);
         sensor = new Sensor(cols, rows, FIRST_LEVEL);
@@ -52,6 +54,8 @@ public class Game {
     }
 
     public void init() {
+
+        music.play();
 
         // Init the stacks for game object collection
         for (int i = 0; i < GameObjectsType.values().length; i++) {
@@ -97,8 +101,6 @@ public class Game {
 
         while(!end){
 
-
-
             if(player.isActive())
                 System.out.println("player is active");
 
@@ -136,18 +138,25 @@ public class Game {
                         break;
                     }
 
-
                     Thread.sleep(DELAY);
 
                 }
 
-
                 removeObjects();
 
-                if(!player.isActive()){
+                if(!player.isActive()) {
                     gameOverPic.draw();
                     keyMap.lockDirectionKeys();
                 }
+
+            }
+
+            if (player.isActive()){
+                //winner
+                //print the win backgound
+                music.stop();
+                music.close();
+                music = new Sound("/ttps/finalmusic.wav");
 
             }
 
