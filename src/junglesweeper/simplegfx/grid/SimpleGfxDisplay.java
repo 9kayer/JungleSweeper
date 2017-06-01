@@ -29,6 +29,7 @@ public class SimpleGfxDisplay implements Display {
 
     }
 
+
     public void setBackground(String string) {
         background.load(string);
     }

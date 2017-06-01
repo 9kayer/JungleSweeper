@@ -89,9 +89,10 @@ public class Game {
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
+
             }
         }
-
+        display.setBackground("./assets/Game/FinalBG2.jpg");
     }
 
     public void start() throws InterruptedException {
