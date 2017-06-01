@@ -9,6 +9,7 @@ import junglesweeper.player.Player;
 import junglesweeper.simplegfx.SimpleGfxPlayer;
 import junglesweeper.simplegfx.controls.MoveKeyMap;
 import junglesweeper.sensor.Sensor;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.util.ArrayList;
 import java.util.Stack;
@@ -32,6 +33,7 @@ public class Game {
     private Player player;
     private MoveKeyMap keyMap;
     private SimpleGfxSensor traps;
+    private Picture gameOverPic;
 
     public Game(DisplayType displayType, int cols, int rows) {
 
@@ -43,6 +45,8 @@ public class Game {
         sensor = new Sensor(cols, rows, FIRST_LEVEL);
         stackArrayList = new ArrayList<>();
         collisionDetector = new CollisionDetector();
+
+        gameOverPic = new Picture(350 / 2,250 / 2 ,"./assets/Game/GameOver.png");
 
     }
 
@@ -123,7 +127,7 @@ public class Game {
         }
 
         if (!player.isActive()) {
-            // show game over
+            gameOverPic.draw();
         } else  {
             // Winner
         }
@@ -247,16 +251,15 @@ public class Game {
 
         // Draw all the game objects
         for (GameObject go : gameObjectList) {
-            if (!go.getType().equals(GameObjectsType.TIGER)) {
+           // if (!go.getType().equals(GameObjectsType.TIGER)) {
                 go.getGridPosition().show();
-            }
+            //}
         }
         drawPath();
 
         // Draw the players
         //player.getPos().show();
         player.show();
-
         traps.show();
 
     }
