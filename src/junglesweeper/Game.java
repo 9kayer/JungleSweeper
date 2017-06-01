@@ -287,9 +287,9 @@ public class Game {
 
         // Draw all the game objects
         for (GameObject go : gameObjectList) {
-            if (!go.getType().equals(GameObjectsType.TIGER)) {
+            //if (!go.getType().equals(GameObjectsType.TIGER)) {
                 go.getGridPosition().show();
-            }
+            //}
         }
         drawPath();
 
