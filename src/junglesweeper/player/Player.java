@@ -81,16 +81,11 @@ public abstract class Player implements Collidable {
 
     public abstract void show();
 
-<<<<<<< HEAD
-    /**
-     * Decrease lives if catch up by a jungle trap
-     */
-=======
-    public void keyPicShow(){
+    public void keyPicShow(){ //TODO: Verify this.....
         keyPic.draw();
     }
 
->>>>>>> 6897b6019b70febc9cdfc8ad3e9903a5079027ab
+
     @Override
     public void collide() {
         lives--;
