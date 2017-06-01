@@ -12,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-        Game jungleSweeper = new Game(DisplayType.SIMPLE_GFX, 16, 18);
+        Game jungleSweeper = new Game(DisplayType.SIMPLE_GFX, 18, 16);
 
         jungleSweeper.init();
         jungleSweeper.start();
