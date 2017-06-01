@@ -79,9 +79,10 @@ public class Game {
                 Thread.sleep(DELAY);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+
             }
         }
-
+        display.setBackground("./assets/Game/FinalBG2.jpg");
     }
 
     public void start() throws InterruptedException {
