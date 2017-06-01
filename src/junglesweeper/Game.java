@@ -237,8 +237,8 @@ public class Game {
                 if (object instanceof Door && object.isActive()) {
                     music.stop();
                     music.close();
-                    if(3 + i +1 >= Level.NUM_LEVELS){
-                        continue;
+                    if( i == Level.NUM_LEVELS - 1){
+                        break;
                     }
                     music = new Sound(Sound.getMusicList()[3 + i + 1]);
                     music.setLoop(1000);
