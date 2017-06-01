@@ -13,8 +13,9 @@ import java.net.URL;
 public class Sound {
 
         private static final String[] MUSIC_LIST = {"/resources/audio/beginnigsong.wav","/resources/audio/loosermusic.wav" ,
-             "/resources/audio/finalmusic.wav" , "/resources/audio/WelcomeToTheJungle.wav" , "/resources/audio/frozen.wav" ,
-                "/resources/audio/beach.wav" , "/resources/audio/hysteria.wav" , "/resources/audio/level5.wav" , "/resources/audio/level6.wav" };
+             "/resources/audio/finalmusic.wav" , "/resources/audio/countdown.wav" , "/resources/audio/frozen.wav" ,
+                "/resources/audio/rocky.wav" , "/resources/audio/aha.wav" , "/resources/audio/stairway.wav" ,
+                "/resources/audio/level6.wav","/resources/audio/level7.wav" };
 
         private Clip clip;
 

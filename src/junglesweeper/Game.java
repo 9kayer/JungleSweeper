@@ -165,6 +165,7 @@ public class Game {
             music.stop();
             music.close();
             music = new Sound(Sound.getMusicList()[1]);
+            music.setLoop(1000);
             music.play();
         }
         else{
@@ -172,6 +173,7 @@ public class Game {
             music.stop(); //TODO: put some winner's background
             music.close();
             music = new Sound(Sound.getMusicList()[2]);
+            music.setLoop(1000);
             music.play();
         }
 
@@ -235,7 +237,11 @@ public class Game {
                 if (object instanceof Door && object.isActive()) {
                     music.stop();
                     music.close();
+                    if(3 + i +1 >= Level.NUM_LEVELS){
+                        continue;
+                    }
                     music = new Sound(Sound.getMusicList()[3 + i + 1]);
+                    music.setLoop(1000);
                     break;
                 }
 
