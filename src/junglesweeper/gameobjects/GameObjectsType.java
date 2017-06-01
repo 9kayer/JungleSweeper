@@ -8,11 +8,11 @@ package junglesweeper.gameobjects;
 
 public enum GameObjectsType {
 
-    OBSTACLE(1, "./assets/pictures/tree.png" ),
-    KEY(3, "./assets/pictures/key.png"),
-    PATH(5, "./assets/pictures/path.png"),
-    DOOR(4, "./assets/pictures/Door.png"),
-    ENEMY(2, "./assets/pictures/tiger.png");
+    OBSTACLE(1, "resources/pictures/tree.png" ),
+    KEY(3, "resources/pictures/key.png"),
+    PATH(5, "resources/pictures/path.png"),
+    DOOR(4, "resources/pictures/Door.png"),
+    ENEMY(2, "resources/pictures/tiger.png");
 
     private int referenceInMap;
     private String imagePath;

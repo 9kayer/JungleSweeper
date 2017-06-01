@@ -88,7 +88,7 @@ public class Game {
         display.makeGrids();
 
         // Construct and initialize the music
-        music = new Sound("/ttps/WelcomeToTheJungle.wav");
+        music = new Sound("/resources/audio/WelcomeToTheJungle.wav");
         music.setLoop(1000);
 
         gameObjectList = new ArrayList<>();
@@ -96,7 +96,7 @@ public class Game {
         sensor = new Sensor(cols, rows, FIRST_LEVEL);
         stackArrayList = new ArrayList<>();
         collisionDetector = new CollisionDetector();
-        gameOverPic = new Picture(350 / 2, 250 / 2, "./assets/pictures/GameOver.png");
+        gameOverPic = new Picture(350 / 2, 250 / 2, "resources/pictures/GameOver.png");
 
     }
 
@@ -135,11 +135,11 @@ public class Game {
         keyMap.lockDirectionKeys();
 
         //change to guide screen
-        display.setBackground("./assets/pictures/instructions.jpg");
+        display.setBackground("resources/pictures/instructions.jpg");
 
         initialScreen();
 
-        display.setBackground("./assets/pictures/FinalBG2.jpg");
+        display.setBackground("resources/pictures/FinalBG2.jpg");
     }
 
     public void start() throws InterruptedException {
@@ -196,7 +196,7 @@ public class Game {
 
             music.stop();
             music.close();
-            music = new Sound("/ttps/finalmusic.wav");
+            music = new Sound("/resources/audio/finalmusic.wav");
             music.play();
 
         }

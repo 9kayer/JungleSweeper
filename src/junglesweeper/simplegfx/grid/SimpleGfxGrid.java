@@ -30,7 +30,7 @@ public class SimpleGfxGrid implements Grid {
         this.Y_PADDING = simpleGfxGridType.getyPadding();
         this.cols = simpleGfxGridType.getCols();
         this.rows = simpleGfxGridType.getRows();
-        pictureScreen = new Picture(X_PADDING, Y_PADDING,simpleGfxGridType.getImagePath());
+        pictureScreen = new Picture(X_PADDING, Y_PADDING, simpleGfxGridType.getImagePath());
     }
 
     @Override
