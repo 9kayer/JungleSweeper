@@ -9,6 +9,7 @@ import junglesweeper.player.Player;
 import junglesweeper.simplegfx.SimpleGfxPlayer;
 import junglesweeper.simplegfx.controls.MoveKeyMap;
 import junglesweeper.sensor.Sensor;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.util.ArrayList;
 import java.util.Stack;
@@ -33,6 +34,7 @@ public class Game {
     private Player player;
     private MoveKeyMap keyMap;
     private SimpleGfxSensor traps;
+    private Picture gameOverPic;
 
     public Game(DisplayType displayType, int cols, int rows) {
 
@@ -44,6 +46,8 @@ public class Game {
         sensor = new Sensor(cols, rows, FIRST_LEVEL);
         stackArrayList = new ArrayList<>();
         collisionDetector = new CollisionDetector();
+
+        gameOverPic = new Picture(350 / 2,250 / 2 ,"./assets/Game/GameOver.png");
 
     }
 
@@ -99,6 +103,8 @@ public class Game {
 
         while(!end){
 
+
+
             if(player.isActive())
                 System.out.println("player is active");
 
@@ -145,6 +151,7 @@ public class Game {
                 removeObjects();
 
                 if(!player.isActive()){
+                    gameOverPic.draw();
                     keyMap.lockDirectionKeys();
                 }
 
@@ -191,6 +198,8 @@ public class Game {
         //retrieveGameObjects();
 
         //player.reset();
+
+        gameOverPic.delete();
 
         // Create the game objects
         createGameObjects(i);

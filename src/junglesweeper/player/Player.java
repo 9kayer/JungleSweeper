@@ -4,6 +4,7 @@ import junglesweeper.collisiondetector.Collidable;
 import junglesweeper.collisiondetector.CollisionDetector;
 import junglesweeper.grid.position.GridPosition;
 import junglesweeper.grid.position.Direction;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 /**
  * A/C - bootcamp8
@@ -25,6 +26,7 @@ public abstract class Player implements Collidable {
         this.lives = lives;
         this.maxlives = lives;
         this.collisionDetector = collisionDetector;
+
     }
 
     public boolean hasKey() {
