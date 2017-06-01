@@ -17,10 +17,10 @@ public class Sensor {
     private int[][] trapsByPosition;
 
     /**
-     * Sensor logic constructor
+     * Sensor Constructor
      *
-     * @param cols   game matix columns
-     * @param rows   game matix rows
+     * @param cols game matix columns
+     * @param rows game matix rows
      * @param level game level
      */
     public Sensor(int cols, int rows, int level) {
@@ -30,27 +30,36 @@ public class Sensor {
 
     }
 
+    /**
+     * Initialize the traps matrix
+     */
     public void init() {
 
         trapsByPosition = new int[cols][rows];
 
-        for (int i = 0; i < cols; i++) {
-            for (int j = 0; j < rows; j++) {
-                trapsByPosition[i][j] = getNeighbors(i, j);
+        for (int col = 0; col < cols; col++) {
+            for (int row = 0; row < rows; row++) {
+                trapsByPosition[col][row] = getTrapsByPosition(col, row);
             }
         }
     }
 
     /**
-     * Update level
+     * Count traps for each position
      *
-     * @param level
+     * @param level The level number
      */
     public void updateLevel(int level) {
         this.actualGameMatrix = Level.getLevelMatrix(level);
     }
 
-    public int getNeighbors(int col, int row) {
+    /**
+     * Get traps by each matrix position
+     * @param col Receives the column
+     * @param row Receives the row
+     * @return Total number of traps in the position
+     */
+    public int getTrapsByPosition(int col, int row) {
         int total = 0;
 
         if ((col - 1 >= 0) && GameObjectsType.get(actualGameMatrix[col - 1][row]).equals(GameObjectsType.TIGER)) {
@@ -72,6 +81,12 @@ public class Sensor {
         return total;
     }
 
+    /**
+     * Get traps for each matrix position
+     * @param col Receives the column
+     * @param row Receives the row
+     * @return The number of traps for the position requested
+     */
     public int getEnemies(int col, int row) {
         return trapsByPosition[col][row];
     }
