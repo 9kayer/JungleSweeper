@@ -81,10 +81,11 @@ public class Game {
         keyMap.lockDirectionKeys();
 
         //change to guide screen
-        display.setBackground("./assets/Game/FinalBG2.jpg");
+        display.setBackground("./assets/Game/instructions.jpg");
 
         initialScreen();
 
+        display.setBackground("./assets/Game/FinalBG2.jpg");
     }
 
     public void start() throws InterruptedException {
