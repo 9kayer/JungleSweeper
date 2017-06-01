@@ -4,6 +4,7 @@ import junglesweeper.collisiondetector.Collidable;
 import junglesweeper.collisiondetector.CollisionDetector;
 import junglesweeper.grid.position.GridPosition;
 import junglesweeper.grid.position.Direction;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 /**
  * A/C - bootcamp8
@@ -16,6 +17,7 @@ public abstract class Player implements Collidable {
     private GridPosition pos;
     private boolean key;
     private int lives;
+    private Picture keyPic;
     private CollisionDetector collisionDetector;
 
     /**
@@ -29,6 +31,7 @@ public abstract class Player implements Collidable {
         this.pos = pos;
         this.lives = lives;
         this.collisionDetector = collisionDetector;
+        keyPic = new Picture(110 , 320,"./assets/Game/nokey.png");
     }
 
     /**
@@ -44,6 +47,7 @@ public abstract class Player implements Collidable {
      * Flags the key as collected
      */
     public void collectKey() {
+        keyPic.load("./assets/Game/key.png");
         key = true;
     }
 
@@ -51,6 +55,7 @@ public abstract class Player implements Collidable {
      * Flags the key as dropped
      */
     public void dropKey() {
+        keyPic.load("./assets/Game/nokey.png");
         key = false;
     }
 
@@ -76,9 +81,16 @@ public abstract class Player implements Collidable {
 
     public abstract void show();
 
+<<<<<<< HEAD
     /**
      * Decrease lives if catch up by a jungle trap
      */
+=======
+    public void keyPicShow(){
+        keyPic.draw();
+    }
+
+>>>>>>> 6897b6019b70febc9cdfc8ad3e9903a5079027ab
     @Override
     public void collide() {
         lives--;
