@@ -7,8 +7,8 @@ import junglesweeper.Level;
  */
 public enum SimpleGfxGridType {
     // Paths Priority, xPadding , yPadding , Col , Rows , CellSize //
-    INFO_GRID("./assets/Game/sidebarBg.png", 2, 32, 35, -1, -1, 1),
-    MAP_GRID("./assets/Game/grid.png", 1, 190, 35, Level.getLevelMatrix(0).length, Level.getLevelMatrix(0)[0].length, 40);
+    INFO_GRID("resources/pictures/sidebarBg.png", 2, 32, 35, -1, -1, 1),
+    MAP_GRID("resources/pictures/grid.png", 1, 190, 35, Level.getLevelMatrix(0).length, Level.getLevelMatrix(0)[0].length, 40);
 
 
     private int priority;

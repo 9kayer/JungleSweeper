@@ -24,7 +24,7 @@ public class CollisionDetector {
 
     public boolean isPossible(GridPosition pos) {
         for (Collidable c : objectsList) {
-            if (c instanceof Rock && c.getPos().equals(pos)) {
+            if (c instanceof Obstacle && c.getPos().equals(pos)) {
                 return false;
             }
             if (!player.hasKey() && c instanceof Door && c.getPos().equals(pos)) {
@@ -44,15 +44,13 @@ public class CollisionDetector {
             }
 
             if (c instanceof Key && c.isActive()) {
-                System.out.println("Key");
                 c.collide();
                 player.collectKey();
 
                 return c;
             }
 
-            if (c instanceof Tiger) {
-                System.out.println("Tiger");
+            if (c instanceof Enemy) {
                 player.collide();
                 player.reset();
                 player.getPos().show();
@@ -61,7 +59,6 @@ public class CollisionDetector {
             }
 
             if (c instanceof Door && player.hasKey()) {
-                System.out.println("Door");
                 c.collide();
 
                 return c;
