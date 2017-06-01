@@ -13,8 +13,6 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
 
         Game jungleSweeper = new Game(DisplayType.SIMPLE_GFX, 18, 16);
-        Sound sound = new Sound("/ttps/WelcometotheJunglewav.wav");
-        sound.play();
 
         try{
             jungleSweeper.init();
