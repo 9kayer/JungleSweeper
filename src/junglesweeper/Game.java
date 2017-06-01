@@ -24,6 +24,7 @@ public class Game {
 
     private static final int DELAY = 25;
     private static final int FIRST_LEVEL = 0;
+    private static final int PLAYER_LIVES = 3;
 
     private ArrayList<GameObject> gameObjectList;
     private ArrayList<Stack<GameObject>> stackArrayList;
@@ -66,7 +67,7 @@ public class Game {
         // Start the player
         player = new SimpleGfxPlayer(
                 display.getGrid(1).makeGridPosition(0, 0, SimpleGfxPlayer.DOWN_ICON),
-                3,
+                PLAYER_LIVES,
                 collisionDetector
         );
 
@@ -77,6 +78,15 @@ public class Game {
         while (!keyMap.isSpecialKey()) {
             try {
                 Thread.sleep(DELAY);
+
+                if (keyMap.isLeave()) {
+                    throw new UnsupportedOperationException("No game for me please");
+                }
+
+                if (keyMap.isSpecialKey()){
+                    player.restartLives();
+                }
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -89,47 +99,69 @@ public class Game {
         // Collidable to check
         Collidable object;
 
-        // Level walkthrough
-        for (int i = 0; i < Level.NUM_LEVELS && player.isActive(); i++) {
+        boolean end = false;
 
-            // Create the level
-            createLevel(i);
+        while(!end){
 
-            //Draw all Grids
-            display.showGrid(1);
-            display.showGrid(2);
 
-            // Draw all the objects
-            drawObjects();
 
-            // While player is alive
-            while (player.isActive()) {
+            if(player.isActive())
+                System.out.println("player is active");
 
-                // Move player and check for collisions
-                if ((object = movePlayer()) == null) {
-                    continue;
+            // Level walkthrough
+            for (int i = 0; i < Level.NUM_LEVELS && player.isActive() ; i++) {
+
+                System.out.println(" inside");
+
+                // Create the level
+                createLevel(i);
+
+                //Draw all Grids
+                display.showAll();
+
+                //displays number of enemies
+                traps.show();
+
+                // Draw all the objects
+                drawObjects();
+
+                // While player is alive
+                while (player.isActive()) {
+
+                    // Move player and check for collisions
+                    if ((object = movePlayer()) == null) {
+                        continue;
+                    }
+
+                    if (object instanceof Tiger) {
+                        i--;
+                        break;
+                    }
+
+                    if (object instanceof Door && object.isActive()) {
+                        break;
+                    }
+
+
+                    Thread.sleep(DELAY);
+
                 }
 
-                if (object instanceof Tiger) {
-                    i--;
-                    break;
+
+                removeObjects();
+
+                if(!player.isActive()){
+                    gameOverPic.draw();
+                    keyMap.lockDirectionKeys();
                 }
-
-                if (object instanceof Door && object.isActive()) {
-                    break;
-                }
-
-
-                Thread.sleep(DELAY);
 
             }
 
-        }
+            end = waitForPlayer();
 
-        if (!player.isActive()) {
-            gameOverPic.draw();
-        } else  {
-            // Winner
+            Thread.sleep(DELAY);
+
+            System.out.println(keyMap.isSpecialKey());
         }
     }
 
@@ -163,9 +195,11 @@ public class Game {
         // - Reset the player
         // - Close the door
 
-        retrieveGameObjects();
+        //retrieveGameObjects();
 
-        player.reset();
+        //player.reset();
+
+        gameOverPic.delete();
 
         // Create the game objects
         createGameObjects(i);
@@ -251,15 +285,16 @@ public class Game {
 
         // Draw all the game objects
         for (GameObject go : gameObjectList) {
-           // if (!go.getType().equals(GameObjectsType.TIGER)) {
+            if (!go.getType().equals(GameObjectsType.TIGER)) {
                 go.getGridPosition().show();
-            //}
+            }
         }
         drawPath();
 
         // Draw the players
         //player.getPos().show();
         player.show();
+
         traps.show();
 
     }
@@ -271,6 +306,33 @@ public class Game {
         newPath.getPos().show();
         gameObjectList.add(newPath);
 
+    }
+
+    private void removeObjects(){
+
+        retrieveGameObjects();
+
+        player.reset();
+
+        display.hideAll();
+
+        traps.hide();
+
+
+    }
+
+    private boolean waitForPlayer(){
+
+        if (keyMap.isLeave()) {
+            System.out.println("leaving");
+            return true;
+        }
+
+        if (keyMap.isSpecialKey()){
+            System.out.println("inside special key");
+            player.restartLives();
+        }
+        return false;
     }
 
 }

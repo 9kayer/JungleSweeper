@@ -17,15 +17,16 @@ public abstract class Player implements Collidable {
     private GridPosition pos;
     private boolean key;
     private int lives;
-    private Picture keyPic;
+    private int maxlives;
     private CollisionDetector collisionDetector;
 
     // Initialize our Player
     public Player(GridPosition pos, int lives, CollisionDetector collisionDetector) {
         this.pos = pos;
         this.lives = lives;
+        this.maxlives = lives;
         this.collisionDetector = collisionDetector;
-        keyPic = new Picture(110 , 320,"./assets/Game/nokey.png");
+
     }
 
     public boolean hasKey() {
@@ -33,12 +34,10 @@ public abstract class Player implements Collidable {
     }
 
     public void collectKey() {
-        keyPic.load("./assets/Game/key.png");
         key = true;
     }
 
     public void dropKey() {
-        keyPic.load("./assets/Game/nokey.png");
         key = false;
     }
 
@@ -50,10 +49,6 @@ public abstract class Player implements Collidable {
     public abstract boolean move(Direction direction);
 
     public abstract void show();
-
-    public void keyPicShow(){
-        keyPic.draw();
-    }
 
     @Override
     public void collide() {
@@ -68,6 +63,12 @@ public abstract class Player implements Collidable {
     @Override
     public GridPosition getPos() {
         return pos;
+    }
+
+    public void restartLives(){
+        System.out.println("restarting lives");
+        lives = maxlives;
+
     }
 
     public int getLives() {

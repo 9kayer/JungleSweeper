@@ -21,14 +21,14 @@ public class SimpleGfxPlayer extends Player {
     public static final String LEFT_ICON = "./assets/pictures/player-left.png";
     // Heart pictures
     private Picture livesImg;
-
+    private Picture keyPic;
     private SimpleGfxGridPosition pos;
 
     public SimpleGfxPlayer(GridPosition pos, int lives, CollisionDetector collisionDetector) {
         super(pos, lives, collisionDetector);
         this.pos = (SimpleGfxGridPosition) pos;
         livesImg = new Picture(53, 320, "./assets/Game/hud_heartFull.png");
-
+        keyPic = new Picture(110 , 320,"./assets/Game/nokey.png");
     }
 
     public boolean move(Direction direction) {
@@ -61,6 +61,8 @@ public class SimpleGfxPlayer extends Player {
         dropKey();
         pos.setPos(0, 0);
         pos.hide();
+        livesImg.delete();
+        keyPic.delete();
     }
 
     public GridPosition getPos() {
@@ -87,9 +89,27 @@ public class SimpleGfxPlayer extends Player {
     }
 
     public void show() {
+        keyPic.draw();
         livesImg.draw();
         pos.show();
-        super.keyPicShow();
+    }
+
+    @Override
+    public void collectKey() {
+        super.collectKey();
+        keyPic.load("./assets/Game/key.png");
+    }
+
+    @Override
+    public void dropKey() {
+        super.dropKey();
+        keyPic.load("./assets/Game/nokey.png");
+    }
+
+    @Override
+    public void restartLives() {
+        super.restartLives();
+        livesImg.load("./assets/Game/hud_heartFull.png");
     }
 
 }

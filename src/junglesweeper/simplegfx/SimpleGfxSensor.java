@@ -38,4 +38,8 @@ public class SimpleGfxSensor {
     public void show() {
         pic.draw();
     }
+
+    public void hide(){
+        pic.delete();
+    }
 }
