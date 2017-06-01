@@ -215,7 +215,6 @@ public class Game {
     }
 
     private void createGameObjects(int i) {
-
         // Run all the grid
         for (int col = 0; col < display.getGrid(1).getCols(); col++) {
             for (int row = 0; row < display.getGrid(1).getRows(); row++) {
