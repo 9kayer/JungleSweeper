@@ -60,6 +60,7 @@ public class SimpleGfxPlayer extends Player {
         dropKey();
         pos.setPos(0, 0);
         pos.hide();
+        livesImg.delete();
     }
 
     public GridPosition getPos() {
@@ -87,4 +88,9 @@ public class SimpleGfxPlayer extends Player {
         pos.show();
     }
 
+    @Override
+    public void restartLives() {
+        super.restartLives();
+        livesImg.load("./assets/Game/hud_heartFull.png");
+    }
 }
