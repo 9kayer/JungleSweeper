@@ -75,24 +75,16 @@ public class Game {
         traps = new SimpleGfxSensor(sensor.getEnemies(player.getPos().getCol(), player.getPos().getRow()));
 
         //Waiting for player to press Space or Q key to start the game
-        while (!keyMap.isSpecialKey()) {
-            try {
-                Thread.sleep(DELAY);
 
-                if (keyMap.isLeave()) {
-                    throw new UnsupportedOperationException("No game for me please");
-                }
+        initialScreen();
 
-                if (keyMap.isSpecialKey()){
-                    player.restartLives();
-                }
+        keyMap.lockDirectionKeys();
 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-
-            }
-        }
+        //change to guide screen
         display.setBackground("./assets/Game/FinalBG2.jpg");
+
+        initialScreen();
+
     }
 
     public void start() throws InterruptedException {
@@ -333,6 +325,27 @@ public class Game {
             player.restartLives();
         }
         return false;
+    }
+
+    private void initialScreen() {
+
+        while (!keyMap.isSpecialKey()) {
+            try {
+                Thread.sleep(DELAY);
+
+                if (keyMap.isLeave()) {
+                    throw new UnsupportedOperationException("No game for me please");
+                }
+
+                if (keyMap.isSpecialKey()){
+                    player.restartLives();
+                }
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+
+            }
+        }
     }
 
 }
