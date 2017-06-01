@@ -8,7 +8,7 @@ package junglesweeper.gameobjects;
 
 public enum GameObjectsType {
 
-    ROCK(1, "./assets/pictures/rock.png" ), //TODO: Can we move here the the GridColor(s)?
+    ROCK(1, "./assets/Game/tree.png" ), //TODO: Can we move here the the GridColor(s)?
     KEY(3, "./assets/pictures/key.png"),
     PATH(5, "./assets/Game/path.png"),
     DOOR(4, "./assets/Game/Door.png"),
