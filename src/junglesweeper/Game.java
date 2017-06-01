@@ -22,6 +22,7 @@ import java.util.Stack;
 
 public class Game {
 
+
     private static final int DELAY = 25;
     private static final int FIRST_LEVEL = 0;
     private static final int PLAYER_LIVES = 3;
@@ -88,7 +89,7 @@ public class Game {
         display.makeGrids();
 
         // Construct and initialize the music
-        music = new Sound("/resources/audio/WelcomeToTheJungle.wav");
+        music = new Sound(Sound.getMusicList()[0]);
         music.setLoop(1000);
 
         gameObjectList = new ArrayList<>();
@@ -158,12 +159,16 @@ public class Game {
         keyMap.lockDirectionKeys();
 
         if (!player.isActive()) {
-            gameOverPic.draw();// TODO: put some looser's music
+            gameOverPic.draw();
+            music.stop();
+            music.close();
+            music = new Sound(Sound.getMusicList()[1]);
+            music.play();
         }
         else{
             music.stop(); //TODO: put some winner's background
             music.close();
-            music = new Sound("/resources/audio/finalmusic.wav");
+            music = new Sound(Sound.getMusicList()[2]);
             music.play();
         }
 
@@ -186,9 +191,16 @@ public class Game {
     private void playGame() throws InterruptedException {
 
         Collidable object;
+        music.stop();
+        music.close();
+        music = new Sound(Sound.getMusicList()[3]);
+        music.setLoop(1000);
+
 
         // Level walkthrough
         for (int i = 0; i < Level.NUM_LEVELS && player.isActive(); i++) {
+
+            music.play();
 
             keyMap.freeDirectionKey();
 
@@ -218,6 +230,9 @@ public class Game {
                 }
 
                 if (object instanceof Door && object.isActive()) {
+                    music.stop();
+                    music.close();
+                    music = new Sound(Sound.getMusicList()[3 + i + 1]);
                     break;
                 }
 
@@ -346,9 +361,9 @@ public class Game {
         // Draw all the game objects
         for (GameObject go : gameObjectList) {
 
-            if (go.getType().equals(GameObjectsType.ENEMY)) {
+            /*if (go.getType().equals(GameObjectsType.ENEMY)) {
                 continue;
-            }
+            }*/
 
             go.getGridPosition().show();
 
