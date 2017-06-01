@@ -36,9 +36,9 @@ public class MoveKeyMap implements KeyboardHandler {
     private Keyboard keyboard;
     private Direction direction;
     private boolean moving;
-    private boolean specialKey;
+    private boolean spaceKey;
     private boolean leave;
-
+    private boolean directionKeyBlocked;
     /**
      * Constructor
      */
@@ -56,6 +56,7 @@ public class MoveKeyMap implements KeyboardHandler {
         keyboard = new Keyboard(this);
         direction = Direction.UP;
         moving = false;
+        directionKeyBlocked = true;
 
     }
 
@@ -73,16 +74,18 @@ public class MoveKeyMap implements KeyboardHandler {
     public void keyPressed(KeyboardEvent e) {
 
         // Space or Q
-        if (e.getKey() == keys[4] && !specialKey) {
-            specialKey = true;
+        if (e.getKey() == keys[4] && directionKeyBlocked && !spaceKey) {
+
+            System.out.println("space");
+            spaceKey = true;
         }
 
         // N (its common for both because it's the button for leaving the game
-        if (e.getKey() == keys[5] && !specialKey) {
+        if (e.getKey() == keys[5] && directionKeyBlocked && !leave) {
             leave = true;
         }
 
-        if (!specialKey) {
+        if (directionKeyBlocked) {
             return;
         }
 
@@ -150,8 +153,12 @@ public class MoveKeyMap implements KeyboardHandler {
      *
      * @return boolean
      */
-    public boolean isSpecialKey() {
-        return specialKey;
+    public boolean isSpaceKey() {
+        return spaceKey;
+    }
+
+    public void endSpace(){
+        spaceKey = false;
     }
 
     /**
@@ -170,8 +177,14 @@ public class MoveKeyMap implements KeyboardHandler {
 
     }
 
+    public boolean isDirectionKeyBlocked() {
+        return directionKeyBlocked;
+    }
+
     public void lockDirectionKeys() {
-        specialKey = false;
+        direction = null;
+        directionKeyBlocked = true;
+
     }
 
     public boolean isLeave() {
@@ -183,5 +196,9 @@ public class MoveKeyMap implements KeyboardHandler {
         MODE_1,
         MODE_2
 
+    }
+
+    public void freeDirectionKey(){
+        directionKeyBlocked = false;
     }
 }

@@ -15,10 +15,10 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class SimpleGfxPlayer extends Player {
 
-    public static final String UP_ICON = "./assets/pictures/player-up.png";
-    public static final String RIGHT_ICON = "./assets/pictures/player-right.png";
-    public static final String DOWN_ICON = "./assets/pictures/player-down.png";
-    public static final String LEFT_ICON = "./assets/pictures/player-left.png";
+    public static final String UP_ICON = "resources/pictures/player-up.png";
+    public static final String RIGHT_ICON = "resources/pictures/player-right.png";
+    public static final String DOWN_ICON = "resources/pictures/player-down.png";
+    public static final String LEFT_ICON = "resources/pictures/player-left.png";
 
     // Heart pictures
     private Picture livesImg;
@@ -28,8 +28,8 @@ public class SimpleGfxPlayer extends Player {
     public SimpleGfxPlayer(GridPosition pos, int lives, CollisionDetector collisionDetector) {
         super(pos, lives, collisionDetector);
         this.pos = (SimpleGfxGridPosition) pos;
-        livesImg = new Picture(53, 320, "./assets/pictures/hud_heartFull.png");
-        keyPic = new Picture(110 , 320,"./assets/pictures/nokey.png");
+        livesImg = new Picture(53, 320, "resources/pictures/hud_heartFull.png");
+        keyPic = new Picture(110 , 320,"resources/pictures/nokey.png");
     }
 
     public boolean move(Direction direction) {
@@ -75,16 +75,16 @@ public class SimpleGfxPlayer extends Player {
         super.collide();
         switch (getLives()) {
             case 0 :
-                livesImg.load("./assets/pictures/hud_heartEmpty.png");
+                livesImg.load("resources/pictures/hud_heartEmpty.png");
                 break;
             case 1:
-                livesImg.load("./assets/pictures/hud_heartHalf.png");
+                livesImg.load("resources/pictures/hud_heartHalf.png");
                 break;
             case 2:
-                livesImg.load("./assets/pictures/hud_heartonequarters.png");
+                livesImg.load("resources/pictures/hud_heartonequarters.png");
                 break;
             case 3:
-                livesImg.load("./assets/pictures/hud_heartFull.png");
+                livesImg.load("resources/pictures/hud_heartFull.png");
                 break;
         }
     }
@@ -98,19 +98,19 @@ public class SimpleGfxPlayer extends Player {
     @Override
     public void collectKey() {
         super.collectKey();
-        keyPic.load("./assets/pictures/key.png");
+        keyPic.load("resources/pictures/key.png");
     }
 
     @Override
     public void dropKey() {
         super.dropKey();
-        keyPic.load("./assets/pictures/nokey.png");
+        keyPic.load("resources/pictures/nokey.png");
     }
 
     @Override
     public void restartLives() {
         super.restartLives();
-        livesImg.load("./assets/pictures/hud_heartFull.png");
+        livesImg.load("resources/pictures/hud_heartFull.png");
     }
 
 }

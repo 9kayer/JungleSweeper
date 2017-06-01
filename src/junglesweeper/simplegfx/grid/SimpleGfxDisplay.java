@@ -22,7 +22,7 @@ public class SimpleGfxDisplay implements Display {
 
 
     public SimpleGfxDisplay(DisplayType displayType, int padding) {
-        background = new Picture(X_PADDING, Y_PADDING, "./assets/pictures/FinalBG.jpg");
+        background = new Picture(X_PADDING, Y_PADDING, "resources/pictures/FinalBG.jpg");
         this.displayType = displayType;
         this.padding = padding;
         background.draw();

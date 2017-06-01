@@ -88,7 +88,7 @@ public class Game {
         display.makeGrids();
 
         // Construct and initialize the music
-        music = new Sound("/ttps/WelcomeToTheJungle.wav");
+        music = new Sound("/resources/audio/WelcomeToTheJungle.wav");
         music.setLoop(1000);
 
         gameObjectList = new ArrayList<>();
@@ -96,7 +96,7 @@ public class Game {
         sensor = new Sensor(cols, rows, FIRST_LEVEL);
         stackArrayList = new ArrayList<>();
         collisionDetector = new CollisionDetector();
-        gameOverPic = new Picture(350 / 2, 250 / 2, "./assets/pictures/GameOver.png");
+        gameOverPic = new Picture(350 / 2, 250 / 2, "resources/pictures/GameOver.png");
 
     }
 
@@ -132,23 +132,65 @@ public class Game {
         // Waiting for player to press Space or Q key to start the game
         initialScreen();
 
-        keyMap.lockDirectionKeys();
-
         //change to guide screen
-        display.setBackground("./assets/pictures/instructions.jpg");
+        display.setBackground("resources/pictures/instructions.jpg");
 
         initialScreen();
 
-        display.setBackground("./assets/pictures/FinalBG2.jpg");
+        display.setBackground("resources/pictures/FinalBG2.jpg");
     }
 
     public void start() throws InterruptedException {
 
-        // Collidable to check
+        while (true) {
+
+            playGame();
+
+            if(!afterGame()){
+                break;
+            }
+
+        }
+    }
+
+    private boolean afterGame() throws InterruptedException{
+
+        keyMap.lockDirectionKeys();
+
+        if (!player.isActive()) {
+            gameOverPic.draw();// TODO: put some looser's music
+        }
+        else{
+            music.stop(); //TODO: put some winner's background
+            music.close();
+            music = new Sound("/resources/audio/finalmusic.wav");
+            music.play();
+        }
+
+        while (true){
+
+            if (keyMap.isLeave()){
+                return false;
+            }
+
+            if (keyMap.isSpaceKey()){
+                restartGame();
+                keyMap.endSpace();
+                return true;
+            }
+
+            Thread.sleep(DELAY);
+        }
+    }
+
+    private void playGame() throws InterruptedException {
+
         Collidable object;
 
         // Level walkthrough
         for (int i = 0; i < Level.NUM_LEVELS && player.isActive(); i++) {
+
+            keyMap.freeDirectionKey();
 
             // Create the level
             createLevel(i);
@@ -184,28 +226,6 @@ public class Game {
             }
 
             removeObjects();
-
-            if (!player.isActive()) {
-                gameOverPic.draw();
-                keyMap.lockDirectionKeys();
-            }
-
-        }
-
-        if (player.isActive()) {
-
-            music.stop();
-            music.close();
-            music = new Sound("/ttps/finalmusic.wav");
-            music.play();
-
-        }
-
-        if (!waitForPlayer()) {
-
-            Thread.sleep(DELAY);
-
-            start();
 
         }
     }
@@ -364,28 +384,15 @@ public class Game {
 
     }
 
-    private boolean waitForPlayer() {
-
-        if (keyMap.isSpecialKey()) {
-            player.restartLives();
-        }
-
-        return keyMap.isLeave();
-
-    }
-
     private void initialScreen() {
 
-        while (!keyMap.isSpecialKey()) {
+        while (!keyMap.isSpaceKey()) {
             try {
+
                 Thread.sleep(DELAY);
 
                 if (keyMap.isLeave()) {
                     throw new UnsupportedOperationException("No game for me please");
-                }
-
-                if (keyMap.isSpecialKey()) {
-                    player.restartLives();
                 }
 
             } catch (InterruptedException e) {
@@ -393,6 +400,14 @@ public class Game {
 
             }
         }
+        keyMap.endSpace();
     }
 
+
+    private void restartGame(){
+        music.stop();
+        music.close();
+        player.restartLives();
+        gameOverPic.delete();
+    }
 }
