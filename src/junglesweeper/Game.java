@@ -69,6 +69,7 @@ public class Game {
      * Pop up windows
      */
     private Picture gameOverPic;
+    private Picture congratz;
 
     /**
      * Sound library
@@ -98,6 +99,7 @@ public class Game {
         stackArrayList = new ArrayList<>();
         collisionDetector = new CollisionDetector();
         gameOverPic = new Picture(350 / 2, 250 / 2, "resources/pictures/GameOver.png");
+        congratz = new Picture(350 / 2, 250 / 2, "resources/pictures/congratz.png");
 
     }
 
@@ -166,6 +168,7 @@ public class Game {
             music.play();
         }
         else{
+            congratz.draw();
             music.stop(); //TODO: put some winner's background
             music.close();
             music = new Sound(Sound.getMusicList()[2]);
