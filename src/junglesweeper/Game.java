@@ -72,7 +72,7 @@ public class Game {
     /**
      * Sound library
      */
-    //private Sound music;
+    private Sound music;
 
     /**
      * Game contructor
@@ -88,15 +88,15 @@ public class Game {
         display.makeGrids();
 
         // Construct and initialize the music
-        //music = new Sound("/ttps/WelcometotheJunglewav.wav");
-        //music.setLoop(1000);
+        music = new Sound("/resources/audio/WelcomeToTheJungle.wav");
+        music.setLoop(1000);
 
         gameObjectList = new ArrayList<>();
         keyMap = new MoveKeyMap(MoveKeyMap.ControlType.MODE_1);
         sensor = new Sensor(cols, rows, FIRST_LEVEL);
         stackArrayList = new ArrayList<>();
         collisionDetector = new CollisionDetector();
-        gameOverPic = new Picture(350 / 2, 250 / 2, "./assets/pictures/GameOver.png");
+        gameOverPic = new Picture(350 / 2, 250 / 2, "resources/pictures/GameOver.png");
 
     }
 
@@ -106,7 +106,7 @@ public class Game {
     public void init() {
 
         // Start the music
-        //music.play();
+        music.play();
 
         // Init the stacks for game object collection
         for (int i = 0; i < GameObjectsType.values().length; i++) {
@@ -133,15 +133,14 @@ public class Game {
         initialScreen();
 
         //change to guide screen
-        display.setBackground("./assets/pictures/instructions.jpg");
+        display.setBackground("resources/pictures/instructions.jpg");
 
         initialScreen();
 
-        display.setBackground("./assets/pictures/FinalBG2.jpg");
+        display.setBackground("resources/pictures/FinalBG2.jpg");
     }
 
     public void start() throws InterruptedException {
-
 
         while (true) {
 
@@ -162,10 +161,10 @@ public class Game {
             gameOverPic.draw();// TODO: put some looser's music
         }
         else{
-            /*music.stop(); //TODO: put some winner's background
+            music.stop(); //TODO: put some winner's background
             music.close();
-            music = new Sound("/ttps/finalmusic.wav");
-            music.play();*/
+            music = new Sound("/resources/audio/finalmusic.wav");
+            music.play();
         }
 
         while (true){
@@ -188,6 +187,7 @@ public class Game {
 
         Collidable object;
 
+        // Level walkthrough
         for (int i = 0; i < Level.NUM_LEVELS && player.isActive(); i++) {
 
             keyMap.freeDirectionKey();
@@ -345,9 +345,13 @@ public class Game {
 
         // Draw all the game objects
         for (GameObject go : gameObjectList) {
-            //if (!go.getType().equals(GameObjectsType.ENEMY)) {
+
+            if (go.getType().equals(GameObjectsType.ENEMY)) {
+                continue;
+            }
+
             go.getGridPosition().show();
-            //}
+
         }
 
         drawPath();
@@ -401,8 +405,8 @@ public class Game {
 
 
     private void restartGame(){
-        //music.stop();
-        //music.close();
+        music.stop();
+        music.close();
         player.restartLives();
         gameOverPic.delete();
     }
