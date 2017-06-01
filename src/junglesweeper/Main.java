@@ -13,15 +13,14 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
 
         Game jungleSweeper = new Game(DisplayType.SIMPLE_GFX, 18, 16);
-        Sound sound = new Sound("/ttps/WelcometotheJunglewav.wav");
-        sound.play();
 
-        try{
+        try {
+
             jungleSweeper.init();
             jungleSweeper.start();
 
-        }catch (UnsupportedOperationException u){
-            System.out.println(u.getMessage());
+        } catch (UnsupportedOperationException e) {
+            System.out.println(e.getMessage());
         }
 
         System.exit(0);

@@ -65,10 +65,8 @@ public abstract class Player implements Collidable {
         return pos;
     }
 
-    public void restartLives(){
-        System.out.println("restarting lives");
+    public void restartLives() {
         lives = maxlives;
-
     }
 
     public int getLives() {

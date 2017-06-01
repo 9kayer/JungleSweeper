@@ -26,7 +26,7 @@ public class Path extends GameObject {
 
     @Override
     public void reset() {
-
+        getPos().hide();
     }
 
     @Override
