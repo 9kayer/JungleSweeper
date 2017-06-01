@@ -13,7 +13,7 @@ public class SimpleGfxSensor {
     private Picture pic;
 
     public SimpleGfxSensor(int trap) {
-        pic = new Picture(85, 65, "./assets/Game/SliderBarNone.png");
+        pic = new Picture(85, 65, "./assets/pictures/SliderBarNone.png");
     }
 
     //Change image by the number of enemys around
@@ -21,16 +21,16 @@ public class SimpleGfxSensor {
     public void reWrite(int trap) {
         switch (trap) {
             case 0:
-                pic.load("./assets/Game/SliderBarNone.png");
+                pic.load("./assets/pictures/SliderBarNone.png");
                 break;
             case 1:
-                pic.load("./assets/Game/SliderBarBlue.png");
+                pic.load("./assets/pictures/SliderBarBlue.png");
                 break;
             case 2:
-                pic.load("./assets/Game/SliderBarOrange.png");
+                pic.load("./assets/pictures/SliderBarOrange.png");
                 break;
             case 3:
-                pic.load("./assets/Game/SliderBarRed.png");
+                pic.load("./assets/pictures/SliderBarRed.png");
                 break;
         }
     }

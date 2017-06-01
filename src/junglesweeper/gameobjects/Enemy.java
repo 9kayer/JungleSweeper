@@ -8,10 +8,10 @@ import junglesweeper.grid.position.GridPosition;
  * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
 
-public class Tiger extends GameObject {
+public class Enemy extends GameObject {
 
-    public Tiger(GridPosition pos) {
-        super(pos, GameObjectsType.TIGER);
+    public Enemy(GridPosition pos) {
+        super(pos, GameObjectsType.ENEMY);
     }
 
     @Override

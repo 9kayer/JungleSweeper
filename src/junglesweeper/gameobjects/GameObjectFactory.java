@@ -31,17 +31,17 @@ public class GameObjectFactory {
                 object.getGridPosition().setPos(col, row);
                 return object;
 
-            case ROCK:
+            case OBSTACLE:
                 if (stackArrayList.get(2).empty()) {
-                    return new Rock(grid.makeGridPosition(col, row, GameObjectsType.ROCK.getImagePath()));
+                    return new Obstacle(grid.makeGridPosition(col, row, GameObjectsType.OBSTACLE.getImagePath()));
                 }
                 object = stackArrayList.get(2).pop();
                 object.getGridPosition().setPos(col, row);
                 return object;
 
-            case TIGER:
+            case ENEMY:
                 if (stackArrayList.get(3).empty()) {
-                    return new Tiger(grid.makeGridPosition(col, row, GameObjectsType.TIGER.getImagePath()));
+                    return new Enemy(grid.makeGridPosition(col, row, GameObjectsType.ENEMY.getImagePath()));
                 }
                 object = stackArrayList.get(3).pop();
                 object.getGridPosition().setPos(col, row);

@@ -8,10 +8,10 @@ import junglesweeper.grid.position.GridPosition;
  * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
 
-public class Rock extends GameObject {
+public class Obstacle extends GameObject {
 
-    public Rock(GridPosition pos) {
-        super(pos, GameObjectsType.ROCK);
+    public Obstacle(GridPosition pos) {
+        super(pos, GameObjectsType.OBSTACLE);
     }
 
     @Override

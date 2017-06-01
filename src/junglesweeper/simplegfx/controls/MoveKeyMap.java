@@ -75,13 +75,11 @@ public class MoveKeyMap implements KeyboardHandler {
         // Space or Q
         if (e.getKey() == keys[4] && !specialKey) {
             specialKey = true;
-            System.out.println("specialkey " + specialKey);
         }
 
         // N (its common for both because it's the button for leaving the game
         if (e.getKey() == keys[5] && !specialKey) {
             leave = true;
-            System.out.println("leaveKey");
         }
 
         if (!specialKey) {
