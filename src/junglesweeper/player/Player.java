@@ -4,6 +4,7 @@ import junglesweeper.collisiondetector.Collidable;
 import junglesweeper.collisiondetector.CollisionDetector;
 import junglesweeper.grid.position.GridPosition;
 import junglesweeper.grid.position.Direction;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 /**
  * A/C - bootcamp8
@@ -16,6 +17,7 @@ public abstract class Player implements Collidable {
     private GridPosition pos;
     private boolean key;
     private int lives;
+    private Picture keyPic;
     private CollisionDetector collisionDetector;
 
     // Initialize our Player
@@ -23,6 +25,7 @@ public abstract class Player implements Collidable {
         this.pos = pos;
         this.lives = lives;
         this.collisionDetector = collisionDetector;
+        keyPic = new Picture(110 , 320,"./assets/Game/nokey.png");
     }
 
     public boolean hasKey() {
@@ -30,10 +33,12 @@ public abstract class Player implements Collidable {
     }
 
     public void collectKey() {
+        keyPic.load("./assets/Game/key.png");
         key = true;
     }
 
     public void dropKey() {
+        keyPic.load("./assets/Game/nokey.png");
         key = false;
     }
 
@@ -45,6 +50,10 @@ public abstract class Player implements Collidable {
     public abstract boolean move(Direction direction);
 
     public abstract void show();
+
+    public void keyPicShow(){
+        keyPic.draw();
+    }
 
     @Override
     public void collide() {
