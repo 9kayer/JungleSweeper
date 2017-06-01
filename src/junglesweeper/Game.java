@@ -143,48 +143,44 @@ public class Game {
     public void start() throws InterruptedException {
 
 
-        boolean afterGame = false;
-
         while (true) {
 
             playGame();
 
-            System.out.println(!player.isActive() && !afterGame);
-            if (!player.isActive() && !afterGame) {
-                gameOverPic.draw();
-                keyMap.lockDirectionKeys();
-                afterGame = true;
-            }
-
-            System.out.println(player.isActive() && !afterGame);
-            if (player.isActive() && !afterGame) {
-                
-                afterGame = true;
-                /*music.stop();
-                music.close();
-                music = new Sound("/ttps/finalmusic.wav");
-                music.play();*/
-            }
-
-
-            System.out.println(keyMap.isDirectionKeyBlocked());
-
-            if (keyMap.isDirectionKeyBlocked() && keyMap.isLeave()){
-
-                //music.stop();
-                //music.close();
+            if(!afterGame()){
                 break;
             }
 
-            if (keyMap.isDirectionKeyBlocked() && keyMap.isSpaceKey()){
-                afterGame = false;
+        }
+    }
+
+    private boolean afterGame() throws InterruptedException{
+
+        keyMap.lockDirectionKeys();
+
+        if (!player.isActive()) {
+            gameOverPic.draw();// TODO: put some looser's music
+        }
+        else{
+            /*music.stop(); //TODO: put some winner's background
+            music.close();
+            music = new Sound("/ttps/finalmusic.wav");
+            music.play();*/
+        }
+
+        while (true){
+
+            if (keyMap.isLeave()){
+                return false;
+            }
+
+            if (keyMap.isSpaceKey()){
                 restartGame();
                 keyMap.endSpace();
+                return true;
             }
 
             Thread.sleep(DELAY);
-
-
         }
     }
 
