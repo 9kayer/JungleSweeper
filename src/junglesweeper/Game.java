@@ -307,6 +307,8 @@ public class Game {
 
         display.hideAll();
 
+        traps.hide();
+
 
     }
 
