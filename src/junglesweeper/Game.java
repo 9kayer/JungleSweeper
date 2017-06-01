@@ -26,32 +26,87 @@ public class Game {
     private static final int FIRST_LEVEL = 0;
     private static final int PLAYER_LIVES = 3;
 
+    /**
+     * ArrayList for store all the game objects
+     * except the player itself
+     */
     private ArrayList<GameObject> gameObjectList;
+
+    /**
+     * Stack for store all the game objects for level transition
+     * Auxiliary for object recycle
+     */
     private ArrayList<Stack<GameObject>> stackArrayList;
+
+    /**
+     * Detects and reacts to collisions between player and game objects
+     */
     private CollisionDetector collisionDetector;
+
+    /**
+     * Initialize the backgrounds
+     */
     private Display display;
+
+    /**
+     * Check and alerts the player for enemies around him
+     */
     private Sensor sensor;
-    private Player player;
-    private MoveKeyMap keyMap;
     private SimpleGfxSensor traps;
+
+    /**
+     * The MIGHT ONE, aka player
+     */
+    private Player player;
+
+    /**
+     * Keyboard Handler
+     */
+    private MoveKeyMap keyMap;
+
+    /**
+     * Pop up windows
+     */
     private Picture gameOverPic;
 
+    /**
+     * Sound library
+     */
+    private Sound music;
+
+    /**
+     * Game contructor
+     *
+     * @param displayType the kind of display to construct (attempt of agnostic implementation)
+     * @param cols        number of cols
+     * @param rows        number of rows
+     */
     public Game(DisplayType displayType, int cols, int rows) {
 
+        // Construct and initialize the grids
         display = DisplayFactory.makeDisplay(displayType, 10);
         display.makeGrids();
+
+        // Construct and initialize the music
+        music = new Sound("/ttps/WelcometotheJunglewav.wav");
+        music.setLoop(1000);
 
         gameObjectList = new ArrayList<>();
         keyMap = new MoveKeyMap(MoveKeyMap.ControlType.MODE_1);
         sensor = new Sensor(cols, rows, FIRST_LEVEL);
         stackArrayList = new ArrayList<>();
         collisionDetector = new CollisionDetector();
-
-        gameOverPic = new Picture(350 / 2,250 / 2 ,"./assets/Game/GameOver.png");
+        gameOverPic = new Picture(350 / 2, 250 / 2, "./assets/pictures/GameOver.png");
 
     }
 
+    /**
+     * Prepare the game for execution
+     */
     public void init() {
+
+        // Start the music
+        music.play();
 
         // Init the stacks for game object collection
         for (int i = 0; i < GameObjectsType.values().length; i++) {
@@ -74,18 +129,17 @@ public class Game {
         // After Create the game Objects we print the number of traps around them
         traps = new SimpleGfxSensor(sensor.getEnemies(player.getPos().getCol(), player.getPos().getRow()));
 
-        //Waiting for player to press Space or Q key to start the game
-
+        // Waiting for player to press Space or Q key to start the game
         initialScreen();
 
         keyMap.lockDirectionKeys();
 
         //change to guide screen
-        display.setBackground("./assets/Game/instructions.jpg");
+        display.setBackground("./assets/pictures/instructions.jpg");
 
         initialScreen();
 
-        display.setBackground("./assets/Game/FinalBG2.jpg");
+        display.setBackground("./assets/pictures/FinalBG2.jpg");
     }
 
     public void start() throws InterruptedException {
@@ -93,69 +147,66 @@ public class Game {
         // Collidable to check
         Collidable object;
 
-        boolean end = false;
+        // Level walkthrough
+        for (int i = 0; i < Level.NUM_LEVELS && player.isActive(); i++) {
 
-        while(!end){
+            // Create the level
+            createLevel(i);
 
+            //Draw all Grids
+            display.showAll();
 
+            //displays number of enemies
+            traps.show();
 
-            if(player.isActive())
-                System.out.println("player is active");
+            // Draw all the objects
+            drawObjects();
 
-            // Level walkthrough
-            for (int i = 0; i < Level.NUM_LEVELS && player.isActive() ; i++) {
+            // While player is alive
+            while (player.isActive()) {
 
-                System.out.println(" inside");
-
-                // Create the level
-                createLevel(i);
-
-                //Draw all Grids
-                display.showAll();
-
-                //displays number of enemies
-                traps.show();
-
-                // Draw all the objects
-                drawObjects();
-
-                // While player is alive
-                while (player.isActive()) {
-
-                    // Move player and check for collisions
-                    if ((object = movePlayer()) == null) {
-                        continue;
-                    }
-
-                    if (object instanceof Tiger) {
-                        i--;
-                        break;
-                    }
-
-                    if (object instanceof Door && object.isActive()) {
-                        break;
-                    }
-
-
-                    Thread.sleep(DELAY);
-
+                // Move player and check for collisions
+                if ((object = movePlayer()) == null) {
+                    continue;
                 }
 
-
-                removeObjects();
-
-                if(!player.isActive()){
-                    gameOverPic.draw();
-                    keyMap.lockDirectionKeys();
+                if (object instanceof Enemy) {
+                    i--;
+                    break;
                 }
+
+                if (object instanceof Door && object.isActive()) {
+                    break;
+                }
+
+                Thread.sleep(DELAY);
 
             }
 
-            end = waitForPlayer();
+            removeObjects();
+
+            if (!player.isActive()) {
+                gameOverPic.draw();
+                keyMap.lockDirectionKeys();
+            }
+
+        }
+
+        if (player.isActive()) {
+
+            music.stop();
+            music.close();
+            music = new Sound("/ttps/finalmusic.wav");
+            music.play();
+
+        }
+
+        if (!waitForPlayer()) {
 
             Thread.sleep(DELAY);
 
-            System.out.println(keyMap.isSpecialKey());
+            start();
+
         }
     }
 
@@ -188,10 +239,6 @@ public class Game {
         // - Collect created objects
         // - Reset the player
         // - Close the door
-
-        //retrieveGameObjects();
-
-        //player.reset();
 
         gameOverPic.delete();
 
@@ -252,11 +299,11 @@ public class Game {
                     stackArrayList.get(1).push(object);
                     object.getGridPosition().hide();
                     break;
-                case ROCK:
+                case OBSTACLE:
                     stackArrayList.get(2).push(object);
                     object.getGridPosition().hide();
                     break;
-                case TIGER:
+                case ENEMY:
                     stackArrayList.get(3).push(object);
                     object.getGridPosition().hide();
                     break;
@@ -278,14 +325,14 @@ public class Game {
 
         // Draw all the game objects
         for (GameObject go : gameObjectList) {
-            if (!go.getType().equals(GameObjectsType.TIGER)) {
+            //if (!go.getType().equals(GameObjectsType.ENEMY)) {
                 go.getGridPosition().show();
-            }
+            //}
         }
+
         drawPath();
 
         // Draw the players
-        //player.getPos().show();
         player.show();
 
         traps.show();
@@ -301,7 +348,7 @@ public class Game {
 
     }
 
-    private void removeObjects(){
+    private void removeObjects() {
 
         retrieveGameObjects();
 
@@ -311,21 +358,16 @@ public class Game {
 
         traps.hide();
 
-
     }
 
-    private boolean waitForPlayer(){
+    private boolean waitForPlayer() {
 
-        if (keyMap.isLeave()) {
-            System.out.println("leaving");
-            return true;
-        }
-
-        if (keyMap.isSpecialKey()){
-            System.out.println("inside special key");
+        if (keyMap.isSpecialKey()) {
             player.restartLives();
         }
-        return false;
+
+        return keyMap.isLeave();
+
     }
 
     private void initialScreen() {
@@ -338,7 +380,7 @@ public class Game {
                     throw new UnsupportedOperationException("No game for me please");
                 }
 
-                if (keyMap.isSpecialKey()){
+                if (keyMap.isSpecialKey()) {
                     player.restartLives();
                 }
 

@@ -8,15 +8,15 @@ import junglesweeper.simplegfx.grid.SimpleGfxGridType;
  * Project: JungleSweeper
  * Created by: andre martins, fabio fernandes, joao fazenda, nelson pereira, paulo sousa.
  */
-// TODO auto ident
+
 public class GridFactory {
 
     public static Grid makeGrid(DisplayType displayType, SimpleGfxGridType simpleGfxGridType) {
 
-        switch(displayType){
+        switch (displayType) {
 
             case SIMPLE_GFX:
-                switch (simpleGfxGridType){
+                switch (simpleGfxGridType) {
                     case MAP_GRID:
                         return new SimpleGfxGrid(SimpleGfxGridType.MAP_GRID);
                     case INFO_GRID:
