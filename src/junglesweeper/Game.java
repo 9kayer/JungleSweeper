@@ -197,6 +197,7 @@ public class Game {
             music.stop();
             music.close();
             music = new Sound("/ttps/finalmusic.wav");
+            music.play();
 
         }
 
