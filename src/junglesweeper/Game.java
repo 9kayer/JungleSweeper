@@ -207,8 +207,6 @@ public class Game {
 
             start();
 
-            return;
-
         }
     }
 

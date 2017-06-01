@@ -44,7 +44,6 @@ public class CollisionDetector {
             }
 
             if (c instanceof Key && c.isActive()) {
-                System.out.println("Key");
                 c.collide();
                 player.collectKey();
 
@@ -52,7 +51,6 @@ public class CollisionDetector {
             }
 
             if (c instanceof Enemy) {
-                System.out.println("Enemy");
                 player.collide();
                 player.reset();
                 player.getPos().show();
@@ -61,7 +59,6 @@ public class CollisionDetector {
             }
 
             if (c instanceof Door && player.hasKey()) {
-                System.out.println("Door");
                 c.collide();
 
                 return c;
