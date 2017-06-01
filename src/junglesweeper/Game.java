@@ -88,7 +88,7 @@ public class Game {
         display.makeGrids();
 
         // Construct and initialize the music
-        music = new Sound("/ttps/WelcometotheJunglewav.wav");
+        music = new Sound("/ttps/WelcomeToTheJungle.wav");
         music.setLoop(1000);
 
         gameObjectList = new ArrayList<>();
@@ -325,9 +325,13 @@ public class Game {
 
         // Draw all the game objects
         for (GameObject go : gameObjectList) {
-            //if (!go.getType().equals(GameObjectsType.ENEMY)) {
-                go.getGridPosition().show();
-            //}
+
+            if (go.getType().equals(GameObjectsType.ENEMY)) {
+                continue;
+            }
+
+            go.getGridPosition().show();
+
         }
 
         drawPath();
