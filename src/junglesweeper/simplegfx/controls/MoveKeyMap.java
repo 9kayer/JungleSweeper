@@ -76,7 +76,6 @@ public class MoveKeyMap implements KeyboardHandler {
         // Space or Q
         if (e.getKey() == keys[4] && directionKeyBlocked && !spaceKey) {
 
-            System.out.println("space");
             spaceKey = true;
         }
 
@@ -93,28 +92,24 @@ public class MoveKeyMap implements KeyboardHandler {
         if (e.getKey() == keys[0]) {
             moving = true;
             direction = Direction.UP;
-            //System.out.println(direction);
         }
 
         // Right or D
         if (e.getKey() == keys[1]) {
             moving = true;
             direction = Direction.RIGHT;
-            //System.out.println(direction);
         }
 
         // Down or S
         if (e.getKey() == keys[2]) {
             moving = true;
             direction = Direction.DOWN;
-            //System.out.println(direction);
         }
 
         // Left or A
         if (e.getKey() == keys[3]) {
             moving = true;
             direction = Direction.LEFT;
-            //System.out.println(direction);
         }
     }
 
