@@ -1,7 +1,7 @@
 # JungleSweeper
 Mogli is in the jungle, the mighty jungle, where the tigers sleep every night.
 
-![logo](https://github.com/9kayer/JungleSweeper/master/resources/pictures/JungleSweeper.jpg)
+![logo](https://raw.githubusercontent.com/9kayer/JungleSweeper/master/resources/pictures/JungleSweeper.jpg)
 
 #### [Academia de Código](http://www.academiadecodigo.org/)'s 8th Bootcamp (Fundão)
 
