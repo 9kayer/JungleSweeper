@@ -1,5 +1,5 @@
 # JungleSweeper
-Mogli is in the jungle, the mighty jungle, where the tigers sleep every night.
+Jorg Rambo is in the jungle, the mighty jungle, where the tigers sleep every night.
 
 ![logo](https://raw.githubusercontent.com/9kayer/JungleSweeper/master/resources/pictures/JungleSweeper.jpg)
 
